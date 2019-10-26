@@ -1,0 +1,195 @@
+{
+  "format": 1,
+  "restore": {
+    "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp_API\\MyApp_API.csproj": {}
+  },
+  "projects": {
+    "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj",
+        "projectName": "MyApp.Core",
+        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectName": "MyApp.Repository",
+        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Service\\MyApp.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Service\\MyApp.Service.csproj",
+        "projectName": "MyApp.Service",
+        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Service\\MyApp.Service.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj"
+              },
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp_API\\MyApp_API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp_API\\MyApp_API.csproj",
+        "projectName": "MyApp_API",
+        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp_API\\MyApp_API.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp_API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj"
+              },
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Repository\\MyApp.Repository.csproj"
+              },
+              "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Service\\MyApp.Service.csproj": {
+                "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Service\\MyApp.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.7, )"
+            },
+            "Microsoft.AspNetCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[11.20.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
