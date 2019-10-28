@@ -246,6 +246,7 @@
     <Compile Include="Constaint\MyEnum.cs" />
     <Compile Include="Data\Entity\BaseEntity.cs" />
     <Compile Include="Data\Entity\DataContext.cs" />
+    <Compile Include="Data\Entity\Role.cs" />
     <Compile Include="Data\Entity\User.cs" />
     <Compile Include="Data\Infrastructure\DbFactory.cs" />
     <Compile Include="Data\Infrastructure\Disposable.cs" />

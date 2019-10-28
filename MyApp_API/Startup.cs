@@ -35,8 +35,17 @@ namespace MyApp_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region ===== Cors ========
+
             services.AddCors();
+
+            #endregion
+
+            #region ===== Dependency Injection ========
+
             services.AddDI();
+
+            #endregion
 
             #region ===== Add our DbContext ========
 
@@ -56,6 +65,7 @@ namespace MyApp_API
 
             #endregion
 
+            services.AddSignalR();
             services.AddHttpContextAccessor();
         }
 

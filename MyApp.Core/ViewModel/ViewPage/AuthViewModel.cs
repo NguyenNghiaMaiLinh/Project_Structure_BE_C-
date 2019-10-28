@@ -42,6 +42,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Password { get; set; }
         [CheckName(Property = "Fullname")]
         public string FullName { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Avatar_Path { get; set; }
 
     }
     public class ChangePasswordViewModel
@@ -54,5 +57,4 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string NewPassword { get; set; }
 
     }
- 
 }

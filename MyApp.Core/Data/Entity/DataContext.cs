@@ -25,6 +25,7 @@ namespace MyApp.Core.Data.Entity
         {
             BulkUpdate();
         }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,6 +40,20 @@ namespace MyApp.Core.Data.Entity
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("ROLE");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<User>(entity =>
             {
@@ -65,16 +80,28 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FullName)
-                    .HasColumnName("Full_Name")
+                entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.FullName)
+                    .HasColumnName("Full_Name")
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.HashPassword)
-                    .HasMaxLength(200)
+                    .HasMaxLength(1000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(14)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RoleId)
+                    .HasColumnName("Role_Id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.SaltPassword)
                     .HasMaxLength(200)
@@ -92,6 +119,11 @@ namespace MyApp.Core.Data.Entity
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.User)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_USER_ROLE");
             });
         }
     }

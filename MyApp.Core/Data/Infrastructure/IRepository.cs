@@ -24,6 +24,8 @@ namespace MyApp.Core.Data.Infrastructure
         IQueryable<T> GetAll();
         // Gets entities using delegate
         IQueryable<T> GetMany(Expression<Func<T, bool>> where);
-
+        string GetUsername();
+        int Count(Expression<Func<T, bool>> predicate);
+        string GetCurrentUserId();
     }
 }

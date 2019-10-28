@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MyApp.Core.Constaint;
 using MyApp.Core.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,7 +81,33 @@ namespace MyApp.Core.Data.Infrastructure
         {
             return dbSet.Where(where);
         }
-     
+        public string GetUsername()
+        {
+            try
+            {
+                var accessor = _serviceProvider.GetRequiredService<IHttpContextAccessor>();
+                return accessor?.HttpContext?.User?.FindFirst(Constants.CLAIM_USERNAME)?.Value ?? Constants.USER_ANONYMOUS;
+            }
+            catch
+            {
+                return "SYSTEM";
+            }
+        }
+
+        public int Count(Expression<Func<T, bool>> predicate = null)
+        {
+            IQueryable<T> query = dbSet;
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            return query.Count();
+        }
+        public string GetCurrentUserId()
+        {
+            var accessor = _serviceProvider.GetRequiredService<IHttpContextAccessor>();
+            return accessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
         #endregion
     }
 }

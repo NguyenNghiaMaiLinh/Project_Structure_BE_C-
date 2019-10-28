@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using MyApp.Core.AutoMapper;
 using MyApp.Core.Data.Infrastructure;
@@ -22,7 +23,8 @@ namespace MyApp_API.Extentions
             //add for data
             services.AddScoped<IDbFactory, DbFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
+            //SignalR
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #region automapper
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
