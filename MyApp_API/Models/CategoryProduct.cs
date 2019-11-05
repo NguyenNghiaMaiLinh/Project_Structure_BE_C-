@@ -13,5 +13,8 @@ namespace MyApp_API.Models
         public bool? IsDelete { get; set; }
         public string ProductId { get; set; }
         public string CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

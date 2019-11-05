@@ -109,7 +109,7 @@ namespace MyApp.Service.Service
                 Username = user.Username,
                 FullName = user.FullName
             };
-            entity.SetDefaultInsertValue(Constants.USER_ANONYMOUS);
+            entity.SetDefaultInsertValue(_repository.GetUsername());
             var temp = new SaltHashPassword(user.Password);
             entity.SaltPassword = temp.Salt;
             entity.HashPassword = temp.Hash;

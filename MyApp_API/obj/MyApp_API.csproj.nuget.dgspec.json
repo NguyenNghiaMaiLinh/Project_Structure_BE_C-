@@ -9,12 +9,7 @@
       "restore": {
         "projectUniqueName": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj",
         "projectName": "MyApp.Core",
-        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {}
-          }
-        }
+        "projectPath": "G:\\Trainning_ReactJs\\BE\\MyApp_API\\MyApp.Core\\MyApp.Core.csproj"
       },
       "frameworks": {
         "net472": {}

@@ -208,17 +208,17 @@ namespace MyApp_API.Controllers
         //        }
         //    }
         //}
-        //private string GetCurrentUser()
-        //{
-        //    //try
-        //    //{
-        //    return _accessor.HttpContext.User?.FindFirst("username")?.Value ?? "SYSTEM";
-        //    //}
-        //    //catch
-        //    //{
-        //    //    return "SYSTEM";
-        //    //}
-        //}
+        private string GetCurrentUser()
+        {
+            //try
+            //{
+            return _accessor.HttpContext.User?.FindFirst("username")?.Value ?? "SYSTEM";
+            //}
+            //catch
+            //{
+            //    return "SYSTEM";
+            //}
+        }
         //private string GetCurrentUserId()
         //{
         //    //try

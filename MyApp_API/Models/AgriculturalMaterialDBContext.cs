@@ -15,9 +15,12 @@ namespace MyApp_API.Models
         {
         }
 
+        public virtual DbSet<Banner> Banner { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryProduct> CategoryProduct { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Discount> Discount { get; set; }
+        public virtual DbSet<DiscountUser> DiscountUser { get; set; }
         public virtual DbSet<District> District { get; set; }
         public virtual DbSet<ItemCategory> ItemCategory { get; set; }
         public virtual DbSet<Location> Location { get; set; }
@@ -40,6 +43,45 @@ namespace MyApp_API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity<Banner>(entity =>
+            {
+                entity.ToTable("BANNER");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.BannerName)
+                    .HasColumnName("Banner_Name")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UrlImage)
+                    .HasColumnName("Url_Image")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Category>(entity =>
             {
@@ -113,6 +155,16 @@ namespace MyApp_API.Models
                     .HasColumnName("Update_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.CategoryProduct)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_CATEGORY_PRODUCT_CATEGORY");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.CategoryProduct)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_CATEGORY_PRODUCT_PRODUCT");
             });
 
             modelBuilder.Entity<City>(entity =>
@@ -147,6 +199,98 @@ namespace MyApp_API.Models
                     .HasColumnName("Update_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Discount>(entity =>
+            {
+                entity.ToTable("DISCOUNT");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EndAt)
+                    .HasColumnName("End_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.StartAt)
+                    .HasColumnName("Start_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<DiscountUser>(entity =>
+            {
+                entity.ToTable("DISCOUNT_USER");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DiscountId)
+                    .HasColumnName("Discount_Id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("User_Id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Discount)
+                    .WithMany(p => p.DiscountUser)
+                    .HasForeignKey(d => d.DiscountId)
+                    .HasConstraintName("FK_DISCOUNT_USER_DISCOUNT");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.DiscountUser)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_DISCOUNT_USER_USER");
             });
 
             modelBuilder.Entity<District>(entity =>
@@ -413,7 +557,13 @@ namespace MyApp_API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.IsNew).HasColumnName("Is_New");
 
                 entity.Property(e => e.ItemCategoryId)
                     .HasColumnName("Item_Category_Id")
@@ -426,6 +576,8 @@ namespace MyApp_API.Models
                     .HasColumnName("Product_Name")
                     .HasMaxLength(100);
 
+                entity.Property(e => e.Rating).HasColumnType("decimal(18, 0)");
+
                 entity.Property(e => e.UpdateAt)
                     .HasColumnName("Update_At")
                     .HasColumnType("datetime");
@@ -434,6 +586,16 @@ namespace MyApp_API.Models
                     .HasColumnName("Update_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UrlImage)
+                    .HasColumnName("Url_Image")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ItemCategory)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.ItemCategoryId)
+                    .HasConstraintName("FK_PRODUCT_ITEM_CATEGORY");
             });
 
             modelBuilder.Entity<Role>(entity =>

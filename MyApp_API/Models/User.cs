@@ -7,6 +7,7 @@ namespace MyApp_API.Models
     {
         public User()
         {
+            DiscountUser = new HashSet<DiscountUser>();
             Location = new HashSet<Location>();
             Order = new HashSet<Order>();
         }
@@ -29,6 +30,7 @@ namespace MyApp_API.Models
         public string RoleId { get; set; }
 
         public virtual Role Role { get; set; }
+        public virtual ICollection<DiscountUser> DiscountUser { get; set; }
         public virtual ICollection<Location> Location { get; set; }
         public virtual ICollection<Order> Order { get; set; }
     }

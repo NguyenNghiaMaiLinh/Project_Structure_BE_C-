@@ -7,6 +7,7 @@ namespace MyApp_API.Models
     {
         public Product()
         {
+            CategoryProduct = new HashSet<CategoryProduct>();
             OrderDetail = new HashSet<OrderDetail>();
         }
 
@@ -20,7 +21,14 @@ namespace MyApp_API.Models
         public string ItemCategoryId { get; set; }
         public int? Quantity { get; set; }
         public decimal? Price { get; set; }
+        public bool? IsNew { get; set; }
+        public int? Sale { get; set; }
+        public decimal? Rating { get; set; }
+        public string UrlImage { get; set; }
+        public string Description { get; set; }
 
+        public virtual ItemCategory ItemCategory { get; set; }
+        public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

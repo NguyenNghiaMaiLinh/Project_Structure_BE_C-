@@ -5,6 +5,11 @@ namespace MyApp_API.Models
 {
     public partial class Category
     {
+        public Category()
+        {
+            CategoryProduct = new HashSet<CategoryProduct>();
+        }
+
         public string Id { get; set; }
         public string CreateBy { get; set; }
         public DateTime? CreateAt { get; set; }
@@ -12,5 +17,7 @@ namespace MyApp_API.Models
         public DateTime? UpdateAt { get; set; }
         public bool? IsDelete { get; set; }
         public string CategoryName { get; set; }
+
+        public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }
     }
 }
