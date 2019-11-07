@@ -2,11 +2,7 @@
 using MyApp.Core.Data.Entity;
 using MyApp.Core.ViewModel.ViewPage;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyApp.Core.AutoMapper
 {
@@ -16,6 +12,9 @@ namespace MyApp.Core.AutoMapper
         {
             CreateMap<UserViewPage, User>().ReverseMap();
             CreateMap<User, UserViewPage>().ReverseMap();
+
+            CreateMap<BannerViewPage, Banner>().ReverseMap();
+            CreateMap<Banner, BannerViewPage>().ReverseMap();
 
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());

@@ -19,6 +19,9 @@ namespace MyApp_API.Models
         public string Code { get; set; }
         public DateTime? StartAt { get; set; }
         public DateTime? EndAt { get; set; }
+        public string Status { get; set; }
+        public string Title { get; set; }
+        public string UrlImage { get; set; }
 
         public virtual ICollection<DiscountUser> DiscountUser { get; set; }
     }

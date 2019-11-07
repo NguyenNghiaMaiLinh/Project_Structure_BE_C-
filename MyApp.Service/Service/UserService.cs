@@ -32,6 +32,7 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<PagingResult<UserViewPage>> GetAllUser(BasePagingRequestViewModel request)
         {
+            var a = _repository.GetUsername();
             var pageSize = request.PageSize;
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<UserViewPage>>();
@@ -109,7 +110,7 @@ namespace MyApp.Service.Service
                 Username = user.Username,
                 FullName = user.FullName
             };
-            entity.SetDefaultInsertValue(_repository.GetUsername());
+            entity.SetDefaultInsertValue(user.Username);
             var temp = new SaltHashPassword(user.Password);
             entity.SaltPassword = temp.Salt;
             entity.HashPassword = temp.Hash;

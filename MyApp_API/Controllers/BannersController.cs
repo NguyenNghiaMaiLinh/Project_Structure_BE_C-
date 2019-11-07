@@ -1,119 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyApp.Core.Data.Entity;
+using Microsoft.Extensions.DependencyInjection;
+using MyApp.Core.Service;
+using MyApp.Core.ViewModel;
+using MyApp.Core.ViewModel.ViewPage;
+using System;
 
 namespace MyApp_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BannersController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+        private readonly IBannerService _bannerService;
 
-        public BannersController(DataContext context)
+
+        public BannersController(IServiceProvider serviceProvider)
         {
-            _context = context;
-        }
+            _bannerService = serviceProvider.GetRequiredService<IBannerService>();
+            _mapper = serviceProvider.GetRequiredService<IMapper>();
 
-        // GET: api/Banners
+        }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Banner>>> GetBanner()
+        public ActionResult<BaseViewModel<PagingResult<BannerViewPage>>> GetMyUser([FromQuery]BasePagingRequestViewModel request)
         {
-            return await _context.Banner.ToListAsync();
+            request.SetDefaultPage();
+
+            var result = _bannerService.GetAllBanner(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
         }
 
-        // GET: api/Banners/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Banner>> GetBanner(string id)
-        {
-            var banner = await _context.Banner.FindAsync(id);
-
-            if (banner == null)
-            {
-                return NotFound();
-            }
-
-            return banner;
-        }
-
-        // PUT: api/Banners/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBanner(string id, Banner banner)
-        {
-            if (id != banner.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(banner).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BannerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Banners
-        [HttpPost]
-        public async Task<ActionResult<Banner>> PostBanner(Banner banner)
-        {
-            _context.Banner.Add(banner);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (BannerExists(banner.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetBanner", new { id = banner.Id }, banner);
-        }
-
-        // DELETE: api/Banners/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Banner>> DeleteBanner(string id)
-        {
-            var banner = await _context.Banner.FindAsync(id);
-            if (banner == null)
-            {
-                return NotFound();
-            }
-
-            _context.Banner.Remove(banner);
-            await _context.SaveChangesAsync();
-
-            return banner;
-        }
-
-        private bool BannerExists(string id)
-        {
-            return _context.Banner.Any(e => e.Id == id);
-        }
     }
 }

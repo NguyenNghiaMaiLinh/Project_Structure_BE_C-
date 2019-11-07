@@ -7,10 +7,6 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Repository.Repository;
 using MyApp.Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyApp_API.Extentions
 {
@@ -42,11 +38,19 @@ namespace MyApp_API.Extentions
         public static void AddServiceDI(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IBannerService, BannerService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IDistrictService, DistrictService>();
+            services.AddTransient<IWardService, WardService>();
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IBannerRepository, BannerRepository>();
+            services.AddTransient<ICityRepository, CityRepository>();
+            services.AddTransient<IDistrictRepository, DistrictRepository>();
+            services.AddTransient<IWardRepository, WardRepository>();
 
         }
 

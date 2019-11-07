@@ -1,25 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MyApp.Core.Data.Entity
 {
     public partial class DataContext : DbContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
         public DataContext()
         {
         }
 
-        public DataContext(DbContextOptions<DataContext> options, IHttpContextAccessor httpContextAccessor)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
-            _httpContextAccessor = httpContextAccessor;
         }
         public void Commit()
         {
@@ -29,6 +20,7 @@ namespace MyApp.Core.Data.Entity
         {
             BulkUpdate();
         }
+
         public virtual DbSet<Banner> Banner { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryProduct> CategoryProduct { get; set; }
@@ -89,7 +81,8 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.UpdateBy)
                     .HasColumnName("Update_By")
-                    .HasColumnType("datetime");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UrlImage)
                     .HasColumnName("Url_Image")
@@ -194,12 +187,12 @@ namespace MyApp.Core.Data.Entity
                     .HasColumnName("City_Name")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -239,13 +232,19 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.EndAt)
                     .HasColumnName("End_At")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
                 entity.Property(e => e.StartAt)
                     .HasColumnName("Start_At")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title).HasMaxLength(100);
 
                 entity.Property(e => e.UpdateAt)
                     .HasColumnName("Update_At")
@@ -254,6 +253,11 @@ namespace MyApp.Core.Data.Entity
                 entity.Property(e => e.UpdateBy)
                     .HasColumnName("Update_By")
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UrlImage)
+                    .HasColumnName("Url_Image")
+                    .HasMaxLength(500)
                     .IsUnicode(false);
             });
 
@@ -333,8 +337,7 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.DistrictName)
                     .HasColumnName("District_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
@@ -401,12 +404,12 @@ namespace MyApp.Core.Data.Entity
                     .HasColumnName("Address_Name")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -584,13 +587,27 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.MadeIn)
+                    .HasColumnName("Made_In")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Material).HasMaxLength(50);
+
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.ProductName)
                     .HasColumnName("Product_Name")
                     .HasMaxLength(100);
 
+                entity.Property(e => e.ProvidedBy)
+                    .HasColumnName("Provided_By")
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.Rating).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.TradeMark)
+                    .HasColumnName("Trade_Mark")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.UpdateAt)
                     .HasColumnName("Update_At")
@@ -605,6 +622,10 @@ namespace MyApp.Core.Data.Entity
                     .HasColumnName("Url_Image")
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.Property(e => e.WarrantyPeriod)
+                    .HasColumnName("Warranty_Period")
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.ItemCategory)
                     .WithMany(p => p.Product)
@@ -621,12 +642,12 @@ namespace MyApp.Core.Data.Entity
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -662,12 +683,12 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.Birthday).HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -698,12 +719,12 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnName("Updated_At")
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.UpdatedBy)
-                    .HasColumnName("Updated_By")
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -754,8 +775,7 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.WardName)
                     .HasColumnName("Ward_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.District)
                     .WithMany(p => p.Ward)
@@ -764,5 +784,6 @@ namespace MyApp.Core.Data.Entity
                     .HasConstraintName("FK_WARD_DISTRICT");
             });
         }
+
     }
 }

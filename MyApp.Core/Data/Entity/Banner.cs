@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyApp.Core.Data.Entity
+﻿namespace MyApp.Core.Data.Entity
 {
-    public partial class Banner
+    public partial class Banner: BaseEntity
     {
-        public string Id { get; set; }
-        public DateTime? CreateAt { get; set; }
-        public string CreateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
-        public DateTime? UpdateBy { get; set; }
         public bool? IsDelete { get; set; }
         public string BannerName { get; set; }
         public string UrlImage { get; set; }

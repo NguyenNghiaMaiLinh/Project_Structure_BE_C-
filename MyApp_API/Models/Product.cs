@@ -26,6 +26,11 @@ namespace MyApp_API.Models
         public decimal? Rating { get; set; }
         public string UrlImage { get; set; }
         public string Description { get; set; }
+        public string MadeIn { get; set; }
+        public string TradeMark { get; set; }
+        public string ProvidedBy { get; set; }
+        public string WarrantyPeriod { get; set; }
+        public string Material { get; set; }
 
         public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }

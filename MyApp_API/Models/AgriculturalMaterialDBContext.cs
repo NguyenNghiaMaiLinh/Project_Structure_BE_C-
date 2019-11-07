@@ -225,13 +225,19 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.EndAt)
                     .HasColumnName("End_At")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
                 entity.Property(e => e.StartAt)
                     .HasColumnName("Start_At")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title).HasMaxLength(100);
 
                 entity.Property(e => e.UpdateAt)
                     .HasColumnName("Update_At")
@@ -240,6 +246,11 @@ namespace MyApp_API.Models
                 entity.Property(e => e.UpdateBy)
                     .HasColumnName("Update_By")
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UrlImage)
+                    .HasColumnName("Url_Image")
+                    .HasMaxLength(500)
                     .IsUnicode(false);
             });
 
@@ -319,8 +330,7 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.DistrictName)
                     .HasColumnName("District_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
@@ -570,13 +580,27 @@ namespace MyApp_API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.MadeIn)
+                    .HasColumnName("Made_In")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Material).HasMaxLength(50);
+
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.ProductName)
                     .HasColumnName("Product_Name")
                     .HasMaxLength(100);
 
+                entity.Property(e => e.ProvidedBy)
+                    .HasColumnName("Provided_By")
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.Rating).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.TradeMark)
+                    .HasColumnName("Trade_Mark")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.UpdateAt)
                     .HasColumnName("Update_At")
@@ -591,6 +615,10 @@ namespace MyApp_API.Models
                     .HasColumnName("Url_Image")
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.Property(e => e.WarrantyPeriod)
+                    .HasColumnName("Warranty_Period")
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.ItemCategory)
                     .WithMany(p => p.Product)
@@ -740,8 +768,7 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.WardName)
                     .HasColumnName("Ward_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.District)
                     .WithMany(p => p.Ward)

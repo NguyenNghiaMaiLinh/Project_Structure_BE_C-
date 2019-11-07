@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MyApp.Core.Data.Entity
 {
-    public partial class Product
+    public partial class Product :BaseEntity
     {
         public Product()
         {
@@ -11,11 +10,6 @@ namespace MyApp.Core.Data.Entity
             OrderDetail = new HashSet<OrderDetail>();
         }
 
-        public string Id { get; set; }
-        public string CreateBy { get; set; }
-        public DateTime? CreateAt { get; set; }
-        public string UpdateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
         public bool? IsDelete { get; set; }
         public string ProductName { get; set; }
         public string ItemCategoryId { get; set; }
@@ -26,6 +20,11 @@ namespace MyApp.Core.Data.Entity
         public decimal? Rating { get; set; }
         public string UrlImage { get; set; }
         public string Description { get; set; }
+        public string MadeIn { get; set; }
+        public string TradeMark { get; set; }
+        public string ProvidedBy { get; set; }
+        public string WarrantyPeriod { get; set; }
+        public string Material { get; set; }
 
         public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }
