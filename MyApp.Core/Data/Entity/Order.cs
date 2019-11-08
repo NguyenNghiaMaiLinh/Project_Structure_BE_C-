@@ -8,6 +8,10 @@ namespace MyApp.Core.Data.Entity
         {
             OrderDetail = new HashSet<OrderDetail>();
         }
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
 
         public decimal? TotalPrice { get; set; }
         public string LocationId { get; set; }

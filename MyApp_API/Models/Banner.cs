@@ -9,7 +9,7 @@ namespace MyApp_API.Models
         public DateTime? CreateAt { get; set; }
         public string CreateBy { get; set; }
         public DateTime? UpdateAt { get; set; }
-        public DateTime? UpdateBy { get; set; }
+        public string UpdateBy { get; set; }
         public bool? IsDelete { get; set; }
         public string BannerName { get; set; }
         public string UrlImage { get; set; }

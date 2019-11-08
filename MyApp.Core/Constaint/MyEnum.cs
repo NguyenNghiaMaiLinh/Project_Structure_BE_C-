@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyApp.Core.Constaint
 {
@@ -24,14 +18,14 @@ namespace MyApp.Core.Constaint
         }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum Role
+        public enum Gender
         {
-            //"Quản lý tài khoản"
-            Admin = 0,
-            //"Nhân viên"
-            Staff = 1,
-            //"Khách Hàng")
-            User = 2,
+            //"Nam"
+            Male = 0,
+            //"Nữ"
+            Female = 1,
+            //"Thứ ba"
+            Unknown = 2
         }
         [JsonConverter(typeof(StringEnumConverter))]
         public enum Order
@@ -46,13 +40,6 @@ namespace MyApp.Core.Constaint
             Delivered = 1,
             Canceled = 2,
             Delivering = 3,
-        }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum Gender
-        {
-            Unknown = 0,
-            Male = 1,
-            Female = 2,
         }
     }
 }

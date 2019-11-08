@@ -5,6 +5,10 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class OrderDetail :BaseEntity
     {
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
 
         public bool? IsDelete { get; set; }
         public string OrderId { get; set; }

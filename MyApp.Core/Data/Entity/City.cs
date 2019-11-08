@@ -4,6 +4,11 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class City :BaseEntity
     {
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
+
         public City()
         {
             District = new HashSet<District>();

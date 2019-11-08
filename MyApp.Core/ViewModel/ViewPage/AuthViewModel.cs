@@ -1,12 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using MyApp.Core.Attribute;
+﻿using MyApp.Core.Attribute;
 using MyApp.Core.Constaint;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyApp.Core.ViewModel.ViewPage
 {
@@ -23,7 +18,7 @@ namespace MyApp.Core.ViewModel.ViewPage
 
     public class TokenViewModel
     {
-        public string[] Roles { get; set; }
+        public string Roles { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
         public string Email { get; set; }
@@ -45,6 +40,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Avatar_Path { get; set; }
+        public MyEnum.Gender Gender { get; set; }
 
     }
     public class ChangePasswordViewModel

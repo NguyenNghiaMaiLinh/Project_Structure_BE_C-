@@ -270,11 +270,13 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Logger\TraceLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRoleRepository.cs" />
     <Compile Include="Repository\IWardRepository.cs" />
     <Compile Include="Repository\IDistrictRepository.cs" />
     <Compile Include="Repository\ICityRepository.cs" />
     <Compile Include="Repository\IBannerRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\IRoleService.cs" />
     <Compile Include="Service\IWardService.cs" />
     <Compile Include="Service\IDistrictService.cs" />
     <Compile Include="Service\ICityService.cs" />

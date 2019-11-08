@@ -2,6 +2,11 @@
 {
     public partial class CategoryProduct :BaseEntity
     {
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
+
         public bool? IsDelete { get; set; }
         public string ProductId { get; set; }
         public string CategoryId { get; set; }

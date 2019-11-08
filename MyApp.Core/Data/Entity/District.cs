@@ -9,8 +9,12 @@ namespace MyApp.Core.Data.Entity
         {
             Ward = new HashSet<Ward>();
         }
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
 
-       
+
         public string DistrictName { get; set; }
         public bool? IsDelete { get; set; }
         public string CityId { get; set; }

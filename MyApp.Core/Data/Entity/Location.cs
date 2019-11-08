@@ -2,6 +2,11 @@
 {
     public partial class Location :BaseEntity
     {
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
+
         public string AddressName { get; set; }
         public bool? IsDelete { get; set; }
         public string Name { get; set; }

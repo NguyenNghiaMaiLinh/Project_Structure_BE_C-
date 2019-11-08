@@ -27,9 +27,10 @@ namespace MyApp.Core.Constaint
     }
     public static class Role
     {
-        public const string Admin = "Admin";
-        public const string User = "User";
-        public const string Staff = "Staff";
+        public const string Admin = "admin";
+        public const string SuperAdmin = "superadmin";
+        public const string User = "user";
+        public const string Staff = "staff";
     }
     public class ErrMessageConstants
     {
@@ -50,6 +51,7 @@ namespace MyApp.Core.Constaint
     {
         public const string SUCCESS = "Success";
         public const string NO_RECORD = "No_Record";
+        public const string FAILED = "Failed";
 
     }
 }

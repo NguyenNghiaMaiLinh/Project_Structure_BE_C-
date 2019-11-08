@@ -20,7 +20,6 @@ namespace MyApp.Core.Data.Entity
         {
             BulkUpdate();
         }
-
         public virtual DbSet<Banner> Banner { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryProduct> CategoryProduct { get; set; }
@@ -626,11 +625,6 @@ namespace MyApp.Core.Data.Entity
                 entity.Property(e => e.WarrantyPeriod)
                     .HasColumnName("Warranty_Period")
                     .HasMaxLength(50);
-
-                entity.HasOne(d => d.ItemCategory)
-                    .WithMany(p => p.Product)
-                    .HasForeignKey(d => d.ItemCategoryId)
-                    .HasConstraintName("FK_PRODUCT_ITEM_CATEGORY");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -710,8 +704,7 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(14)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RoleId)
-                    .HasColumnName("Role_Id")
+                entity.Property(e => e.Role)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -731,11 +724,6 @@ namespace MyApp.Core.Data.Entity
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.User)
-                    .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK_USER_ROLE");
             });
 
             modelBuilder.Entity<Ward>(entity =>

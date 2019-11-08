@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyApp.Core.Constaint;
+using System;
 
 namespace MyApp.Core.ViewModel.ViewPage
 {
@@ -13,8 +10,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
         public DateTime? Birthday { get; set; }
-        public int? Gender { get; set; }
-        public int? Phone { get; set; }
+        public MyEnum.Gender Gender { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
     }
     public class UserCreateViewPage
     {
@@ -26,5 +24,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? Gender { get; set; }
         public string Password { get; set; }
 
+    }
+    public class UserDeleteViewPage
+    {
+        public string Id { get; set; }
     }
 }

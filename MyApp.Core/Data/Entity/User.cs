@@ -5,6 +5,7 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class User : BaseEntity
     {
+
         public override void SetDefaultInsertValue(string username)
         {
             base.SetDefaultInsertValue(username);
@@ -27,9 +28,8 @@ namespace MyApp.Core.Data.Entity
         public string HashPassword { get; set; }
         public string SaltPassword { get; set; }
         public string Email { get; set; }
-        public string RoleId { get; set; }
+        public string Role { get; set; }
 
-        public virtual Role Role { get; set; }
         public virtual ICollection<DiscountUser> DiscountUser { get; set; }
         public virtual ICollection<Location> Location { get; set; }
         public virtual ICollection<Order> Order { get; set; }

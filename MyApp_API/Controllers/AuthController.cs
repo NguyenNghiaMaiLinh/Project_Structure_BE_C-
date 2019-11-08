@@ -54,7 +54,7 @@ namespace MyApp_API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        /// <author>thiennb</author>
+        /// <author>linhnnm</author>
         [HttpPost("Login")]
         public ActionResult<BaseViewModel<TokenViewModel>> Login([FromBody]LoginViewModel request)
         {
@@ -77,7 +77,7 @@ namespace MyApp_API.Controllers
         }
 
         #endregion
-       
+
         //#region GetToken
 
         ///// <summary>
@@ -85,7 +85,7 @@ namespace MyApp_API.Controllers
         ///// </summary>
         ///// <param name="request"></param>
         ///// <returns></returns>
-        ///// <author>thiennb</author>   
+        ///// <author>Linhnnm</author>   
         //[Authorize]
         //[HttpGet("GetToken")]
         //public async Task<ActionResult<BaseViewModel<TokenViewModel>>> GetToken()
@@ -116,7 +116,7 @@ namespace MyApp_API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        /// <author>thiennb</author>
+        /// <author>Linhnnm</author>
         [HttpPost("Register")]
         public async Task<ActionResult> Register([FromBody]RegisterViewModel request)
         {
@@ -191,23 +191,7 @@ namespace MyApp_API.Controllers
             var key = new RsaSecurityKey(rsaProvider);
             return key;
         }
-        //private async Task CreateRole()
-        //{
-        //    var roleNames = AppSettings.Configs.GetSection("Role").Get<List<string>>();
-        //    IdentityResult roleResult;
 
-        //    foreach (var roleName in roleNames)
-        //    {
-        //        var roleExist = await _roleManager.RoleExistsAsync(roleName);
-        //        if (!roleExist)
-        //        {
-        //            //create the roles and seed them to the database:
-        //            MyRole role = new MyRole() { Name = roleName };
-        //            role.SetDefaultInsertValue(GetCurrentUser());
-        //            roleResult = await _roleManager.CreateAsync(role);
-        //        }
-        //    }
-        //}
         private string GetCurrentUser()
         {
             //try
@@ -219,16 +203,6 @@ namespace MyApp_API.Controllers
             //    return "SYSTEM";
             //}
         }
-        //private string GetCurrentUserId()
-        //{
-        //    //try
-        //    //{
-        //    return _accessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        //    //}
-        //    //catch
-        //    //{
-        //    //    return "SYSTEM";
-        //    //}
-        //}
+
     }
 }

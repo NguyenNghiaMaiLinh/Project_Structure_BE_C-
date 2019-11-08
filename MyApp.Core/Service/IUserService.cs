@@ -14,5 +14,9 @@ namespace MyApp.Core.Service
         BaseViewModel<PagingResult<UserViewPage>> GetAllUser(BasePagingRequestViewModel request);
         BaseViewModel<User> Register(RegisterViewModel user);
         BaseViewModel<User> Login(LoginViewModel user);
+        BaseViewModel<User> Update(LoginViewModel user);
+        BaseViewModel<UserViewPage> RegisterStaff(RegisterViewModel user);
+        BaseViewModel<UserViewPage> RegisterAdmin(RegisterViewModel user);
+        BaseViewModel<bool> DeleteAccount(UserDeleteViewPage user);
     }
 }

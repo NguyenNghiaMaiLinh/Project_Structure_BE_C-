@@ -32,7 +32,6 @@ namespace MyApp_API.Models
         public string WarrantyPeriod { get; set; }
         public string Material { get; set; }
 
-        public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }

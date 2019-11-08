@@ -9,6 +9,10 @@ namespace MyApp.Core.Data.Entity
             CategoryProduct = new HashSet<CategoryProduct>();
             OrderDetail = new HashSet<OrderDetail>();
         }
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
 
         public bool? IsDelete { get; set; }
         public string ProductName { get; set; }

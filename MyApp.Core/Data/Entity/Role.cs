@@ -4,14 +4,13 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class Role :BaseEntity
     {
-        public Role()
+        public override void SetDefaultInsertValue(string username)
         {
-            User = new HashSet<User>();
+            base.SetDefaultInsertValue(username);
         }
-     
+
         public string Name { get; set; }
         public bool? IsDelete { get; set; }
 
-        public virtual ICollection<User> User { get; set; }
     }
 }

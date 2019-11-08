@@ -5,6 +5,11 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class Discount :BaseEntity
     {
+        public override void SetDefaultInsertValue(string username)
+        {
+            base.SetDefaultInsertValue(username);
+        }
+
         public Discount()
         {
             DiscountUser = new HashSet<DiscountUser>();

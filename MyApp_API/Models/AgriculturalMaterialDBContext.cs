@@ -75,7 +75,8 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.UpdateBy)
                     .HasColumnName("Update_By")
-                    .HasColumnType("datetime");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UrlImage)
                     .HasColumnName("Url_Image")
@@ -180,12 +181,12 @@ namespace MyApp_API.Models
                     .HasColumnName("City_Name")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -397,12 +398,12 @@ namespace MyApp_API.Models
                     .HasColumnName("Address_Name")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -619,11 +620,6 @@ namespace MyApp_API.Models
                 entity.Property(e => e.WarrantyPeriod)
                     .HasColumnName("Warranty_Period")
                     .HasMaxLength(50);
-
-                entity.HasOne(d => d.ItemCategory)
-                    .WithMany(p => p.Product)
-                    .HasForeignKey(d => d.ItemCategoryId)
-                    .HasConstraintName("FK_PRODUCT_ITEM_CATEGORY");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -635,12 +631,12 @@ namespace MyApp_API.Models
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -676,12 +672,12 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.Birthday).HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("Created_At")
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnName("Created_By")
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -703,8 +699,7 @@ namespace MyApp_API.Models
                     .HasMaxLength(14)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RoleId)
-                    .HasColumnName("Role_Id")
+                entity.Property(e => e.Role)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -712,23 +707,18 @@ namespace MyApp_API.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnName("Updated_At")
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.UpdatedBy)
-                    .HasColumnName("Updated_By")
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.User)
-                    .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK_USER_ROLE");
             });
 
             modelBuilder.Entity<Ward>(entity =>
