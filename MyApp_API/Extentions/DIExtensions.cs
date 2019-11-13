@@ -38,26 +38,12 @@ namespace MyApp_API.Extentions
         public static void AddServiceDI(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IBannerService, BannerService>();
-            services.AddTransient<ICityService, CityService>();
-            services.AddTransient<IDistrictService, DistrictService>();
-            services.AddTransient<IWardService, WardService>();
-            services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<ICategoryService, CategoryService>();
+
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IBannerRepository, BannerRepository>();
-            services.AddTransient<ICityRepository, CityRepository>();
-            services.AddTransient<IDistrictRepository, DistrictRepository>();
-            services.AddTransient<IWardRepository, WardRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<ICategoryProductRepository, CategoryProductRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
         }
 

@@ -79,37 +79,7 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        #region LoginForAdmin
-
-        /// <summary>
-        /// LoginForAdmin
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <author>linhnnm</author>
-        [HttpPost("LoginForAdmin")]
-        public ActionResult<BaseViewModel<TokenViewModel>> LoginForAdmin([FromBody]LoginViewModel request)
-        {
-            var entity = _userService.Login(request);
-            if (entity.Data == null || entity.Data.Role == MyApp.Core.Constaint.Role.User)
-            {
-                return BadRequest(new BaseViewModel<TokenViewModel>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code
-                });
-
-            }
-
-            return Ok(new BaseViewModel<TokenViewModel>
-            {
-                Data = GenerateTokenForUser(entity.Data),
-            });
-
-        }
-
-        #endregion
+     
         //#region GetToken
 
         ///// <summary>
@@ -183,7 +153,7 @@ namespace MyApp_API.Controllers
             var claims = new List<Claim>();
 
             claims.Add(new Claim(MyApp.Core.Constaint.Constants.CLAIM_USERNAME, user.Username));
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Username.ToString()));
             //create token
             var token = new JwtSecurityToken(
                     issuer: AppSettings.Configs.GetValue<string>("JwtSettings:Issuer"),
@@ -216,7 +186,7 @@ namespace MyApp_API.Controllers
             var claims = new List<Claim>();
 
             claims.Add(new Claim(MyApp.Core.Constaint.Constants.CLAIM_USERNAME, user.Username));
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Username.ToString()));
             //create token
             var token = new JwtSecurityToken(
                     issuer: AppSettings.Configs.GetValue<string>("JwtSettings:Issuer"),

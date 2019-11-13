@@ -10,6 +10,6 @@ namespace MyApp.Core.Repository
 {
     public interface IUserRepository : IRepository<User>
     {
-        User GetByUsername(string username);
+        //User GetByUsername(string username);
     }
 }

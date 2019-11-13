@@ -28,7 +28,7 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<bool> DeleteAccount(UserDeleteViewPage request)
         {
-            var currentUser = _repository.GetByUsername(_repository.GetUsername());
+            var currentUser = _repository.GetById(_repository.GetUsername());
             var result = new BaseViewModel<bool>()
             {
                 Code = MessageConstants.NOTFOUND,
@@ -37,7 +37,7 @@ namespace MyApp.Service.Service
                 Data = false
 
             };
-            if (currentUser.Role == Core.Constaint.Role.SuperAdmin)
+            if (currentUser.Role == Role.Admin)
             {
                 var account = _repository.GetById(request.Id);
                 if (account != null)
@@ -96,7 +96,7 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<User> Login(LoginViewModel user)
         {
-            var entity = _repository.GetByUsername(user.Username);
+            var entity = _repository.GetById(user.Username);
             if (entity == null)
             {
                 return new BaseViewModel<User>
@@ -128,7 +128,7 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<User> Register(RegisterViewModel user)
         {
-            var check = _repository.GetByUsername(user.Username);
+            var check = _repository.GetById(user.Username);
             if (check != null)
             {
                 return new BaseViewModel<User>
@@ -139,14 +139,16 @@ namespace MyApp.Service.Service
             var entity = new User
             {
                 Username = user.Username,
-                FullName = user.FullName
+                FullName = user.FullName,
+                Email = user.Email,
+                AvatarPath = user.Avatar_Path
             };
-            entity.SetDefaultInsertValue(user.Username);
             var temp = new SaltHashPassword(user.Password);
             entity.SaltPassword = temp.Salt;
             entity.HashPassword = temp.Hash;
-            entity.Role = Core.Constaint.Role.User;
+            entity.Role = Role.User;
             entity.IsDelete = false;
+
             _repository.Add(entity);
             Save();
             var result = new BaseViewModel<User>()
@@ -158,106 +160,9 @@ namespace MyApp.Service.Service
             return result;
         }
 
-        public BaseViewModel<UserViewPage> RegisterAdmin(RegisterViewModel user)
-        {
-            var currentUser = _repository.GetByUsername(_repository.GetUsername());
-            var result = new BaseViewModel<UserViewPage>()
-            {
-                Code = MessageConstants.FAILURE,
-                Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
-                StatusCode = HttpStatusCode.BadRequest,
-                Data = null
-
-            };
-            if (currentUser.Role == Core.Constaint.Role.SuperAdmin)
-            {
-                var check = _repository.GetByUsername(user.Username);
-                if (check != null)
-                {
-                    return result;
-                    
-                }
-                var entity = new User
-                {
-                    Username = user.Username,
-                    FullName = user.FullName
-                };
-                entity.SetDefaultInsertValue(_repository.GetUsername());
-                var temp = new SaltHashPassword(user.Password);
-                entity.IsDelete = false;
-                entity.SaltPassword = temp.Salt;
-                entity.HashPassword = temp.Hash;
-                entity.Role = Core.Constaint.Role.Admin;
-                _repository.Add(entity);
-                Save();
-
-                result.Code = MessageConstants.SUCCESS;
-                result.Description = MessageConstants.SUCCESS;
-                result.StatusCode = HttpStatusCode.OK;
-                result.Data = _mapper.Map<UserViewPage>(entity);
-            }
-            else
-            {
-                result.Code = MessageConstants.FAILURE;
-                result.Description = ErrMessageConstants.INVALID_PERMISSION;
-                result.StatusCode = HttpStatusCode.PreconditionFailed;
-                result.Data = null;
-            }
-
-            return result;
-        }
-
-        public BaseViewModel<UserViewPage> RegisterStaff(RegisterViewModel user)
-        {
-            var currentUser = _repository.GetByUsername(_repository.GetUsername());
-            var result = new BaseViewModel<UserViewPage>()
-            {
-                Code = MessageConstants.FAILURE,
-                Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
-                StatusCode = HttpStatusCode.BadRequest,
-                Data = null
-
-            };
-            if (currentUser.Role == Core.Constaint.Role.SuperAdmin)
-            {
-                var check = _repository.GetByUsername(user.Username);
-                if (check != null)
-                {
-                    return result;
-                }
-                var entity = new User
-                {
-                    Username = user.Username,
-                    FullName = user.FullName
-                };
-                entity.SetDefaultInsertValue(_repository.GetUsername());
-                var temp = new SaltHashPassword(user.Password);
-                entity.SaltPassword = temp.Salt;
-                entity.HashPassword = temp.Hash;
-                entity.Role = Core.Constaint.Role.Staff;
-                entity.IsDelete = false;
-                _repository.Add(entity);
-                Save();
-
-                result.Code = MessageConstants.SUCCESS;
-                result.Description = MessageConstants.SUCCESS;
-                result.StatusCode = HttpStatusCode.OK;
-                result.Data = _mapper.Map<UserViewPage>(entity);
-            }
-            else
-            {
-                result.Code = MessageConstants.FAILURE;
-                result.Description = ErrMessageConstants.INVALID_PERMISSION;
-                result.StatusCode = HttpStatusCode.PreconditionFailed;
-                result.Data = null;
-            }
-
-            return result;
-        }
 
         public BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user)
         {
-            var currentUser = _repository.GetByUsername(_repository.GetUsername());
             var result = new BaseViewModel<UserViewPage>()
             {
                 Code = MessageConstants.NOTFOUND,
@@ -266,38 +171,25 @@ namespace MyApp.Service.Service
                 Data = null
 
             };
-            if (currentUser.Role == Core.Constaint.Role.SuperAdmin)
+
+            var entity = _repository.GetById(userId);
+            if (entity == null)
             {
-                var entity = _repository.GetById(userId);
-                if (entity == null)
+                return new BaseViewModel<UserViewPage>
                 {
-                    return new BaseViewModel<UserViewPage>
-                    {
-                        Data = null
-                    };
-                }
-                entity.FullName = user.FullName;
-                entity.Gender = user.Gender;
-                entity.Phone = user.Phone;
-                entity.Email = user.Email;
-                var temp = new SaltHashPassword(user.Password);
-                entity.SaltPassword = temp.Salt;
-                entity.HashPassword = temp.Hash;
-                entity.Birthday = user.Birthday;
-                entity.AvatarPath = user.AvatarPath;
-
-                _repository.Add(entity);
-                Save();
-
-                result.Data = _mapper.Map<UserViewPage>(entity);
+                    Data = null
+                };
             }
-            else
-            {
-                result.Code = MessageConstants.FAILURE;
-                result.Description = ErrMessageConstants.INVALID_PERMISSION;
-                result.StatusCode = HttpStatusCode.PreconditionFailed;
-                result.Data = null;
-            }
+            entity.FullName = user.FullName;
+            entity.Email = user.Email;
+            var temp = new SaltHashPassword(user.Password);
+            entity.SaltPassword = temp.Salt;
+            entity.HashPassword = temp.Hash;
+            entity.AvatarPath = user.AvatarPath;
+            _repository.Add(entity);
+            Save();
+
+            result.Data = _mapper.Map<UserViewPage>(entity);
 
             return result;
         }

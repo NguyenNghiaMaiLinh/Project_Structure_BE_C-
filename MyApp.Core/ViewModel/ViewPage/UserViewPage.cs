@@ -9,9 +9,6 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Username { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
-        public DateTime? Birthday { get; set; }
-        public MyEnum.Gender Gender { get; set; }
-        public string Phone { get; set; }
         public string Email { get; set; }
     }
     public class UserUpdateViewPage
@@ -19,9 +16,6 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string FullName { get; set; }
         public string Password { get; set; }
         public string AvatarPath { get; set; }
-        public DateTime? Birthday { get; set; }
-        public MyEnum.Gender Gender { get; set; }
-        public string Phone { get; set; }
         public string Email { get; set; }
     }
     public class UserCreateViewPage
@@ -29,10 +23,8 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Username { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
-
-        public DateTime? Birthday { get; set; }
-        public int? Gender { get; set; }
         public string Password { get; set; }
+        public string Email { get; set; }
 
     }
     public class UserDeleteViewPage

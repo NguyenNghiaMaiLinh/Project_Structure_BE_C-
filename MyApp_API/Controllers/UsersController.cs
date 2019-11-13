@@ -48,68 +48,7 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-
-        #region Register
-
-        /// <summary>
-        /// RegisterAdmin
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns>UserViewPage</returns>
-        /// <author>Linhnnm</author>
-        [HttpPost("RegisterAdmin")]
-        public ActionResult RegisterAdmin([FromBody]RegisterViewModel request)
-        {
-            var entity = _userService.RegisterAdmin(request);
-            if (entity.Data != null)
-            {
-                return Ok(entity);
-            }
-            else
-            {
-
-                return BadRequest(new BaseViewModel<UserViewPage>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code,
-                });
-            }
-        }
-
-        #endregion
-
-        #region Register
-
-        /// <summary>
-        /// RegisterStaff
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns>UserViewPage</returns>
-        /// <author>Linhnnm</author>
-        [HttpPost("RegisterStaff")]
-        public ActionResult RegisterStaff([FromBody]RegisterViewModel request)
-        {
-            var entity = _userService.RegisterStaff(request);
-            if (entity.Data != null)
-            {
-                return Ok(entity);
-            }
-            else
-            {
-
-                return BadRequest(new BaseViewModel<UserViewPage>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code,
-                });
-            }
-        }
-
-        #endregion
-
-        #region Register
+        #region Delete
 
         /// <summary>
         /// Delete

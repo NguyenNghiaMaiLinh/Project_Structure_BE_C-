@@ -28,9 +28,7 @@ namespace MyApp.Core.Constaint
     public static class Role
     {
         public const string Admin = "admin";
-        public const string SuperAdmin = "superadmin";
         public const string User = "user";
-        public const string Staff = "staff";
     }
     public class ErrMessageConstants
     {

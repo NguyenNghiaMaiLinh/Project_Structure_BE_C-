@@ -7,30 +7,22 @@ namespace MyApp_API.Models
     {
         public User()
         {
-            DiscountUser = new HashSet<DiscountUser>();
-            Location = new HashSet<Location>();
-            Order = new HashSet<Order>();
+            Comment = new HashSet<Comment>();
+            ProjectMembers = new HashSet<ProjectMembers>();
+            TaskAssignee = new HashSet<TaskAssignee>();
         }
 
-        public string Id { get; set; }
         public string Username { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
-        public string CreateBy { get; set; }
-        public DateTime? CreateAt { get; set; }
-        public string UpdateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
         public bool? IsDelete { get; set; }
-        public DateTime? Birthday { get; set; }
-        public int? Gender { get; set; }
-        public string Phone { get; set; }
         public string HashPassword { get; set; }
         public string SaltPassword { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
 
-        public virtual ICollection<DiscountUser> DiscountUser { get; set; }
-        public virtual ICollection<Location> Location { get; set; }
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<ProjectMembers> ProjectMembers { get; set; }
+        public virtual ICollection<TaskAssignee> TaskAssignee { get; set; }
     }
 }

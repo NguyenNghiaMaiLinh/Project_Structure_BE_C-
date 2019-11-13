@@ -1,38 +1,28 @@
-﻿using MyApp.Core.Constaint;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyApp.Core.Data.Entity
 {
-    public partial class User : BaseEntity
+    public partial class User
     {
-
-        public override void SetDefaultInsertValue(string username)
-        {
-            base.SetDefaultInsertValue(username);
-        }
-
         public User()
         {
-            DiscountUser = new HashSet<DiscountUser>();
-            Location = new HashSet<Location>();
-            Order = new HashSet<Order>();
+            Comment = new HashSet<Comment>();
+            ProjectMembers = new HashSet<ProjectMembers>();
+            TaskAssignee = new HashSet<TaskAssignee>();
         }
-
+        [Key]
         public string Username { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }
         public bool? IsDelete { get; set; }
-        public DateTime? Birthday { get; set; }
-        public MyEnum.Gender Gender { get; set; }
-        public string Phone { get; set; }
         public string HashPassword { get; set; }
         public string SaltPassword { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
 
-        public virtual ICollection<DiscountUser> DiscountUser { get; set; }
-        public virtual ICollection<Location> Location { get; set; }
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<ProjectMembers> ProjectMembers { get; set; }
+        public virtual ICollection<TaskAssignee> TaskAssignee { get; set; }
     }
 }

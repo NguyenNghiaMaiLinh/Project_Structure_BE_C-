@@ -19,11 +19,11 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
-        public User GetByUsername(string username)
-        {
-            var user =_dataContext.User.FirstOrDefault(u => u.Username == username && u.IsDelete == false);
-            return user;
-        }
+        //public User GetByUsername(string username)
+        //{
+        //    var user =_dataContext.User.FirstOrDefault(u => u.Username == username && u.IsDelete == false);
+        //    return user;
+        //}
 
     }
 }
