@@ -14,6 +14,16 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Phone { get; set; }
         public string Email { get; set; }
     }
+    public class UserUpdateViewPage
+    {
+        public string FullName { get; set; }
+        public string Password { get; set; }
+        public string AvatarPath { get; set; }
+        public DateTime? Birthday { get; set; }
+        public MyEnum.Gender Gender { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+    }
     public class UserCreateViewPage
     {
         public string Username { get; set; }

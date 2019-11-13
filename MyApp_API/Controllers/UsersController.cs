@@ -19,7 +19,7 @@ namespace MyApp_API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        
+
 
         public UsersController(IServiceProvider serviceProvider)
         {
@@ -27,6 +27,13 @@ namespace MyApp_API.Controllers
             _mapper = serviceProvider.GetRequiredService<IMapper>();
 
         }
+        #region
+        /// <summary>
+        /// GetMyUser
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<UserViewPage>></returns>
+        /// <author>Linhnnm</author>
         [HttpGet]
         public ActionResult<BaseViewModel<PagingResult<UserViewPage>>> GetMyUser([FromQuery]BasePagingRequestViewModel request)
         {
@@ -39,13 +46,16 @@ namespace MyApp_API.Controllers
             return result;
         }
 
+        #endregion
+
+
         #region Register
 
         /// <summary>
-        /// Register
+        /// RegisterAdmin
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>UserViewPage</returns>
         /// <author>Linhnnm</author>
         [HttpPost("RegisterAdmin")]
         public ActionResult RegisterAdmin([FromBody]RegisterViewModel request)
@@ -72,10 +82,10 @@ namespace MyApp_API.Controllers
         #region Register
 
         /// <summary>
-        /// Register
+        /// RegisterStaff
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>UserViewPage</returns>
         /// <author>Linhnnm</author>
         [HttpPost("RegisterStaff")]
         public ActionResult RegisterStaff([FromBody]RegisterViewModel request)
@@ -102,10 +112,10 @@ namespace MyApp_API.Controllers
         #region Register
 
         /// <summary>
-        /// Register
+        /// Delete
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>bool</returns>
         /// <author>Linhnnm</author>
         [HttpPost("Delete")]
         public ActionResult Delete([FromBody]UserDeleteViewPage request)
@@ -119,6 +129,36 @@ namespace MyApp_API.Controllers
             {
 
                 return BadRequest(new BaseViewModel<bool>
+                {
+                    StatusCode = entity.StatusCode,
+                    Description = entity.Description,
+                    Code = entity.Code,
+                });
+            }
+        }
+
+        #endregion
+
+        #region
+        /// <summary>
+        /// update
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        /// 
+        [HttpPut("{id}")]
+        public ActionResult Update(string userId, [FromBody]UserUpdateViewPage request)
+        {
+            var entity = _userService.Update(userId, request);
+            if (entity.Data != null)
+            {
+                return Ok(entity);
+            }
+            else
+            {
+
+                return BadRequest(new BaseViewModel<UserViewPage>
                 {
                     StatusCode = entity.StatusCode,
                     Description = entity.Description,

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyApp.Core.Constaint;
+using System;
 using System.Collections.Generic;
 
 namespace MyApp.Core.Data.Entity
@@ -23,7 +24,7 @@ namespace MyApp.Core.Data.Entity
         public string AvatarPath { get; set; }
         public bool? IsDelete { get; set; }
         public DateTime? Birthday { get; set; }
-        public int? Gender { get; set; }
+        public MyEnum.Gender Gender { get; set; }
         public string Phone { get; set; }
         public string HashPassword { get; set; }
         public string SaltPassword { get; set; }

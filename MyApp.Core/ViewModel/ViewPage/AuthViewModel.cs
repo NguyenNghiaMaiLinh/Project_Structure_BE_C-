@@ -43,6 +43,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         public MyEnum.Gender Gender { get; set; }
 
     }
+
     public class ChangePasswordViewModel
     {
 

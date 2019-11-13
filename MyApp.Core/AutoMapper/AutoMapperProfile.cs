@@ -16,6 +16,18 @@ namespace MyApp.Core.AutoMapper
             CreateMap<BannerViewPage, Banner>().ReverseMap();
             CreateMap<Banner, BannerViewPage>().ReverseMap();
 
+            CreateMap<ProductViewPage, Product>().ReverseMap();
+            CreateMap<Product, ProductViewPage>().ReverseMap();
+
+            CreateMap<ProductCreateViewPage, Product>().ReverseMap();
+            CreateMap<Product, ProductCreateViewPage>().ReverseMap();
+
+            CreateMap<ProductDetailViewPage, Product>().ReverseMap();
+            CreateMap<Product, ProductDetailViewPage>().ReverseMap();
+
+            CreateMap<CategoryViewPage, Category>().ReverseMap();
+            CreateMap<Category, CategoryViewPage>().ReverseMap();
+
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
         }

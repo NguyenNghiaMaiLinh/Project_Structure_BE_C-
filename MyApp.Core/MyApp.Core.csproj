@@ -270,12 +270,17 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Logger\TraceLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ICategoryProductRepository.cs" />
+    <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\IProductRepository .cs" />
     <Compile Include="Repository\IRoleRepository.cs" />
     <Compile Include="Repository\IWardRepository.cs" />
     <Compile Include="Repository\IDistrictRepository.cs" />
     <Compile Include="Repository\ICityRepository.cs" />
     <Compile Include="Repository\IBannerRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\ICategoryService.cs" />
+    <Compile Include="Service\IProductService.cs" />
     <Compile Include="Service\IRoleService.cs" />
     <Compile Include="Service\IWardService.cs" />
     <Compile Include="Service\IDistrictService.cs" />
@@ -287,6 +292,8 @@
     <Compile Include="ViewModel\ViewPage\AuthViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\BannerViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
+    <Compile Include="ViewModel\ViewPage\CategoryViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\ProductViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

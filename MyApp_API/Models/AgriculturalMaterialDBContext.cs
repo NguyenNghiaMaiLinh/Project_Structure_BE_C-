@@ -143,6 +143,8 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
+                entity.Property(e => e.Name).HasMaxLength(50);
+
                 entity.Property(e => e.ProductId)
                     .HasColumnName("Product_Id")
                     .HasMaxLength(50)
@@ -568,18 +570,11 @@ namespace MyApp_API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.Description).HasMaxLength(500);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
                 entity.Property(e => e.IsNew).HasColumnName("Is_New");
-
-                entity.Property(e => e.ItemCategoryId)
-                    .HasColumnName("Item_Category_Id")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.MadeIn)
                     .HasColumnName("Made_In")

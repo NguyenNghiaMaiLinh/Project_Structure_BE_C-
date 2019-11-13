@@ -24,8 +24,16 @@ namespace MyApp_API.Controllers
             _mapper = serviceProvider.GetRequiredService<IMapper>();
 
         }
+
+        #region
+        /// <summary>
+        /// GetMyAllBanner
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>linhnnm</author>
         [HttpGet]
-        public ActionResult<BaseViewModel<PagingResult<BannerViewPage>>> GetMyUser([FromQuery]BasePagingRequestViewModel request)
+        public ActionResult<BaseViewModel<PagingResult<BannerViewPage>>> GetMyAllBanner([FromQuery]BasePagingRequestViewModel request)
         {
             request.SetDefaultPage();
 
@@ -35,6 +43,8 @@ namespace MyApp_API.Controllers
 
             return result;
         }
+        #endregion
+
 
     }
 }

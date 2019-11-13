@@ -18,7 +18,6 @@ namespace MyApp_API.Models
         public DateTime? UpdateAt { get; set; }
         public bool? IsDelete { get; set; }
         public string ProductName { get; set; }
-        public string ItemCategoryId { get; set; }
         public int? Quantity { get; set; }
         public decimal? Price { get; set; }
         public bool? IsNew { get; set; }

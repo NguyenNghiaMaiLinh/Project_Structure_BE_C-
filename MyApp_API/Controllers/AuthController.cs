@@ -63,21 +63,53 @@ namespace MyApp_API.Controllers
             {
                 return BadRequest(new BaseViewModel<TokenViewModel>
                 {
-                    StatusCode = HttpStatusCode.NotFound,
-                    Description = ErrMessageConstants.NOTFOUND,
-                    Code = ErrMessageConstants.NOTFOUND
+                    StatusCode = entity.StatusCode,
+                    Description = entity.Description,
+                    Code = entity.Code
                 });
 
             }
 
             return Ok(new BaseViewModel<TokenViewModel>
             {
-                Data = GenerateToken(entity.Data).Result,
+                Data = GenerateTokenForUser(entity.Data),
             });
+
         }
 
         #endregion
 
+        #region LoginForAdmin
+
+        /// <summary>
+        /// LoginForAdmin
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>linhnnm</author>
+        [HttpPost("LoginForAdmin")]
+        public ActionResult<BaseViewModel<TokenViewModel>> LoginForAdmin([FromBody]LoginViewModel request)
+        {
+            var entity = _userService.Login(request);
+            if (entity.Data == null || entity.Data.Role == MyApp.Core.Constaint.Role.User)
+            {
+                return BadRequest(new BaseViewModel<TokenViewModel>
+                {
+                    StatusCode = entity.StatusCode,
+                    Description = entity.Description,
+                    Code = entity.Code
+                });
+
+            }
+
+            return Ok(new BaseViewModel<TokenViewModel>
+            {
+                Data = GenerateTokenForUser(entity.Data),
+            });
+
+        }
+
+        #endregion
         //#region GetToken
 
         ///// <summary>
@@ -118,28 +150,61 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost("Register")]
-        public async Task<ActionResult> Register([FromBody]RegisterViewModel request)
+        public ActionResult Register([FromBody]RegisterViewModel request)
         {
             var entity = _userService.Register(request);
-            if (entity != null)
+            if (entity.Data != null)
             {
-                return Ok(new BaseViewModel<TokenViewModel>(GenerateToken(entity.Data).Result));
+                return Ok(new BaseViewModel<TokenViewModel>(GenerateTokenForUser(entity.Data)));
             }
             else
             {
 
                 return BadRequest(new BaseViewModel<TokenViewModel>
                 {
-                    StatusCode = HttpStatusCode.PreconditionFailed,
-                    Description = ErrMessageConstants.INVALID_USERNAME,
-                    Code = ErrMessageConstants.INVALID_USERNAME,
+                    StatusCode = entity.StatusCode,
+                    Description = entity.Description,
+                    Code = entity.Code,
                 });
             }
         }
 
         #endregion
 
-        private async Task<TokenViewModel> GenerateToken(User user)
+        private TokenViewModel GenerateTokenForUser(User user)
+        {
+
+            var Key = BuildRsaSigningKey();
+
+            //signing credentials
+            var signingCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha512Signature);
+
+            //add Claims
+            var claims = new List<Claim>();
+
+            claims.Add(new Claim(MyApp.Core.Constaint.Constants.CLAIM_USERNAME, user.Username));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            //create token
+            var token = new JwtSecurityToken(
+                    issuer: AppSettings.Configs.GetValue<string>("JwtSettings:Issuer"),
+                    audience: user.FullName,
+                    expires: DateTime.Now.AddYears(1),
+                    signingCredentials: signingCredentials,
+                    claims: claims
+                );
+            //return token
+            return new TokenViewModel
+            {
+                Roles = null,
+                FullName = user.FullName,
+                AvatarPath = user.AvatarPath,
+                Access_token = new JwtSecurityTokenHandler().WriteToken(token),
+                Expires_in = DateTime.Now.AddYears(1),
+
+                //(int)TimeSpan.FromDays(1).TotalSeconds
+            };
+        }
+        private TokenViewModel GenerateTokenForAdmin(User user)
         {
 
             var Key = BuildRsaSigningKey();
@@ -172,7 +237,6 @@ namespace MyApp_API.Controllers
                 //(int)TimeSpan.FromDays(1).TotalSeconds
             };
         }
-
         private RsaSecurityKey BuildRsaSigningKey()
         {
             var parameters = new RSAParameters()

@@ -2,7 +2,7 @@
 
 namespace MyApp.Core.Data.Entity
 {
-    public partial class Product :BaseEntity
+    public partial class Product : BaseEntity
     {
         public Product()
         {
@@ -16,7 +16,6 @@ namespace MyApp.Core.Data.Entity
 
         public bool? IsDelete { get; set; }
         public string ProductName { get; set; }
-        public string ItemCategoryId { get; set; }
         public int? Quantity { get; set; }
         public decimal? Price { get; set; }
         public bool? IsNew { get; set; }
@@ -30,7 +29,6 @@ namespace MyApp.Core.Data.Entity
         public string WarrantyPeriod { get; set; }
         public string Material { get; set; }
 
-        public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<CategoryProduct> CategoryProduct { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }

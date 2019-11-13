@@ -43,6 +43,8 @@ namespace MyApp_API.Extentions
             services.AddTransient<IDistrictService, DistrictService>();
             services.AddTransient<IWardService, WardService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
@@ -53,6 +55,9 @@ namespace MyApp_API.Extentions
             services.AddTransient<IDistrictRepository, DistrictRepository>();
             services.AddTransient<IWardRepository, WardRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryProductRepository, CategoryProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
         }
 

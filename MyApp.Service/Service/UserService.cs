@@ -7,7 +7,6 @@ using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
 using MyApp.Service.HelperService;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -32,8 +31,8 @@ namespace MyApp.Service.Service
             var currentUser = _repository.GetByUsername(_repository.GetUsername());
             var result = new BaseViewModel<bool>()
             {
-                Code = MessageConstants.NO_RECORD,
-                Description = MessageConstants.NO_RECORD,
+                Code = MessageConstants.NOTFOUND,
+                Description = MessageConstants.NOTFOUND,
                 StatusCode = HttpStatusCode.OK,
                 Data = false
 
@@ -53,8 +52,8 @@ namespace MyApp.Service.Service
             }
             else
             {
-                result.Code = MessageConstants.FAILED;
-                result.Description = MessageConstants.FAILED;
+                result.Code = MessageConstants.FAILURE;
+                result.Description = ErrMessageConstants.INVALID_PERMISSION;
                 result.StatusCode = HttpStatusCode.PreconditionFailed;
                 result.Data = false;
             }
@@ -69,7 +68,7 @@ namespace MyApp.Service.Service
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<UserViewPage>>();
 
-            var data = _repository.GetAll().ToList();
+            var data = _repository.GetAll().Where(_ => _.IsDelete == false).ToList();
 
             if (data == null || data.Count == 0)
             {
@@ -88,7 +87,7 @@ namespace MyApp.Service.Service
                     Results = _mapper.Map<IEnumerable<UserViewPage>>(data),
                     PageIndex = pageIndex,
                     PageSize = pageSizeReturn,
-                    TotalRecords = 1
+                    TotalRecords = data.Count()
                 };
             }
 
@@ -113,9 +112,9 @@ namespace MyApp.Service.Service
             {
                 return new BaseViewModel<User>
                 {
-                    StatusCode = HttpStatusCode.NotFound,
-                    Description = ErrMessageConstants.INVALID_PASSWORD,
-                    Code = ErrMessageConstants.INVALID_PASSWORD,
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Description = ErrMessageConstants.INVALID_ACCOUNT,
+                    Code = ErrMessageConstants.INVALID_ACCOUNT,
                     Data = null
                 };
             }
@@ -146,6 +145,8 @@ namespace MyApp.Service.Service
             var temp = new SaltHashPassword(user.Password);
             entity.SaltPassword = temp.Salt;
             entity.HashPassword = temp.Hash;
+            entity.Role = Core.Constaint.Role.User;
+            entity.IsDelete = false;
             _repository.Add(entity);
             Save();
             var result = new BaseViewModel<User>()
@@ -162,9 +163,9 @@ namespace MyApp.Service.Service
             var currentUser = _repository.GetByUsername(_repository.GetUsername());
             var result = new BaseViewModel<UserViewPage>()
             {
-                Code = MessageConstants.NO_RECORD,
-                Description = MessageConstants.NO_RECORD,
-                StatusCode = HttpStatusCode.OK,
+                Code = MessageConstants.FAILURE,
+                Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
+                StatusCode = HttpStatusCode.BadRequest,
                 Data = null
 
             };
@@ -173,10 +174,8 @@ namespace MyApp.Service.Service
                 var check = _repository.GetByUsername(user.Username);
                 if (check != null)
                 {
-                    return new BaseViewModel<UserViewPage>
-                    {
-                        Data = null
-                    };
+                    return result;
+                    
                 }
                 var entity = new User
                 {
@@ -185,18 +184,22 @@ namespace MyApp.Service.Service
                 };
                 entity.SetDefaultInsertValue(_repository.GetUsername());
                 var temp = new SaltHashPassword(user.Password);
+                entity.IsDelete = false;
                 entity.SaltPassword = temp.Salt;
                 entity.HashPassword = temp.Hash;
                 entity.Role = Core.Constaint.Role.Admin;
                 _repository.Add(entity);
                 Save();
 
+                result.Code = MessageConstants.SUCCESS;
+                result.Description = MessageConstants.SUCCESS;
+                result.StatusCode = HttpStatusCode.OK;
                 result.Data = _mapper.Map<UserViewPage>(entity);
             }
             else
             {
-                result.Code = MessageConstants.FAILED;
-                result.Description = MessageConstants.FAILED;
+                result.Code = MessageConstants.FAILURE;
+                result.Description = ErrMessageConstants.INVALID_PERMISSION;
                 result.StatusCode = HttpStatusCode.PreconditionFailed;
                 result.Data = null;
             }
@@ -209,9 +212,9 @@ namespace MyApp.Service.Service
             var currentUser = _repository.GetByUsername(_repository.GetUsername());
             var result = new BaseViewModel<UserViewPage>()
             {
-                Code = MessageConstants.NO_RECORD,
-                Description = MessageConstants.NO_RECORD,
-                StatusCode = HttpStatusCode.OK,
+                Code = MessageConstants.FAILURE,
+                Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
+                StatusCode = HttpStatusCode.BadRequest,
                 Data = null
 
             };
@@ -220,10 +223,7 @@ namespace MyApp.Service.Service
                 var check = _repository.GetByUsername(user.Username);
                 if (check != null)
                 {
-                    return new BaseViewModel<UserViewPage>
-                    {
-                        Data = null
-                    };
+                    return result;
                 }
                 var entity = new User
                 {
@@ -235,15 +235,19 @@ namespace MyApp.Service.Service
                 entity.SaltPassword = temp.Salt;
                 entity.HashPassword = temp.Hash;
                 entity.Role = Core.Constaint.Role.Staff;
+                entity.IsDelete = false;
                 _repository.Add(entity);
                 Save();
 
+                result.Code = MessageConstants.SUCCESS;
+                result.Description = MessageConstants.SUCCESS;
+                result.StatusCode = HttpStatusCode.OK;
                 result.Data = _mapper.Map<UserViewPage>(entity);
             }
             else
             {
-                result.Code = MessageConstants.FAILED;
-                result.Description = MessageConstants.FAILED;
+                result.Code = MessageConstants.FAILURE;
+                result.Description = ErrMessageConstants.INVALID_PERMISSION;
                 result.StatusCode = HttpStatusCode.PreconditionFailed;
                 result.Data = null;
             }
@@ -251,9 +255,51 @@ namespace MyApp.Service.Service
             return result;
         }
 
-        public BaseViewModel<User> Update(LoginViewModel user)
+        public BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user)
         {
-            throw new NotImplementedException();
+            var currentUser = _repository.GetByUsername(_repository.GetUsername());
+            var result = new BaseViewModel<UserViewPage>()
+            {
+                Code = MessageConstants.NOTFOUND,
+                Description = MessageConstants.NOTFOUND,
+                StatusCode = HttpStatusCode.OK,
+                Data = null
+
+            };
+            if (currentUser.Role == Core.Constaint.Role.SuperAdmin)
+            {
+                var entity = _repository.GetById(userId);
+                if (entity == null)
+                {
+                    return new BaseViewModel<UserViewPage>
+                    {
+                        Data = null
+                    };
+                }
+                entity.FullName = user.FullName;
+                entity.Gender = user.Gender;
+                entity.Phone = user.Phone;
+                entity.Email = user.Email;
+                var temp = new SaltHashPassword(user.Password);
+                entity.SaltPassword = temp.Salt;
+                entity.HashPassword = temp.Hash;
+                entity.Birthday = user.Birthday;
+                entity.AvatarPath = user.AvatarPath;
+
+                _repository.Add(entity);
+                Save();
+
+                result.Data = _mapper.Map<UserViewPage>(entity);
+            }
+            else
+            {
+                result.Code = MessageConstants.FAILURE;
+                result.Description = ErrMessageConstants.INVALID_PERMISSION;
+                result.StatusCode = HttpStatusCode.PreconditionFailed;
+                result.Data = null;
+            }
+
+            return result;
         }
 
         private void Save()

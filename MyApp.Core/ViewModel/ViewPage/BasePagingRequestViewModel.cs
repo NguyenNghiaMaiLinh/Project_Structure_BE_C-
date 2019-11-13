@@ -24,6 +24,12 @@ namespace MyApp.Core.ViewModel.ViewPage
         }
 
     }
+    public class ProductPagingRequestModel : BasePagingRequestViewModel
+    {
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+    }
+
     public class BaseRequestViewModel
     {
         public string Search { get; set; }

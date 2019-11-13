@@ -16,10 +16,7 @@ namespace MyApp.Core.Data.Entity
         {
             SaveChanges();
         }
-        public void BulkUpdate()
-        {
-            BulkUpdate();
-        }
+
         public virtual DbSet<Banner> Banner { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryProduct> CategoryProduct { get; set; }
@@ -147,6 +144,8 @@ namespace MyApp.Core.Data.Entity
                     .IsUnicode(false);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
 
                 entity.Property(e => e.ProductId)
                     .HasColumnName("Product_Id")
@@ -573,18 +572,11 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.Description).HasMaxLength(500);
 
                 entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
 
                 entity.Property(e => e.IsNew).HasColumnName("Is_New");
-
-                entity.Property(e => e.ItemCategoryId)
-                    .HasColumnName("Item_Category_Id")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.MadeIn)
                     .HasColumnName("Made_In")
@@ -772,6 +764,6 @@ namespace MyApp.Core.Data.Entity
                     .HasConstraintName("FK_WARD_DISTRICT");
             });
         }
-
     }
+
 }
