@@ -27,7 +27,8 @@ namespace MyApp_API.Controllers
             _mapper = serviceProvider.GetRequiredService<IMapper>();
 
         }
-        #region
+
+        #region GetMyUser
         /// <summary>
         /// GetMyUser
         /// </summary>
@@ -78,7 +79,7 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        #region
+        #region Update
         /// <summary>
         /// update
         /// </summary>
@@ -87,9 +88,9 @@ namespace MyApp_API.Controllers
         /// <author>Linhnnm</author>
         /// 
         [HttpPut("{id}")]
-        public ActionResult Update(string userId, [FromBody]UserUpdateViewPage request)
+        public ActionResult Update(string id, [FromBody]UserUpdateViewPage request)
         {
-            var entity = _userService.Update(userId, request);
+            var entity = _userService.Update(id, request);
             if (entity.Data != null)
             {
                 return Ok(entity);

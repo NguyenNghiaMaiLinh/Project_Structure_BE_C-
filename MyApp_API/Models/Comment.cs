@@ -16,6 +16,6 @@ namespace MyApp_API.Models
         public string Detail { get; set; }
 
         public virtual TaskItem TaskItem { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

@@ -18,28 +18,13 @@ namespace MyApp.Core.Constaint
         }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum Gender
+        public enum StatusProject
         {
-            //"Nam"
-            Male = 0,
-            //"Nữ"
-            Female = 1,
-            //"Thứ ba"
-            Unknown = 2
-        }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum Order
-        {
-            Asc = 0,
-            Desc = 1,
-        }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum OrderStatus
-        {
-            Submitted = 0,
-            Delivered = 1,
+            Started = 0,
+            Paused = 1,
             Canceled = 2,
-            Delivering = 3,
+            Closed = 3
         }
+
     }
 }

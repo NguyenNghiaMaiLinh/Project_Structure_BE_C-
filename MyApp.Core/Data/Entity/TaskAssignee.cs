@@ -10,7 +10,7 @@ namespace MyApp.Core.Data.Entity
         public bool? IsDelete { get; set; }
 
 
-        public virtual User Assignee { get; set; }
+        public virtual Users Assignee { get; set; }
         public virtual TaskItem TaskItem { get; set; }
     }
 }

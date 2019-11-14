@@ -12,8 +12,8 @@ namespace MyApp.Core.Service
    public interface IUserService
     {
         BaseViewModel<PagingResult<UserViewPage>> GetAllUser(BasePagingRequestViewModel request);
-        BaseViewModel<User> Register(RegisterViewModel user);
-        BaseViewModel<User> Login(LoginViewModel user);
+        BaseViewModel<Users> Register(RegisterViewModel user);
+        BaseViewModel<Users> Login(LoginViewModel user);
         BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user);
         BaseViewModel<bool> DeleteAccount(UserDeleteViewPage user);
     }

@@ -253,7 +253,7 @@
     <Compile Include="Data\Entity\TaskAssignee.cs" />
     <Compile Include="Data\Entity\TaskCategory.cs" />
     <Compile Include="Data\Entity\TaskItem.cs" />
-    <Compile Include="Data\Entity\User.cs" />
+    <Compile Include="Data\Entity\Users.cs" />
     <Compile Include="Data\Infrastructure\DbFactory.cs" />
     <Compile Include="Data\Infrastructure\Disposable.cs" />
     <Compile Include="Data\Infrastructure\IDbFactory.cs" />
@@ -263,15 +263,15 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Logger\TraceLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IProjectRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\IProjectService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\PagingResult.cs" />
     <Compile Include="ViewModel\ViewPage\AuthViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\BannerViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\CategoryViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\ProductViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\ProjectViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

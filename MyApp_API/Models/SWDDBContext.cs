@@ -22,7 +22,7 @@ namespace MyApp_API.Models
         public virtual DbSet<TaskAssignee> TaskAssignee { get; set; }
         public virtual DbSet<TaskCategory> TaskCategory { get; set; }
         public virtual DbSet<TaskItem> TaskItem { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -365,12 +365,12 @@ namespace MyApp_API.Models
                     .HasConstraintName("FK_TASK_ITEM_TASK_CATEGORY");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.Username)
                     .HasName("PK_USER_1");
 
-                entity.ToTable("USER");
+                entity.ToTable("USERS");
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
@@ -389,10 +389,14 @@ namespace MyApp_API.Models
                 entity.Property(e => e.FullName).HasMaxLength(100);
 
                 entity.Property(e => e.HashPassword)
-                    .HasMaxLength(300)
+                    .HasMaxLength(1000)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Role).HasMaxLength(50);
+                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.SaltPassword)
                     .HasMaxLength(300)

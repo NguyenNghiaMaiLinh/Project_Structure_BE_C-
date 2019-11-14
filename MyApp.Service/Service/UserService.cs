@@ -33,22 +33,24 @@ namespace MyApp.Service.Service
             {
                 Code = MessageConstants.NOTFOUND,
                 Description = MessageConstants.NOTFOUND,
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.BadRequest,
                 Data = false
 
             };
             if (currentUser.Role == Role.Admin)
             {
                 var account = _repository.GetById(request.Id);
-                if (account != null)
+                if (account == null)
                 {
-                    account.IsDelete = true;
-                    _repository.Update(account);
-                    result.Code = MessageConstants.SUCCESS;
-                    result.Description = MessageConstants.SUCCESS;
-                    result.StatusCode = HttpStatusCode.OK;
-                    result.Data = true;
+                    return result;
                 }
+                account.IsDelete = true;
+                _repository.Update(account);
+                Save();
+                result.Code = MessageConstants.SUCCESS;
+                result.Description = MessageConstants.SUCCESS;
+                result.StatusCode = HttpStatusCode.OK;
+                result.Data = true;
             }
             else
             {
@@ -68,7 +70,7 @@ namespace MyApp.Service.Service
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<UserViewPage>>();
 
-            var data = _repository.GetAll().Where(_ => _.IsDelete == false).ToList();
+            var data = _repository.getAllUser(pageIndex, pageSize).ToList();
 
             if (data == null || data.Count == 0)
             {
@@ -94,12 +96,12 @@ namespace MyApp.Service.Service
             return result;
         }
 
-        public BaseViewModel<User> Login(LoginViewModel user)
+        public BaseViewModel<Users> Login(LoginViewModel user)
         {
             var entity = _repository.GetById(user.Username);
             if (entity == null)
             {
-                return new BaseViewModel<User>
+                return new BaseViewModel<Users>
                 {
                     StatusCode = HttpStatusCode.NotFound,
                     Description = ErrMessageConstants.NOTFOUND,
@@ -110,7 +112,7 @@ namespace MyApp.Service.Service
             }
             if (!SaltHashPassword.Verify(entity.SaltPassword, entity.HashPassword, user.Password))
             {
-                return new BaseViewModel<User>
+                return new BaseViewModel<Users>
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     Description = ErrMessageConstants.INVALID_ACCOUNT,
@@ -118,25 +120,30 @@ namespace MyApp.Service.Service
                     Data = null
                 };
             }
-            var data = _mapper.Map<User>(entity);
-            return new BaseViewModel<User>
+            return new BaseViewModel<Users>
             {
-                Data = data
+                StatusCode = HttpStatusCode.OK,
+                Description = null,
+                Code = MessageConstants.SUCCESS,
+                Data = _mapper.Map<Users>(entity)
             };
-
         }
 
-        public BaseViewModel<User> Register(RegisterViewModel user)
+        public BaseViewModel<Users> Register(RegisterViewModel user)
         {
             var check = _repository.GetById(user.Username);
+            var result = new BaseViewModel<Users>()
+            {
+                Code = MessageConstants.FAILURE,
+                Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
+                StatusCode = HttpStatusCode.BadRequest
+            };
             if (check != null)
             {
-                return new BaseViewModel<User>
-                {
-                    Data = null
-                };
+                result.Data = null;
+                return result;
             }
-            var entity = new User
+            var entity = new Users
             {
                 Username = user.Username,
                 FullName = user.FullName,
@@ -151,12 +158,11 @@ namespace MyApp.Service.Service
 
             _repository.Add(entity);
             Save();
-            var result = new BaseViewModel<User>()
-            {
-                Data = _mapper.Map<User>(entity)
-            };
 
-
+            result.Code = MessageConstants.SUCCESS;
+            result.Description = null;
+            result.StatusCode = HttpStatusCode.Created;
+            result.Data = _mapper.Map<Users>(entity);
             return result;
         }
 
@@ -181,12 +187,9 @@ namespace MyApp.Service.Service
                 };
             }
             entity.FullName = user.FullName;
-            entity.Email = user.Email;
-            var temp = new SaltHashPassword(user.Password);
-            entity.SaltPassword = temp.Salt;
-            entity.HashPassword = temp.Hash;
             entity.AvatarPath = user.AvatarPath;
-            _repository.Add(entity);
+            entity.Email = user.Email;
+            _repository.Update(entity);
             Save();
 
             result.Data = _mapper.Map<UserViewPage>(entity);

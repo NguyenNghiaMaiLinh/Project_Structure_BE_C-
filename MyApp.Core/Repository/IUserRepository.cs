@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace MyApp.Core.Repository
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<Users>
     {
-        //User GetByUsername(string username);
+        IEnumerable<Users> getAllUser(int? pageIndex, int? pageSize);
     }
 }

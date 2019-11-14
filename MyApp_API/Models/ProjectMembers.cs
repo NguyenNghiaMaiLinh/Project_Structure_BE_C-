@@ -15,6 +15,6 @@ namespace MyApp_API.Models
         public string UpdateBy { get; set; }
 
         public virtual Project Project { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

@@ -10,8 +10,11 @@ namespace MyApp.Core.AutoMapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<UserViewPage, User>().ReverseMap();
-            CreateMap<User, UserViewPage>().ReverseMap();
+            CreateMap<UserViewPage, Users>().ReverseMap();
+            CreateMap<Users, UserViewPage>().ReverseMap();
+
+            CreateMap<ProjectViewPage, Project>().ReverseMap();
+            CreateMap<Project, ProjectViewPage>().ReverseMap();
 
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());

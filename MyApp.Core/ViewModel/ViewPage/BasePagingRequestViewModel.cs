@@ -15,7 +15,6 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? PageSize { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int? PageIndex { get; set; }
-        public string Search { get; set; }
         public void SetDefaultPage()
         {
             PageSize = PageSize ?? Constants.DEFAULT_PAGE_SIZE;
@@ -23,15 +22,5 @@ namespace MyApp.Core.ViewModel.ViewPage
             PageSize = PageSize > Constants.MAX_PAGE_SIZE ? Constants.MAX_PAGE_SIZE : PageSize;
         }
 
-    }
-    public class ProductPagingRequestModel : BasePagingRequestViewModel
-    {
-        public string CategoryId { get; set; }
-        public string CategoryName { get; set; }
-    }
-
-    public class BaseRequestViewModel
-    {
-        public string Search { get; set; }
     }
 }

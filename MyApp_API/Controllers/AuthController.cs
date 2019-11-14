@@ -141,7 +141,7 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        private TokenViewModel GenerateTokenForUser(User user)
+        private TokenViewModel GenerateTokenForUser(Users user)
         {
 
             var Key = BuildRsaSigningKey();
@@ -165,7 +165,7 @@ namespace MyApp_API.Controllers
             //return token
             return new TokenViewModel
             {
-                Roles = null,
+                Roles = user.Role,
                 FullName = user.FullName,
                 AvatarPath = user.AvatarPath,
                 Access_token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -174,7 +174,7 @@ namespace MyApp_API.Controllers
                 //(int)TimeSpan.FromDays(1).TotalSeconds
             };
         }
-        private TokenViewModel GenerateTokenForAdmin(User user)
+        private TokenViewModel GenerateTokenForAdmin(Users user)
         {
 
             var Key = BuildRsaSigningKey();

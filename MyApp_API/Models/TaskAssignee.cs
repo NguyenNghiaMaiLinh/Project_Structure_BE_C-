@@ -14,7 +14,7 @@ namespace MyApp_API.Models
         public DateTime? UpdateAt { get; set; }
         public string UpdateBy { get; set; }
 
-        public virtual User Assignee { get; set; }
+        public virtual Users Assignee { get; set; }
         public virtual TaskItem TaskItem { get; set; }
     }
 }
