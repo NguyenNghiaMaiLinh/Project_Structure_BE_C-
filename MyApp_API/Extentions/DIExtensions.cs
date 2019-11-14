@@ -46,6 +46,7 @@ namespace MyApp_API.Extentions
         {
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IProjectMembersRepository, ProjectMembersRepository>();
 
         }
 

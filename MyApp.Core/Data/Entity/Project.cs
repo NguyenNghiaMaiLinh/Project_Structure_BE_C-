@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyApp.Core.Constaint;
+using System;
 using System.Collections.Generic;
 
 namespace MyApp.Core.Data.Entity
@@ -13,7 +14,7 @@ namespace MyApp.Core.Data.Entity
 
 
         public string ProjectName { get; set; }
-        public int? Status { get; set; }
+        public MyEnum.StatusProject Status { get; set; }
         public bool? IsDelete { get; set; }
 
 

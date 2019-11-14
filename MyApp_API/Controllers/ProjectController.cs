@@ -50,5 +50,23 @@ namespace MyApp_API.Controllers
         }
 
         #endregion
+
+        #region create
+        /// <summary>
+        /// GetMyProject
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpPost("create")]
+        public ActionResult<BaseViewModel<ProjectViewPage>> create([FromQuery]ProjectCreateViewPage request)
+        {
+
+            var result = _projectService.create(request);
+
+            return result;
+        }
+
+        #endregion
     }
 }

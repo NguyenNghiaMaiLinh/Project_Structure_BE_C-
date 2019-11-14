@@ -12,5 +12,6 @@ namespace MyApp.Core.Service
    public interface IProjectService
     {
         BaseViewModel<PagingResult<ProjectViewPage>> GetAllProject(BasePagingRequestViewModel request);
+        BaseViewModel<ProjectViewPage> create(ProjectCreateViewPage request);
     }
 }

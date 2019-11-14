@@ -21,12 +21,13 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
-        public IEnumerable<Project> GetAllProject(int? pageIndex, int? pageSize)
+        public IEnumerable<Project> GetAllProject(int? pageIndex, int? pageSize, string userId)
         {
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
+            var par3 = new SqlParameter("@UserId", userId);
 
-            return _dataContext.Project.FromSql("getAllProject @PageIndex, @PageSize", par1, par2).ToList();
+            return _dataContext.Project.FromSql("getAllProject @PageIndex, @PageSize, @UserId", par1, par2, par3).ToList();
         }
     }
 }

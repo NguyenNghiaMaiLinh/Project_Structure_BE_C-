@@ -10,6 +10,6 @@ namespace MyApp.Core.Repository
 {
     public interface IProjectRepository : IRepository<Project>
     {
-        IEnumerable<Project> GetAllProject(int? pageIndex, int? pageSize);
+        IEnumerable<Project> GetAllProject(int? pageIndex, int? pageSize, string userId);
     }
 }

@@ -27,7 +27,8 @@ namespace MyApp.Core.Data.Entity
             Id = Guid.NewGuid().ToString();
             CreateAt = DateTime.UtcNow;
             CreateBy = username;
-
+            UpdateAt = DateTime.UtcNow;
+            UpdateBy = username;
         }
 
         public virtual void SetDefaultUpdateValue(string username)
