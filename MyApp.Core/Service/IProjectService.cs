@@ -13,5 +13,7 @@ namespace MyApp.Core.Service
     {
         BaseViewModel<PagingResult<ProjectViewPage>> GetAllProject(BasePagingRequestViewModel request);
         BaseViewModel<ProjectViewPage> create(ProjectCreateViewPage request);
+        BaseViewModel<ProjectViewPage> update(string id, ProjectUpdateViewPage request);
+        BaseViewModel<bool> delete(string id);
     }
 }

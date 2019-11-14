@@ -55,6 +55,32 @@ namespace MyApp.Service.Service
             };
         }
 
+        public BaseViewModel<bool> delete(string id)
+        {
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return new BaseViewModel<bool>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = false,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            entity.SetDefaultUpdateValue(_repository.GetUsername());
+            entity.IsDelete = true;
+            _repository.Update(entity);
+            Save();
+            return new BaseViewModel<bool>
+            {
+                Code = MessageConstants.SUCCESS,
+                Description = null,
+                Data = true,
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
         public BaseViewModel<PagingResult<ProjectViewPage>> GetAllProject(BasePagingRequestViewModel request)
         {
             var pageSize = request.PageSize;
@@ -84,6 +110,33 @@ namespace MyApp.Service.Service
             }
 
             return result;
+        }
+
+        public BaseViewModel<ProjectViewPage> update(string id,ProjectUpdateViewPage request)
+        {
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return new BaseViewModel<ProjectViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            entity.SetDefaultUpdateValue(_repository.GetUsername());
+            entity.Status = request.Status;
+            entity.ProjectName = request.ProjectName;
+            _repository.Update(entity);
+            Save();
+            return new BaseViewModel<ProjectViewPage>
+            {
+                Code = MessageConstants.SUCCESS,
+                Description = null,
+                Data = _mapper.Map<ProjectViewPage>(entity),
+                StatusCode = HttpStatusCode.OK
+            };
         }
 
         private void Save()

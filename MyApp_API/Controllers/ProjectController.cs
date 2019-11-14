@@ -52,17 +52,53 @@ namespace MyApp_API.Controllers
         #endregion
 
         #region create
-        /// <summary>
+        /// <summarycreate
         /// GetMyProject
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost("create")]
-        public ActionResult<BaseViewModel<ProjectViewPage>> create([FromQuery]ProjectCreateViewPage request)
+        public ActionResult<BaseViewModel<ProjectViewPage>> create([FromBody]ProjectCreateViewPage request)
         {
 
             var result = _projectService.create(request);
+
+            return result;
+        }
+
+        #endregion
+
+        #region update
+        /// <summary>
+        /// update
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpPut("{id}")]
+        public ActionResult<BaseViewModel<ProjectViewPage>> update(string id, [FromBody]ProjectUpdateViewPage request)
+        {
+
+            var result = _projectService.update(id,request);
+
+            return result;
+        }
+
+        #endregion
+
+        #region update
+        /// <summary>
+        /// update
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpDelete("{id}")]
+        public ActionResult<BaseViewModel<bool>> delete( string id)
+        {
+
+            var result = _projectService.delete( id);
 
             return result;
         }

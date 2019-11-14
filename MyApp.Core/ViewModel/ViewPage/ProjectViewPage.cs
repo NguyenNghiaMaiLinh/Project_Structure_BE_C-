@@ -20,4 +20,13 @@ namespace MyApp.Core.ViewModel.ViewPage
     {
         public string ProjectName { get; set; }
     }
+    public partial class ProjectUpdateViewPage
+    {
+        public string ProjectName { get; set; }
+        public MyEnum.StatusProject Status { get; set; }
+    }
+    public partial class ProjectDeleteViewPage
+    {
+        public string id { get; set; }
+    }
 }
