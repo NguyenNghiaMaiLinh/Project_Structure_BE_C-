@@ -42,7 +42,7 @@ namespace MyApp_API.Controllers
         {
             request.SetDefaultPage();
 
-            var result = _projectService.GetAllProject(request);
+            var result = _projectService.getAllProject(request);
 
             this.HttpContext.Response.StatusCode = (int)result.StatusCode;
 

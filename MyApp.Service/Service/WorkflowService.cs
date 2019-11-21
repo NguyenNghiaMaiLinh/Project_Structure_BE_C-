@@ -80,7 +80,7 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<PagingResult<WorkflowViewPage>> GetAllProject(BasePagingRequestViewModel request)
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllProject(BasePagingRequestViewModel request)
         {
             var pageSize = request.PageSize;
             var pageIndex = request.PageIndex;

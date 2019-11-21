@@ -11,7 +11,7 @@ namespace MyApp.Core.Service
 {
    public interface IWorkflowService
     {
-        BaseViewModel<PagingResult<WorkflowViewPage>> GetAllProject(BasePagingRequestViewModel request);
+        BaseViewModel<PagingResult<WorkflowViewPage>> getAllProject(BasePagingRequestViewModel request);
         BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request);
         BaseViewModel<WorkflowViewPage> update(string id, WorkflowUpdateViewPage request);
         BaseViewModel<bool> delete(string id);
