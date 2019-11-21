@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 namespace MyApp.Core.Data.Entity
 {
-    public partial class TaskAssignee: BaseEntity
+    public partial class TaskAssignee :BaseEntity
     {
-        public string TaskItemId { get; set; }
-        public string AssigneeId { get; set; }
+        public string WorkflowMemberId { get; set; }
+        public string TaskId { get; set; }
         public bool? IsDelete { get; set; }
 
-
-        public virtual Users Assignee { get; set; }
-        public virtual TaskItem TaskItem { get; set; }
+        public virtual Task Task { get; set; }
+        public virtual WorkflowMember WorkflowMember { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,10 +14,7 @@ using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.Processors.Security;
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyApp_API
 {
@@ -68,8 +64,19 @@ namespace MyApp_API
 
             #endregion
 
+            #region ====== Add SignalR ======
+
             services.AddSignalR();
+
+            #endregion
+
+            #region ====== Add SignalR ======
+
             services.AddHttpContextAccessor();
+
+            #endregion
+
+            #region ====== Add Authentication ======
 
             services.AddAuthentication(options =>
             {
@@ -98,12 +105,12 @@ namespace MyApp_API
                     OnAuthenticationFailed = context =>
                     {
                         Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
-                        return Task.CompletedTask;
+                        return System.Threading.Tasks.Task.CompletedTask;
                     },
                     OnTokenValidated = context =>
                     {
                         Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
-                        return Task.CompletedTask;
+                        return System.Threading.Tasks.Task.CompletedTask;
                     },
                     OnMessageReceived = context =>
                     {
@@ -116,10 +123,12 @@ namespace MyApp_API
                                         // Read the token out of the query string
                                         context.Token = accessToken;
                         }
-                        return Task.CompletedTask;
+                        return System.Threading.Tasks.Task.CompletedTask;
                     }
                 };
             });
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,9 +140,14 @@ namespace MyApp_API
             }
 
             app.UseHttpsRedirection();
+
+            #region ===== Use Authentication ======
+
             app.UseAuthentication();
-            app.UseHttpsRedirection();
-            #region ===== Swagger ======
+
+            #endregion
+
+            #region ===== Use Swagger ======
 
             app.UseSwaggerUi3WithApiExplorer(settings =>
             {
@@ -155,7 +169,7 @@ namespace MyApp_API
             });
 
             #endregion
-            //loggerFactory.AddFile(Configuration.GetValue<string>("Logging:LogFilePath"));
+
             #region ===== Use Cors ======
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
@@ -163,6 +177,8 @@ namespace MyApp_API
 
             app.UseMvc();
         }
+
+        #region ====== Create RSA Security ======
 
         private static RsaSecurityKey SigningKey(string key, string expo)
         {
@@ -178,5 +194,7 @@ namespace MyApp_API
 
             return new RsaSecurityKey(rrr);
         }
+
+        #endregion
     }
 }

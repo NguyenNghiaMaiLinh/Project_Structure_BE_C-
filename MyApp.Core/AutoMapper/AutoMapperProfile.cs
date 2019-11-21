@@ -10,29 +10,16 @@ namespace MyApp.Core.AutoMapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<UserViewPage, Users>().ReverseMap();
-            CreateMap<Users, UserViewPage>().ReverseMap();
+            CreateMap<UserViewPage, Account>().ReverseMap();
+            CreateMap<Account, UserViewPage>().ReverseMap();
 
-            CreateMap<ProjectViewPage, Project>().ReverseMap();
-            CreateMap<Project, ProjectViewPage>().ReverseMap();
+            CreateMap<WorkflowViewPage, Workflow>().ReverseMap();
+            CreateMap<Workflow, WorkflowViewPage>().ReverseMap();
 
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
         }
-        public class GuidToStringConverter : ITypeConverter<Guid, string>
-        {
-            public string Convert(Guid source, string destination, ResolutionContext context)
-            {
-                return source.ToString();
-            }
-        }
-        public class StringToGuidConverter : ITypeConverter<string, Guid>
-        {
-            public Guid Convert(string source, Guid destination, ResolutionContext context)
-            {
-                return Guid.Parse(source);
-            }
-        }
+       
         public class DatetimeToStringConverter : ITypeConverter<DateTime, string>
         {
             public string Convert(DateTime source, string destination, ResolutionContext context)

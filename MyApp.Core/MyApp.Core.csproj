@@ -244,16 +244,15 @@
     <Compile Include="Configs\CorsSettings.cs" />
     <Compile Include="Constaint\Constants.cs" />
     <Compile Include="Constaint\MyEnum.cs" />
-    <Compile Include="Data\Entity\Activity.cs" />
+    <Compile Include="Data\Entity\Account.cs" />
     <Compile Include="Data\Entity\BaseEntity.cs" />
+    <Compile Include="Data\Entity\Category.cs" />
     <Compile Include="Data\Entity\Comment.cs" />
     <Compile Include="Data\Entity\DataContext.cs" />
-    <Compile Include="Data\Entity\Project.cs" />
-    <Compile Include="Data\Entity\ProjectMembers.cs" />
+    <Compile Include="Data\Entity\Task.cs" />
     <Compile Include="Data\Entity\TaskAssignee.cs" />
-    <Compile Include="Data\Entity\TaskCategory.cs" />
-    <Compile Include="Data\Entity\TaskItem.cs" />
-    <Compile Include="Data\Entity\Users.cs" />
+    <Compile Include="Data\Entity\Workflow.cs" />
+    <Compile Include="Data\Entity\WorkflowMember.cs" />
     <Compile Include="Data\Infrastructure\DbFactory.cs" />
     <Compile Include="Data\Infrastructure\Disposable.cs" />
     <Compile Include="Data\Infrastructure\IDbFactory.cs" />
@@ -261,18 +260,17 @@
     <Compile Include="Data\Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Logger\TraceLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IProjectMembersRepository.cs" />
-    <Compile Include="Repository\IProjectRepository.cs" />
+    <Compile Include="Repository\IWorkflowMembersRepository.cs" />
+    <Compile Include="Repository\IWorkflowRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
-    <Compile Include="Service\IProjectService.cs" />
+    <Compile Include="Service\IWorkflowService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\PagingResult.cs" />
     <Compile Include="ViewModel\ViewPage\AuthViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\ProjectViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\WorkflowViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MyApp.Repository.Repository
 {
-    public class UserRepository : RepositoryBase<Users>, IUserRepository
+    public class UserRepository : RepositoryBase<Account>, IUserRepository
     {
         private DataContext _dataContext;
         public UserRepository(IDbFactory dbFactory, IServiceProvider serviceProvider, DataContext dataContext) : base(dbFactory, serviceProvider)
@@ -21,12 +21,12 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
-        public IEnumerable<Users> getAllUser(int? pageIndex, int? pageSize)
+        public IEnumerable<Account> getAllUser(int? pageIndex, int? pageSize)
         {
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
 
-            return _dataContext.Users.FromSql("getAllUser @PageIndex, @PageSize", par1, par2).ToList();
+            return _dataContext.Account.FromSql("getAllUser @PageIndex, @PageSize", par1, par2).ToList();
         }
     }
 }

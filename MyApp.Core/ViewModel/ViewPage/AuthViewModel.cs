@@ -42,14 +42,5 @@ namespace MyApp.Core.ViewModel.ViewPage
 
     }
 
-    public class ChangePasswordViewModel
-    {
-
-        [Required]
-        public string OldPassword { get; set; }
-
-        [Required]
-        public string NewPassword { get; set; }
-
-    }
+   
 }

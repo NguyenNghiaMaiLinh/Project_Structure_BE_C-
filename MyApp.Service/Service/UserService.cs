@@ -96,12 +96,12 @@ namespace MyApp.Service.Service
             return result;
         }
 
-        public BaseViewModel<Users> Login(LoginViewModel user)
+        public BaseViewModel<Account> Login(LoginViewModel user)
         {
             var entity = _repository.GetById(user.Username);
             if (entity == null)
             {
-                return new BaseViewModel<Users>
+                return new BaseViewModel<Account>
                 {
                     StatusCode = HttpStatusCode.NotFound,
                     Description = ErrMessageConstants.NOTFOUND,
@@ -112,7 +112,7 @@ namespace MyApp.Service.Service
             }
             if (!SaltHashPassword.Verify(entity.SaltPassword, entity.HashPassword, user.Password))
             {
-                return new BaseViewModel<Users>
+                return new BaseViewModel<Account>
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     Description = ErrMessageConstants.INVALID_ACCOUNT,
@@ -120,19 +120,19 @@ namespace MyApp.Service.Service
                     Data = null
                 };
             }
-            return new BaseViewModel<Users>
+            return new BaseViewModel<Account>
             {
                 StatusCode = HttpStatusCode.OK,
                 Description = null,
                 Code = MessageConstants.SUCCESS,
-                Data = _mapper.Map<Users>(entity)
+                Data = _mapper.Map<Account>(entity)
             };
         }
 
-        public BaseViewModel<Users> Register(RegisterViewModel user)
+        public BaseViewModel<Account> Register(RegisterViewModel user)
         {
             var check = _repository.GetById(user.Username);
-            var result = new BaseViewModel<Users>()
+            var result = new BaseViewModel<Account>()
             {
                 Code = MessageConstants.FAILURE,
                 Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTS,
@@ -143,7 +143,7 @@ namespace MyApp.Service.Service
                 result.Data = null;
                 return result;
             }
-            var entity = new Users
+            var entity = new Account
             {
                 Username = user.Username,
                 FullName = user.FullName,
@@ -162,7 +162,7 @@ namespace MyApp.Service.Service
             result.Code = MessageConstants.SUCCESS;
             result.Description = null;
             result.StatusCode = HttpStatusCode.Created;
-            result.Data = _mapper.Map<Users>(entity);
+            result.Data = _mapper.Map<Account>(entity);
             return result;
         }
 

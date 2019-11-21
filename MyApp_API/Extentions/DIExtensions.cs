@@ -38,15 +38,15 @@ namespace MyApp_API.Extentions
         public static void AddServiceDI(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IWorkflowService, WorkflowService>();
 
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IProjectRepository, ProjectRepository>();
-            services.AddTransient<IProjectMembersRepository, ProjectMembersRepository>();
+            services.AddTransient<IProjectRepository, WorkflowRepository>();
+            services.AddTransient<IProjectMembersRepository, WorkflowMembersRepository>();
 
         }
 

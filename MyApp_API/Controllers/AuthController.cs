@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebSockets.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MyApp.Core.Configs;
-using MyApp.Core.Constaint;
 using MyApp.Core.Data.Entity;
 using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace MyApp_API.Controllers
 {
@@ -72,44 +65,12 @@ namespace MyApp_API.Controllers
 
             return Ok(new BaseViewModel<TokenViewModel>
             {
-                Data = GenerateTokenForUser(entity.Data),
+                Data = GenerateToken(entity.Data),
             });
 
         }
 
         #endregion
-
-     
-        //#region GetToken
-
-        ///// <summary>
-        ///// Login
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        ///// <author>Linhnnm</author>   
-        //[Authorize]
-        //[HttpGet("GetToken")]
-        //public async Task<ActionResult<BaseViewModel<TokenViewModel>>> GetToken()
-        //{
-        //    var user = await _userManager.FindByIdAsync(userId);
-        //    if (user == null)
-        //    {
-        //        return BadRequest(new BaseViewModel<TokenViewModel>
-        //        {
-        //            Code = ErrMessageConstants.INVALID_USERNAME,
-        //            Description = ErrMessageConstants.INVALID_USERNAME,
-        //            StatusCode = HttpStatusCode.BadRequest
-        //        });
-        //    }
-        //    // await _userManager.UpdateAsync(user);
-        //    return Ok(new BaseViewModel<TokenViewModel>
-        //    {
-        //        Data = GenerateToken(user).Result,
-        //    });
-        //}
-
-        //#endregion
 
         #region Register
 
@@ -125,7 +86,7 @@ namespace MyApp_API.Controllers
             var entity = _userService.Register(request);
             if (entity.Data != null)
             {
-                return Ok(new BaseViewModel<TokenViewModel>(GenerateTokenForUser(entity.Data)));
+                return Ok(new BaseViewModel<TokenViewModel>(GenerateToken(entity.Data)));
             }
             else
             {
@@ -141,7 +102,9 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        private TokenViewModel GenerateTokenForUser(Users user)
+        #region ===== Generate Token ======
+
+        private TokenViewModel GenerateToken(Account user)
         {
 
             var Key = BuildRsaSigningKey();
@@ -174,39 +137,11 @@ namespace MyApp_API.Controllers
                 //(int)TimeSpan.FromDays(1).TotalSeconds
             };
         }
-        private TokenViewModel GenerateTokenForAdmin(Users user)
-        {
 
-            var Key = BuildRsaSigningKey();
+        #endregion
 
-            //signing credentials
-            var signingCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha512Signature);
+        #region ===== Build RSA Sercurity ======
 
-            //add Claims
-            var claims = new List<Claim>();
-
-            claims.Add(new Claim(MyApp.Core.Constaint.Constants.CLAIM_USERNAME, user.Username));
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Username.ToString()));
-            //create token
-            var token = new JwtSecurityToken(
-                    issuer: AppSettings.Configs.GetValue<string>("JwtSettings:Issuer"),
-                    audience: user.FullName,
-                    expires: DateTime.Now.AddMinutes(30),
-                    signingCredentials: signingCredentials,
-                    claims: claims
-                );
-            //return token
-            return new TokenViewModel
-            {
-                Roles = null,
-                FullName = user.FullName,
-                AvatarPath = user.AvatarPath,
-                Access_token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expires_in = DateTime.Now.AddMinutes(30),
-
-                //(int)TimeSpan.FromDays(1).TotalSeconds
-            };
-        }
         private RsaSecurityKey BuildRsaSigningKey()
         {
             var parameters = new RSAParameters()
@@ -226,17 +161,6 @@ namespace MyApp_API.Controllers
             return key;
         }
 
-        private string GetCurrentUser()
-        {
-            //try
-            //{
-            return _accessor.HttpContext.User?.FindFirst("username")?.Value ?? "SYSTEM";
-            //}
-            //catch
-            //{
-            //    return "SYSTEM";
-            //}
-        }
-
+        #endregion
     }
 }
