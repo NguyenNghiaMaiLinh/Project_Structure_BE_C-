@@ -139,6 +139,9 @@ namespace MyApp_API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             #region ===== Use Authentication ======

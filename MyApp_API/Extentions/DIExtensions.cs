@@ -45,8 +45,8 @@ namespace MyApp_API.Extentions
         public static void AddRepoistoryDI(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IProjectRepository, WorkflowRepository>();
-            services.AddTransient<IProjectMembersRepository, WorkflowMembersRepository>();
+            services.AddTransient<IWorkflowRepository, WorkflowRepository>();
+            services.AddTransient<IWorkflowMembersRepository, WorkflowMembersRepository>();
 
         }
 

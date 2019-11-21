@@ -30,7 +30,7 @@ namespace MyApp_API.Controllers
 
         }
 
-        #region GetMyProject
+        #region Get My Project
         /// <summary>
         /// GetMyProject
         /// </summary>
@@ -38,7 +38,7 @@ namespace MyApp_API.Controllers
         /// <returns>PagingResult<ProjectViewPage>></returns>
         /// <author>Linhnnm</author>
         [HttpGet]
-        public ActionResult<BaseViewModel<PagingResult<ProjectViewPage>>> GetMyProject([FromQuery]BasePagingRequestViewModel request)
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getMyProject([FromQuery]BasePagingRequestViewModel request)
         {
             request.SetDefaultPage();
 
@@ -53,13 +53,13 @@ namespace MyApp_API.Controllers
 
         #region create
         /// <summarycreate
-        /// GetMyProject
+        /// create
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost("create")]
-        public ActionResult<BaseViewModel<ProjectViewPage>> create([FromBody]ProjectCreateViewPage request)
+        public ActionResult<BaseViewModel<WorkflowViewPage>> create([FromBody]WorkflowCreateViewPage request)
         {
 
             var result = _projectService.create(request);
@@ -77,7 +77,7 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPut("{id}")]
-        public ActionResult<BaseViewModel<ProjectViewPage>> update(string id, [FromBody]ProjectUpdateViewPage request)
+        public ActionResult<BaseViewModel<WorkflowViewPage>> update(string id, [FromBody]WorkflowUpdateViewPage request)
         {
 
             var result = _projectService.update(id,request);
@@ -87,9 +87,9 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        #region update
+        #region delete
         /// <summary>
-        /// update
+        /// delete
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
