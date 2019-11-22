@@ -16,6 +16,12 @@ namespace MyApp.Core.AutoMapper
             CreateMap<WorkflowViewPage, Workflow>().ReverseMap();
             CreateMap<Workflow, WorkflowViewPage>().ReverseMap();
 
+            CreateMap<CategoryViewPage, Category>().ReverseMap();
+            CreateMap<Category, CategoryViewPage>().ReverseMap();
+
+            CreateMap<TaskViewPage, Task>().ReverseMap();
+            CreateMap<Task, TaskViewPage>().ReverseMap();
+
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
         }
