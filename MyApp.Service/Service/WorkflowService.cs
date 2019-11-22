@@ -6,7 +6,6 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
-using MyApp.Service.HelperService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
