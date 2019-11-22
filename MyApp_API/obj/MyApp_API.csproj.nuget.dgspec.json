@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp_API\\MyApp_API.csproj": {}
+    "C:\\Users\\DELL\\Desktop\\Source2\\MyApp_API\\MyApp_API.csproj": {}
   },
   "projects": {
-    "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj",
         "projectName": "MyApp.Core",
-        "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj"
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj",
         "projectName": "MyApp.Repository",
-        "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj"
               }
             }
           }
@@ -35,20 +35,20 @@
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Service\\MyApp.Service.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Service\\MyApp.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Service\\MyApp.Service.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Service\\MyApp.Service.csproj",
         "projectName": "MyApp.Service",
-        "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Service\\MyApp.Service.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Service\\MyApp.Service.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj"
               },
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj"
               }
             }
           }
@@ -58,14 +58,14 @@
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp_API\\MyApp_API.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Source2\\MyApp_API\\MyApp_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp_API\\MyApp_API.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp_API\\MyApp_API.csproj",
         "projectName": "MyApp_API",
-        "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp_API\\MyApp_API.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp_API\\MyApp_API.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp_API\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\ProgramData\\Xamarin\\NuGet\\",
@@ -86,14 +86,14 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Core\\MyApp.Core.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Core\\MyApp.Core.csproj"
               },
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Repository\\MyApp.Repository.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Repository\\MyApp.Repository.csproj"
               },
-              "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Service\\MyApp.Service.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_7\\SWD391\\BE\\MyApp.Service\\MyApp.Service.csproj"
+              "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Service\\MyApp.Service.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Source2\\MyApp.Service\\MyApp.Service.csproj"
               }
             }
           }

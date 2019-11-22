@@ -18,12 +18,12 @@ namespace MyApp_API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ProjectController : ControllerBase
+    public class WrokflowsController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IWorkflowService _projectService;
 
-        public ProjectController(IServiceProvider serviceProvider)
+        public WrokflowsController(IServiceProvider serviceProvider)
         {
             _projectService = serviceProvider.GetRequiredService<IWorkflowService>();
             _mapper = serviceProvider.GetRequiredService<IMapper>();
