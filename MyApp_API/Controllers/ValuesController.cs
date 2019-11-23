@@ -12,9 +12,9 @@ namespace MyApp_API.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<IEnumerable<string>> Get()
         {
-            return "version BETA 231119_1750_PM";
+            return new string[] { "dotnet", "haha" };
         }
     }
 }
