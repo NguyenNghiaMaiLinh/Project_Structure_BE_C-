@@ -15,7 +15,7 @@ namespace MyApp.Core.Service
         BaseViewModel<WorkflowViewPage> getWorkflowById(string id);
         BaseViewModel<WorkflowViewPage> createInstance(WorkflowCreateInstanceViewPage request);
         BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request);
-        BaseViewModel<WorkflowViewPage> update(string id, WorkflowUpdateViewPage request);
+        BaseViewModel<WorkflowViewPage> update( WorkflowUpdateViewPage request);
         BaseViewModel<bool> delete(string id);
     }
 }

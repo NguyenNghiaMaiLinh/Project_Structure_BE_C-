@@ -190,9 +190,9 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<WorkflowViewPage> update(string id, WorkflowUpdateViewPage request)
+        public BaseViewModel<WorkflowViewPage> update(WorkflowUpdateViewPage request)
         {
-            var entity = _repository.GetById(id);
+            var entity = _repository.GetById(request.Id);
             if (entity == null)
             {
                 return new BaseViewModel<WorkflowViewPage>

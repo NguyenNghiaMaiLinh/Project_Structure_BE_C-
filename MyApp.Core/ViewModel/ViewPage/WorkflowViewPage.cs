@@ -26,6 +26,7 @@ namespace MyApp.Core.ViewModel.ViewPage
     }
     public partial class WorkflowUpdateViewPage
     {
+        public string Id { get; set; }
         public string WorkflowName { get; set; }
 
     }

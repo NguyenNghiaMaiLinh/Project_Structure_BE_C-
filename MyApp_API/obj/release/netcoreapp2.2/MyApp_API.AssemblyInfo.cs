@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyApp_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyApp_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyApp_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.1.1")]

@@ -7,7 +7,7 @@
     <UserSecretsId>5c1a5522-ba28-47ff-b237-c46dee838d43</UserSecretsId>
     <AssemblyVersion>1.0.1.1</AssemblyVersion>
     <FileVersion>1.0.1.1</FileVersion>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

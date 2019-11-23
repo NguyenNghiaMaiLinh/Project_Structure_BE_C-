@@ -112,11 +112,11 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         /// <author>Linhnnm</author>
-        [HttpPut("{id}")]
-        public ActionResult<BaseViewModel<WorkflowViewPage>> update(string id, [FromBody]WorkflowUpdateViewPage request)
+        [HttpPut("update")]
+        public ActionResult<BaseViewModel<WorkflowViewPage>> update([FromBody]WorkflowUpdateViewPage request)
         {
 
-            var result = _projectService.update(id, request);
+            var result = _projectService.update(request);
 
             return result;
         }

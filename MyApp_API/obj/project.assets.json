@@ -13404,7 +13404,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "restore": {
       "projectUniqueName": "G:\\Chuyen_Nganh_7\\SWD391\\API\\MyApp_API\\MyApp_API.csproj",
       "projectName": "MyApp_API",
