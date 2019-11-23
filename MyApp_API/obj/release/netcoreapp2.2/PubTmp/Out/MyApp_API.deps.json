@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "MyApp_API/1.0.0": {
+      "MyApp_API/1.0.1": {
         "dependencies": {
           "AutoMapper": "9.0.0",
           "Hangfire": "1.7.7",
@@ -3856,7 +3856,7 @@
     }
   },
   "libraries": {
-    "MyApp_API/1.0.0": {
+    "MyApp_API/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

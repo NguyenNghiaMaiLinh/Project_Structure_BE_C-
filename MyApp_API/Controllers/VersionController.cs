@@ -10,7 +10,7 @@ namespace MyApp_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class VersionController : ControllerBase
     {
         [HttpGet]
         public ActionResult<string> Get()

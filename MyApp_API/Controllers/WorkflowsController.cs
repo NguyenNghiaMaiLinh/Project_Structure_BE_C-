@@ -18,17 +18,38 @@ namespace MyApp_API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class WrokflowsController : ControllerBase
+    public class WorkflowsController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IWorkflowService _projectService;
 
-        public WrokflowsController(IServiceProvider serviceProvider)
+        public WorkflowsController(IServiceProvider serviceProvider)
         {
             _projectService = serviceProvider.GetRequiredService<IWorkflowService>();
             _mapper = serviceProvider.GetRequiredService<IMapper>();
 
         }
+
+        #region Get All Workflow
+        /// <summary>
+        /// GetMyProject
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflow([FromQuery]BasePagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getAllWorkflow(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
 
         #region Get My Project
         /// <summary>
@@ -37,14 +58,11 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns>PagingResult<ProjectViewPage>></returns>
         /// <author>Linhnnm</author>
-        [HttpGet]
-        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getMyProject([FromQuery]BasePagingRequestViewModel request)
+        [HttpGet("{id}")]
+        public ActionResult<BaseViewModel<WorkflowViewPage>> getWorkflow(string id)
         {
-            request.SetDefaultPage();
 
-            var result = _projectService.getAllProject(request);
-
-            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+            var result = _projectService.getWorkflowById(id);
 
             return result;
         }
@@ -69,6 +87,24 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region create Instance
+        /// <summarycreate
+        /// create Instance
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpPost("createInstance")]
+        public ActionResult<BaseViewModel<WorkflowViewPage>> createInstance( [FromBody] WorkflowCreateInstanceViewPage request)
+        {
+
+            var result = _projectService.createInstance(request);
+
+            return result;
+        }
+
+        #endregion
+
         #region update
         /// <summary>
         /// update
@@ -80,7 +116,7 @@ namespace MyApp_API.Controllers
         public ActionResult<BaseViewModel<WorkflowViewPage>> update(string id, [FromBody]WorkflowUpdateViewPage request)
         {
 
-            var result = _projectService.update(id,request);
+            var result = _projectService.update(id, request);
 
             return result;
         }
@@ -95,10 +131,10 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpDelete("{id}")]
-        public ActionResult<BaseViewModel<bool>> delete( string id)
+        public ActionResult<BaseViewModel<bool>> delete(string id)
         {
 
-            var result = _projectService.delete( id);
+            var result = _projectService.delete(id);
 
             return result;
         }

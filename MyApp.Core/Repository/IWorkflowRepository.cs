@@ -10,6 +10,6 @@ namespace MyApp.Core.Repository
 {
     public interface IWorkflowRepository : IRepository<Workflow>
     {
-        IEnumerable<Workflow> GetAllProject(int? pageIndex, int? pageSize, string userId);
+        IEnumerable<Workflow> GetAllWorkflow(int? pageIndex, int? pageSize, string userId);
     }
 }

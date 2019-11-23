@@ -29,11 +29,14 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request)
         {
-           
+
             var entity = new Workflow();
             entity.SetDefaultInsertValue(_repository.GetUsername());
             entity.WorkflowName = request.WorkflowName;
             entity.IsDelete = false;
+            entity.IsMain = true;
+            entity.WorkflowMainId = entity.Id;
+            entity.Processing = (int)MyEnum.ProcessingOfWorkflow.None;
             _repository.Add(entity);
 
             var temp = new WorkflowMember();
@@ -53,6 +56,41 @@ namespace MyApp.Service.Service
             };
         }
 
+        public BaseViewModel<WorkflowViewPage> createInstance(WorkflowCreateInstanceViewPage request)
+        {
+            var main = _repository.GetById(request.Id);
+            if (main == null)
+            {
+                return new BaseViewModel<WorkflowViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            // TODO check no co  nam trong member ko
+            var entity = new Workflow();
+            entity.SetDefaultInsertValue(_repository.GetUsername());
+            entity.WorkflowName = request.WorkflowName;
+            entity.CategoryId = main.CategoryId;
+            entity.IsDelete = false;
+            entity.IsMain = false;
+            entity.WorkflowMainId = main.Id;
+            entity.Processing = (int)MyEnum.ProcessingOfWorkflow.Started;
+            _repository.Add(entity);
+
+            Save();
+            return new BaseViewModel<WorkflowViewPage>
+            {
+                Code = MessageConstants.SUCCESS,
+                Description = null,
+                StatusCode = HttpStatusCode.Created,
+                Data = _mapper.Map<WorkflowViewPage>(entity)
+            };
+
+        }
+
         public BaseViewModel<bool> delete(string id)
         {
             var entity = _repository.GetById(id);
@@ -64,6 +102,16 @@ namespace MyApp.Service.Service
                     Description = ErrMessageConstants.NOTFOUND,
                     Data = false,
                     StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            else if (entity.CreateBy != _repository.GetUsername())
+            {
+                return new BaseViewModel<bool>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.INVALID_PERMISSION,
+                    Data = false,
+                    StatusCode = HttpStatusCode.PreconditionFailed
                 };
             }
             entity.SetDefaultUpdateValue(_repository.GetUsername());
@@ -79,13 +127,13 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllProject(BasePagingRequestViewModel request)
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflow(BasePagingRequestViewModel request)
         {
             var pageSize = request.PageSize;
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
 
-            var data = _repository.GetAllProject(pageIndex, pageSize, _repository.GetUsername()).ToList();
+            var data = _repository.GetAllWorkflow(pageIndex, pageSize, _repository.GetUsername()).ToList();
             if (data == null || data.Count == 0)
             {
                 result.Description = MessageConstants.NO_RECORD;
@@ -110,6 +158,38 @@ namespace MyApp.Service.Service
             return result;
         }
 
+        public BaseViewModel<WorkflowViewPage> getWorkflowById(string id)
+        {
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return new BaseViewModel<WorkflowViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            else if (entity.CreateBy != _repository.GetUsername())
+            {
+                return new BaseViewModel<WorkflowViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.INVALID_PERMISSION,
+                    Data = null,
+                    StatusCode = HttpStatusCode.PreconditionFailed
+                };
+            }
+            return new BaseViewModel<WorkflowViewPage>
+            {
+                Code = MessageConstants.SUCCESS,
+                Description = null,
+                Data = _mapper.Map<WorkflowViewPage>(entity),
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
         public BaseViewModel<WorkflowViewPage> update(string id, WorkflowUpdateViewPage request)
         {
             var entity = _repository.GetById(id);
@@ -121,6 +201,16 @@ namespace MyApp.Service.Service
                     Description = ErrMessageConstants.NOTFOUND,
                     Data = null,
                     StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            else if (entity.CreateBy != _repository.GetUsername())
+            {
+                return new BaseViewModel<WorkflowViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.INVALID_PERMISSION,
+                    Data = null,
+                    StatusCode = HttpStatusCode.PreconditionFailed
                 };
             }
             entity.SetDefaultUpdateValue(_repository.GetUsername());

@@ -21,13 +21,13 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
-        public IEnumerable<Workflow> GetAllProject(int? pageIndex, int? pageSize, string userId)
+        public IEnumerable<Workflow> GetAllWorkflow(int? pageIndex, int? pageSize, string userId)
         {
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
             var par3 = new SqlParameter("@UserId", userId);
 
-            return _dataContext.Workflow.FromSql("getAllProject @PageIndex, @PageSize, @UserId", par1, par2, par3).ToList();
+            return _dataContext.Workflow.FromSql("getAllWorkflow @PageIndex, @PageSize, @UserId", par1, par2, par3).ToList();
         }
     }
 }
