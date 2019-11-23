@@ -12,7 +12,7 @@ namespace MyApp_API.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<string> test()
+        public ActionResult<string> Get()
         {
             return "version BETA 231119_1750_PM";
         }
