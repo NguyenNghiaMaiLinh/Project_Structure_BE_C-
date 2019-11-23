@@ -14,7 +14,7 @@ namespace MyApp_API.Controllers
         [HttpGet]
         public ActionResult<string> test()
         {
-            return "version BETA 231119_1742_PM";
+            return "version BETA 231119_1750_PM";
         }
     }
 }
