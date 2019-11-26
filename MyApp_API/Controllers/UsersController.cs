@@ -57,10 +57,10 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns>bool</returns>
         /// <author>Linhnnm</author>
-        [HttpPost("Delete")]
-        public ActionResult Delete([FromBody]UserDeleteViewPage request)
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromBody]string id)
         {
-            var entity = _userService.DeleteAccount(request);
+            var entity = _userService.DeleteAccount(id);
             if (entity.Data != false)
             {
                 return Ok(entity);

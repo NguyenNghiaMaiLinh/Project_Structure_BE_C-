@@ -241,7 +241,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\TaskRepository.cs" />
     <Compile Include="Repository\TaskAssigneeRepository.cs" />
-    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\WorkflowMembersRepository.cs" />
     <Compile Include="Repository\WorkflowRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />

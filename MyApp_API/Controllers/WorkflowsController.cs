@@ -76,7 +76,7 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         /// <author>Linhnnm</author>
-        [HttpPost("create")]
+        [HttpPost]
         public ActionResult<BaseViewModel<WorkflowViewPage>> create([FromBody]WorkflowCreateViewPage request)
         {
 
@@ -94,7 +94,7 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         /// <author>Linhnnm</author>
-        [HttpPost("createInstance")]
+        [HttpPost("Instance")]
         public ActionResult<BaseViewModel<WorkflowViewPage>> createInstance( [FromBody] WorkflowCreateInstanceViewPage request)
         {
 
@@ -112,7 +112,7 @@ namespace MyApp_API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         /// <author>Linhnnm</author>
-        [HttpPut("update")]
+        [HttpPut]
         public ActionResult<BaseViewModel<WorkflowViewPage>> update([FromBody]WorkflowUpdateViewPage request)
         {
 

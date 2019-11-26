@@ -40,7 +40,6 @@ namespace MyApp_API.Extentions
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IWorkflowService, WorkflowService>();
             services.AddTransient<ITaskService, TaskService>();
-            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
@@ -50,7 +49,6 @@ namespace MyApp_API.Extentions
             services.AddTransient<IWorkflowMembersRepository, WorkflowMembersRepository>();
             services.AddTransient<ITaskAssigneeRepository, TaskAssigneeRepository>();
             services.AddTransient<ITaskRepository, TaskRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
         }
 

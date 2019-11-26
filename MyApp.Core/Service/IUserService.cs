@@ -15,6 +15,6 @@ namespace MyApp.Core.Service
         BaseViewModel<Account> Register(RegisterViewModel user);
         BaseViewModel<Account> Login(LoginViewModel user);
         BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user);
-        BaseViewModel<bool> DeleteAccount(UserDeleteViewPage user);
+        BaseViewModel<bool> DeleteAccount(string id);
     }
 }

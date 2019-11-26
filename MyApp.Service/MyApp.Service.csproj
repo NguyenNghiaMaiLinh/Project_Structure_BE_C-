@@ -241,7 +241,6 @@
     <Compile Include="HelperService\SaltHashPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\TaskService.cs" />
-    <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\WorkflowService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>

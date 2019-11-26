@@ -26,7 +26,7 @@ namespace MyApp.Service.Service
             _mapper = mapper;
         }
 
-        public BaseViewModel<bool> DeleteAccount(UserDeleteViewPage request)
+        public BaseViewModel<bool> DeleteAccount(string id)
         {
             var currentUser = _repository.GetById(_repository.GetUsername());
             var result = new BaseViewModel<bool>()
@@ -39,7 +39,7 @@ namespace MyApp.Service.Service
             };
             if (currentUser.Role == Role.Admin)
             {
-                var account = _repository.GetById(request.Id);
+                var account = _repository.GetById(id);
                 if (account == null)
                 {
                     return result;
