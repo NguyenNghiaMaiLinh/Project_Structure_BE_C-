@@ -6,6 +6,7 @@ namespace MyApp.Core.Service
     public interface IWorkflowService
     {
         BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflow(BasePagingRequestViewModel request);
+        BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByStatus(BasePagingRequestViewModel request);
         BaseViewModel<WorkflowViewPage> getWorkflowById(string id);
         BaseViewModel<WorkflowViewPage> createInstance(WorkflowCreateInstanceViewPage request);
         BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request);

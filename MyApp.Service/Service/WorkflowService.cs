@@ -16,13 +16,15 @@ namespace MyApp.Service.Service
     {
         private readonly IWorkflowRepository _repository;
         private readonly IWorkflowMembersRepository _projectMembersRepository;
+        private readonly ITaskRepository _taskRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public WorkflowService(IUnitOfWork unitOfWork, IMapper mapper, IWorkflowRepository projectRepository, IWorkflowMembersRepository projectMembersRepository)
+        public WorkflowService(IUnitOfWork unitOfWork, IMapper mapper, IWorkflowRepository projectRepository, IWorkflowMembersRepository projectMembersRepository, ITaskRepository taskRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = projectRepository;
+            _taskRepository = taskRepository;
             _projectMembersRepository = projectMembersRepository;
             _mapper = mapper;
         }
@@ -33,10 +35,11 @@ namespace MyApp.Service.Service
             var entity = new Workflow();
             entity.SetDefaultInsertValue(_repository.GetUsername());
             entity.WorkflowName = request.WorkflowName;
+            entity.Description = request.Description;
             entity.IsDelete = false;
             entity.IsMain = true;
             entity.WorkflowMainId = entity.Id;
-            entity.Processing = (int)MyEnum.ProcessingOfWorkflow.None;
+            entity.Status = MyEnum.Status.None;
             _repository.Add(entity);
 
             var temp = new WorkflowMember();
@@ -73,11 +76,11 @@ namespace MyApp.Service.Service
             var entity = new Workflow();
             entity.SetDefaultInsertValue(_repository.GetUsername());
             entity.WorkflowName = request.WorkflowName;
-            entity.CategoryId = main.CategoryId;
+            entity.Description = request.Description;
             entity.IsDelete = false;
             entity.IsMain = false;
             entity.WorkflowMainId = main.Id;
-            entity.Processing = (int)MyEnum.ProcessingOfWorkflow.Started;
+            entity.Status = MyEnum.Status.Started;
             _repository.Add(entity);
 
             Save();
@@ -133,7 +136,38 @@ namespace MyApp.Service.Service
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
 
-            var data = _repository.GetAllWorkflow(pageIndex, pageSize, _repository.GetUsername()).ToList();
+            var data = _repository.GetAllWorkflow(pageIndex, pageSize, _repository.GetUsername(),request.Search).ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+        }
+
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByStatus(BasePagingRequestViewModel request)
+        {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflowByStatus(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
             if (data == null || data.Count == 0)
             {
                 result.Description = MessageConstants.NO_RECORD;
@@ -171,21 +205,24 @@ namespace MyApp.Service.Service
                     StatusCode = HttpStatusCode.BadRequest
                 };
             }
-            else if (entity.CreateBy != _repository.GetUsername())
-            {
-                return new BaseViewModel<WorkflowViewPage>
-                {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.INVALID_PERMISSION,
-                    Data = null,
-                    StatusCode = HttpStatusCode.PreconditionFailed
-                };
-            }
+            var totalTaskDone = _taskRepository.GetAll().Where(_ => _.Status == MyEnum.Status.Done
+                                && _.CreateBy == _repository.GetUsername()
+                                && _.WorkflowId == id
+                                && _.IsDelete == false)
+                                .Count();
+
+            var totalTask = _taskRepository.GetAll().Where(_ => _.CreateBy == _repository.GetUsername()
+                                && _.WorkflowId == id
+                                && _.IsDelete == false)
+                                .Count();
+            var data = _mapper.Map<WorkflowViewPage>(entity);
+            data.TotalTask = totalTask;
+            data.DoneTask = totalTaskDone;
             return new BaseViewModel<WorkflowViewPage>
             {
                 Code = MessageConstants.SUCCESS,
                 Description = null,
-                Data = _mapper.Map<WorkflowViewPage>(entity),
+                Data = data,
                 StatusCode = HttpStatusCode.OK
             };
         }
@@ -215,6 +252,8 @@ namespace MyApp.Service.Service
             }
             entity.SetDefaultUpdateValue(_repository.GetUsername());
             entity.WorkflowName = request.WorkflowName;
+            entity.Description = request.Description;
+            entity.Status = request.Status;
             _repository.Update(entity);
             Save();
             return new BaseViewModel<WorkflowViewPage>

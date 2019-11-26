@@ -1,10 +1,6 @@
 ﻿using MyApp.Core.Constaint;
-using MyApp.Core.Data.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyApp.Core.ViewModel.ViewPage
 {
@@ -12,23 +8,33 @@ namespace MyApp.Core.ViewModel.ViewPage
     {
         public string Id { get; set; }
         public string WorkflowName { get; set; }
-
+        public int? TotalTask { get; set; }
+        public bool? IsMain { get; set; }
+        public string CreateBy { get; set; }
+        public DateTime? CreateAt { get; set; }
+        public string UpdateBy { get; set; }
+        public DateTime? UpdateAt { get; set; }
+        public string Status { get; set; }
+        public int DoneTask { get; set; }
     }
 
     public partial class WorkflowCreateViewPage
     {
         public string WorkflowName { get; set; }
+        public string Description { get; set; }
     }
     public partial class WorkflowCreateInstanceViewPage
     {
         public string Id { get; set; }
         public string WorkflowName { get; set; }
+        public string Description { get; set; }
     }
     public partial class WorkflowUpdateViewPage
     {
         public string Id { get; set; }
         public string WorkflowName { get; set; }
-
+        public MyEnum.Status Status { get; set; }
+        public string Description { get; set; }
     }
     public partial class WorkflowDeleteViewPage
     {

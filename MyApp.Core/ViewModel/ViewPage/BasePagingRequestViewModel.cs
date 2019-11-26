@@ -15,6 +15,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? PageSize { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int? PageIndex { get; set; }
+        public string Search { get; set; }
         public void SetDefaultPage()
         {
             PageSize = PageSize ?? Constants.DEFAULT_PAGE_SIZE;

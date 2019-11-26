@@ -18,7 +18,7 @@ namespace MyApp.Core.Data.Entity
         public bool? IsDelete { get; set; }
         public bool? IsMain { get; set; }
         public string TaskMainId { get; set; }
-        public int? Status { get; set; }
+        public Constaint.MyEnum.Status Status { get; set; }
         public int? PositionInWorkflow { get; set; }
 
         public virtual Task TaskMain { get; set; }

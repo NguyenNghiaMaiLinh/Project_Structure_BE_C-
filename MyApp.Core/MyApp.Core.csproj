@@ -252,6 +252,7 @@
     <Compile Include="Data\Entity\Task.cs" />
     <Compile Include="Data\Entity\TaskAssignee.cs" />
     <Compile Include="Data\Entity\Workflow.cs" />
+    <Compile Include="Data\DTO\WorkflowDto.cs" />
     <Compile Include="Data\Entity\WorkflowMember.cs" />
     <Compile Include="Data\Infrastructure\DbFactory.cs" />
     <Compile Include="Data\Infrastructure\Disposable.cs" />

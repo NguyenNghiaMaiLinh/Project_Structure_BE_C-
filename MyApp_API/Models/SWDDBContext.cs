@@ -16,7 +16,6 @@ namespace MyApp_API.Models
         }
 
         public virtual DbSet<Account> Account { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<TaskAssignee> TaskAssignee { get; set; }
@@ -69,39 +68,6 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.SaltPassword)
                     .HasMaxLength(300)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CategoryName)
-                    .HasColumnName("Category_Name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
@@ -275,17 +241,16 @@ namespace MyApp_API.Models
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryId)
-                    .HasColumnName("Category_Id")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.CreateAt)
                     .HasColumnName("Create_At")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.CreateBy)
                     .HasColumnName("Create_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -310,11 +275,6 @@ namespace MyApp_API.Models
                 entity.Property(e => e.WorkflowName)
                     .HasColumnName("Workflow_Name")
                     .HasMaxLength(200);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Workflow)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_PROJECT_CATEGORY");
 
                 entity.HasOne(d => d.CreateByNavigation)
                     .WithMany(p => p.Workflow)

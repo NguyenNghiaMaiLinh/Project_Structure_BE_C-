@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Core.Data.DTO;
 using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
 using MyApp.Core.Repository;
@@ -21,13 +22,33 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
-        public IEnumerable<Workflow> GetAllWorkflow(int? pageIndex, int? pageSize, string userId)
+        public IEnumerable<WorkflowDto> GetAllWorkflow(int? pageIndex, int? pageSize, string userId, string search)
         {
+            if(search == null)
+            {
+                search = "";
+            }
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
             var par3 = new SqlParameter("@UserId", userId);
+            var par4 = new SqlParameter("@Search", search);
 
-            return _dataContext.Workflow.FromSql("getAllWorkflow @PageIndex, @PageSize, @UserId", par1, par2, par3).ToList();
+            var result = _dataContext.WorkflowDto.FromSql("getAllWorkflow @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList(); ;
+            return result;
+        }
+
+        public IEnumerable<WorkflowDto> GetAllWorkflowByStatus(int? pageIndex, int? pageSize, string userId, string search)
+        {
+            if (search == null)
+            {
+                search = "";
+            }
+            var par1 = new SqlParameter("@PageIndex", pageIndex);
+            var par2 = new SqlParameter("@PageSize", pageSize);
+            var par3 = new SqlParameter("@UserId", userId);
+            var par4 = new SqlParameter("@Search", search);
+
+            return _dataContext.WorkflowDto.FromSql("getAllWorkflowByStatus @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3,par4).ToList();
         }
     }
 }

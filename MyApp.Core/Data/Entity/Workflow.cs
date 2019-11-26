@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 
 namespace MyApp.Core.Data.Entity
 {
@@ -12,15 +12,13 @@ namespace MyApp.Core.Data.Entity
             WorkflowMember = new HashSet<WorkflowMember>();
         }
 
-
-        public string CategoryId { get; set; }
+        public string WorkflowMainId { get; set; }
         public string WorkflowName { get; set; }
+        public string Description { get; set; }
+        public Constaint.MyEnum.Status Status { get; set; }
         public bool? IsDelete { get; set; }
         public bool? IsMain { get; set; }
-        public string WorkflowMainId { get; set; }
-        public int? Processing { get; set; }
 
-        public virtual Category Category { get; set; }
         public virtual Account CreateByNavigation { get; set; }
         public virtual Workflow WorkflowMain { get; set; }
         public virtual ICollection<Workflow> InverseWorkflowMain { get; set; }

@@ -7,13 +7,13 @@ namespace MyApp.Core.Constaint
     {
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum ProcessingOfWorkflow
+        public enum Status
         {
             None = 0,
             Started = 1,
             Paused = 2,
-            Canceled = 3
+            Canceled = 3,
+            Done = 4,
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MyApp.Core.Data.DTO;
 using MyApp.Core.Data.Entity;
 using MyApp.Core.ViewModel.ViewPage;
 using System;
@@ -15,6 +16,9 @@ namespace MyApp.Core.AutoMapper
 
             CreateMap<WorkflowViewPage, Workflow>().ReverseMap();
             CreateMap<Workflow, WorkflowViewPage>().ReverseMap();
+
+            CreateMap<WorkflowViewPage, WorkflowDto>().ReverseMap();
+            CreateMap<WorkflowDto, WorkflowViewPage>().ReverseMap();
 
             CreateMap<TaskViewPage, Task>().ReverseMap();
             CreateMap<Task, TaskViewPage>().ReverseMap();
