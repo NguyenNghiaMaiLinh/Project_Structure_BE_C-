@@ -17,10 +17,10 @@
     public class ErrMessageConstants
     {
 
-        public const string INVALID_ACCOUNT = "Invalid_Username_Or_Password";
-        public const string NOTFOUND = "Not_Found";
-        public const string INVALID_PERMISSION = "Invalid_Permission";
-        public const string ACCOUNT_ALREADY_EXISTS = "Account_Already_Exists";
+        public const string INVALID_ACCOUNT = "Tài khoản không đúng";
+        public const string NOTFOUND = "Dữ liệu không tìm thấy";
+        public const string INVALID_PERMISSION = "Bạn không có quyền truy cập";
+        public const string ACCOUNT_ALREADY_EXISTS = "Tài khoản đã tồn tại";
 
     }
     public class MessageConstants
