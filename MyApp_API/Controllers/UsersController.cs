@@ -49,6 +49,24 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Information
+        /// <summary>
+        /// GetMyUser
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<UserViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("information")]
+        public ActionResult<BaseViewModel<UserViewModel>> Information()
+        {
+
+            var result = _userService.GetInformation();
+
+            return result;
+        }
+
+        #endregion
+
         #region Delete
 
         /// <summary>

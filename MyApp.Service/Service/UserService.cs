@@ -96,6 +96,29 @@ namespace MyApp.Service.Service
             return result;
         }
 
+        public BaseViewModel<UserViewModel> GetInformation()
+        {
+            var entity = _repository.GetById(_repository.GetUsername());
+            if (entity == null)
+            {
+                return new BaseViewModel<UserViewModel>
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Code = ErrMessageConstants.NOTFOUND,
+                    Data = null
+                };
+            }
+
+            return new BaseViewModel<UserViewModel>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Description = null,
+                Code = MessageConstants.SUCCESS,
+                Data = _mapper.Map<UserViewModel>(entity)
+            };
+        }
+
         public BaseViewModel<Account> Login(LoginViewModel user)
         {
             var entity = _repository.GetById(user.Username);
@@ -171,7 +194,7 @@ namespace MyApp.Service.Service
                 Username = user.Username,
                 FullName = user.FullName,
                 Email = user.Email,
-                AvatarPath = user.Avatar_Path
+                AvatarPath = user.AvatarPath
             };
             var temp = new SaltHashPassword(user.Password);
             entity.SaltPassword = temp.Salt;

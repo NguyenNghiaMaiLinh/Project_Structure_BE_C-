@@ -46,6 +46,13 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string AvatarPath { get; set; }
 
     }
+    public class UserViewModel
+    {
+        public string Username { get; set; }
+        public string FullName { get; set; }
+        public string AvatarPath { get; set; }
+        public string Email { get; set; }
+        public string Role { get; set; }
+    }
 
-   
 }

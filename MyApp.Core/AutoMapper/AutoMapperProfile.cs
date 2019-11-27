@@ -20,6 +20,9 @@ namespace MyApp.Core.AutoMapper
             CreateMap<WorkflowViewPage, WorkflowDto>().ReverseMap();
             CreateMap<WorkflowDto, WorkflowViewPage>().ReverseMap();
 
+            CreateMap<UserViewModel, Account>().ReverseMap();
+            CreateMap<Account, UserViewModel>().ReverseMap();
+
             CreateMap<TaskViewPage, Task>().ReverseMap();
             CreateMap<Task, TaskViewPage>().ReverseMap();
 

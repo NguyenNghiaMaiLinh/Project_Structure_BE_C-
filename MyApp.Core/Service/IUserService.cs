@@ -12,6 +12,7 @@ namespace MyApp.Core.Service
    public interface IUserService
     {
         BaseViewModel<PagingResult<UserViewPage>> GetAllUser(BasePagingRequestViewModel request);
+        BaseViewModel<UserViewModel> GetInformation();
         BaseViewModel<Account> Register(RegisterViewModel user);
         BaseViewModel<Account> Login(LoginViewModel user);
         BaseViewModel<Account> LoginByFacebook(LoginFacebookViewModel user);
