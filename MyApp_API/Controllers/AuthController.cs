@@ -72,6 +72,38 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Login By Facebook
+
+        /// <summary>
+        /// Login
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>linhnnm</author>
+        [HttpPost("LoginByFacebook")]
+        public ActionResult<BaseViewModel<TokenViewModel>> LoginByFacebook([FromBody]LoginFacebookViewModel request)
+        {
+            var entity = _userService.LoginByFacebook(request);
+            if (entity.Data == null)
+            {
+                return BadRequest(new BaseViewModel<TokenViewModel>
+                {
+                    StatusCode = entity.StatusCode,
+                    Description = entity.Description,
+                    Code = entity.Code
+                });
+
+            }
+
+            return Ok(new BaseViewModel<TokenViewModel>
+            {
+                Data = GenerateToken(entity.Data),
+            });
+
+        }
+
+        #endregion
+
         #region Register
 
         /// <summary>

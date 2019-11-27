@@ -15,7 +15,12 @@ namespace MyApp.Core.ViewModel.ViewPage
         [Display(Name = "Password")]
         public string Password { get; set; }
     }
+    public class LoginFacebookViewModel
+    {
+        [Required]
+        public string Username { get; set; }
 
+    }
     public class TokenViewModel
     {
         public string Roles { get; set; }
@@ -38,7 +43,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         [CheckName(Property = "Fullname")]
         public string FullName { get; set; }
         public string Email { get; set; }
-        public string Avatar_Path { get; set; }
+        public string AvatarPath { get; set; }
 
     }
 

@@ -87,10 +87,10 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         /// 
-        [HttpPut("{id}")]
-        public ActionResult Update(string id, [FromBody]UserUpdateViewPage request)
+        [HttpPut]
+        public ActionResult Update([FromBody]UserUpdateViewPage request)
         {
-            var entity = _userService.Update(id, request);
+            var entity = _userService.Update(request);
             if (entity.Data != null)
             {
                 return Ok(entity);

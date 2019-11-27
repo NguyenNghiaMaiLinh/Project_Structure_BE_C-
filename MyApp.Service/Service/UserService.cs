@@ -129,6 +129,29 @@ namespace MyApp.Service.Service
             };
         }
 
+        public BaseViewModel<Account> LoginByFacebook(LoginFacebookViewModel user)
+        {
+            var entity = _repository.GetById(user.Username);
+            if (entity == null)
+            {
+                return new BaseViewModel<Account>
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Code = ErrMessageConstants.NOTFOUND,
+                    Data = null
+                };
+
+            }
+            return new BaseViewModel<Account>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Description = null,
+                Code = MessageConstants.SUCCESS,
+                Data = _mapper.Map<Account>(entity)
+            };
+        }
+
         public BaseViewModel<Account> Register(RegisterViewModel user)
         {
             var check = _repository.GetById(user.Username);
@@ -167,7 +190,7 @@ namespace MyApp.Service.Service
         }
 
 
-        public BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user)
+        public BaseViewModel<UserViewPage> Update(UserUpdateViewPage user)
         {
             var result = new BaseViewModel<UserViewPage>()
             {
@@ -178,7 +201,7 @@ namespace MyApp.Service.Service
 
             };
 
-            var entity = _repository.GetById(userId);
+            var entity = _repository.GetById(user.Id);
             if (entity == null)
             {
                 return new BaseViewModel<UserViewPage>

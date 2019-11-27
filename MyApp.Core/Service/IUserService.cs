@@ -14,7 +14,8 @@ namespace MyApp.Core.Service
         BaseViewModel<PagingResult<UserViewPage>> GetAllUser(BasePagingRequestViewModel request);
         BaseViewModel<Account> Register(RegisterViewModel user);
         BaseViewModel<Account> Login(LoginViewModel user);
-        BaseViewModel<UserViewPage> Update(string userId, UserUpdateViewPage user);
+        BaseViewModel<Account> LoginByFacebook(LoginFacebookViewModel user);
+        BaseViewModel<UserViewPage> Update(UserUpdateViewPage user);
         BaseViewModel<bool> DeleteAccount(string id);
     }
 }
