@@ -54,6 +54,11 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.DeviceToken)
+                    .HasColumnName("Device_Token")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .IsUnicode(false);

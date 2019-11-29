@@ -143,6 +143,9 @@ namespace MyApp.Service.Service
                     Data = null
                 };
             }
+            entity.DeviceToken = user.DeviceToken;
+            _repository.Add(entity);
+            Save();
             return new BaseViewModel<Account>
             {
                 StatusCode = HttpStatusCode.OK,
@@ -166,6 +169,10 @@ namespace MyApp.Service.Service
                 };
 
             }
+            entity.DeviceToken = user.DeviceToken;
+            _repository.Add(entity);
+            Save();
+
             return new BaseViewModel<Account>
             {
                 StatusCode = HttpStatusCode.OK,
@@ -201,6 +208,7 @@ namespace MyApp.Service.Service
             entity.HashPassword = temp.Hash;
             entity.Role = Role.User;
             entity.IsDelete = false;
+            entity.DeviceToken = user.DeviceToken;
 
             _repository.Add(entity);
             Save();
@@ -235,6 +243,7 @@ namespace MyApp.Service.Service
             entity.FullName = user.FullName;
             entity.AvatarPath = user.AvatarPath;
             entity.Email = user.Email;
+            entity.DeviceToken = user.DeviceToken;
             _repository.Update(entity);
             Save();
 

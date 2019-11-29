@@ -19,6 +19,7 @@ namespace MyApp.Core.Data.Entity
         public string SaltPassword { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public string DeviceToken { get; set; }
 
         public virtual ICollection<Workflow> Workflow { get; set; }
         public virtual ICollection<WorkflowMember> WorkflowMember { get; set; }

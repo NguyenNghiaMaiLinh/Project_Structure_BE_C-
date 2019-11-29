@@ -14,11 +14,14 @@ namespace MyApp.Core.ViewModel.ViewPage
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+        public string DeviceToken { get; set; }
     }
     public class LoginFacebookViewModel
     {
         [Required]
         public string Username { get; set; }
+        [Required]
+        public string DeviceToken { get; set; }
 
     }
     public class TokenViewModel
@@ -44,6 +47,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string FullName { get; set; }
         public string Email { get; set; }
         public string AvatarPath { get; set; }
+        public string DeviceToken { get; set; }
 
     }
     public class UserViewModel
@@ -53,6 +57,7 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string AvatarPath { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public string DeviceToken { get; set; }
     }
 
 }
