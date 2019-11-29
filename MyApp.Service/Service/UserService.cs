@@ -144,7 +144,7 @@ namespace MyApp.Service.Service
                 };
             }
             entity.DeviceToken = user.DeviceToken;
-            _repository.Add(entity);
+            _repository.Update(entity);
             Save();
             return new BaseViewModel<Account>
             {
@@ -160,24 +160,28 @@ namespace MyApp.Service.Service
             var entity = _repository.GetById(user.Username);
             if (entity == null)
             {
+                entity = _mapper.Map<Account>(user);
+                entity.Role = Role.User;
+                entity.IsDelete = false;
+                _repository.Add(entity);
+                Save();
                 return new BaseViewModel<Account>
                 {
-                    StatusCode = HttpStatusCode.NotFound,
-                    Description = ErrMessageConstants.NOTFOUND,
-                    Code = ErrMessageConstants.NOTFOUND,
-                    Data = null
+                    StatusCode = HttpStatusCode.Created,
+                    Data = _mapper.Map<Account>(entity)
                 };
 
             }
             entity.DeviceToken = user.DeviceToken;
-            _repository.Add(entity);
+            entity.FullName = user.FullName;
+            entity.AvatarPath = user.AvatarPath;
+            entity.Email = user.Email;
+            _repository.Update(entity);
             Save();
 
             return new BaseViewModel<Account>
             {
                 StatusCode = HttpStatusCode.OK,
-                Description = null,
-                Code = MessageConstants.SUCCESS,
                 Data = _mapper.Map<Account>(entity)
             };
         }

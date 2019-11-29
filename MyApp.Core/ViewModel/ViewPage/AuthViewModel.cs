@@ -20,6 +20,9 @@ namespace MyApp.Core.ViewModel.ViewPage
     {
         [Required]
         public string Username { get; set; }
+        public string FullName { get; set; }
+        public string AvatarPath { get; set; }
+        public string Email { get; set; }
         [Required]
         public string DeviceToken { get; set; }
 

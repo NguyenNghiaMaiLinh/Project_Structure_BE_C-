@@ -506,7 +506,6 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Cryptograph
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Permissions.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Principal.Windows.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Text.Encodings.Web.dll
-G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\WebApiContrib.Formatting.JavaScriptSerializer.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Repository.pdb

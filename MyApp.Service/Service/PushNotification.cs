@@ -12,7 +12,6 @@ namespace MyApp.Service.Service
     {
         private string serverKeys = "AAAA56ixLsM:APA91bHnAPKbhhWVPpHRbo2SqYsmZrXtp4DqqCxulD7yBQuwqxuJazQvU3RFKp24Ed6SgKrAQrXLk5Xv4cXSbd05bDNzjC7x6Izcwc5Xamv8Mrz5iObzTwYnRhbvd11fzPcIgLh-j3rK";
         private string senderIds = "994967629507";
-        private string webAddr = "https://fcm.googleapis.com/fcm/send";
 
         public async Task<bool> NotifyAsync(string to, string title, string body)
         {
@@ -33,7 +32,7 @@ namespace MyApp.Service.Service
                 // Using Newtonsoft.Json
                 var jsonBody = JsonConvert.SerializeObject(data);
 
-                using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, webAddr))
+                using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, "https://fcm.googleapis.com/fcm/send"))
                 {
                     httpRequest.Headers.TryAddWithoutValidation("Authorization", serverKey);
                     httpRequest.Headers.TryAddWithoutValidation("Sender", senderId);
