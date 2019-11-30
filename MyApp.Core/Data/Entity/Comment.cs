@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyApp.Core.Data.Entity
+﻿namespace MyApp.Core.Data.Entity
 {
-    public partial class Comment:BaseEntity
+    public partial class Comment : BaseEntity
     {
         public string WorkflowMemberId { get; set; }
         public string TaskId { get; set; }

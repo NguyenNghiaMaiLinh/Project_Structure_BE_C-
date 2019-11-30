@@ -19,6 +19,9 @@
 
         public const string INVALID_ACCOUNT = "Tài khoản không đúng";
         public const string NOTFOUND = "Dữ liệu không tìm thấy";
+        public const string ACCOUNTNOTFOUND = "Tài khoản không tìm thấy";
+        public const string WORKFLOWNOTFOUND = "Quy trình công việc không tìm thấy";
+        public const string WORKFLOWEXISTED = "Tài khoản đã tồn tại";
         public const string INVALID_PERMISSION = "Bạn không có quyền truy cập";
         public const string ACCOUNT_ALREADY_EXISTS = "Tài khoản đã tồn tại";
 

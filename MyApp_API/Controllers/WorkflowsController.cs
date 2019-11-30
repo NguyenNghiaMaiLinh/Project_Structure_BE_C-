@@ -51,9 +51,30 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Get All Workflow By History
+        /// <summary>
+        /// WorkflowsByHistory
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("WorkflowsByHistory")]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByHistory([FromQuery]BasePagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getAllWorkflowByHistory(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
         #region Get All Workflow By Status
         /// <summary>
-        /// GetMyProject
+        /// WorkflowsByStatus
         /// </summary>
         /// <param name="request"></param>
         /// <returns>PagingResult<ProjectViewPage>></returns>

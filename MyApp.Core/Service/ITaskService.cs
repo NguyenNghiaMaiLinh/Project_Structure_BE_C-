@@ -7,7 +7,7 @@ namespace MyApp.Core.Service
     {
         BaseViewModel<PagingResult<TaskViewPage>> getAllTask(BasePagingRequestViewModel request);
         BaseViewModel<TaskViewPage> create(TaskCreateViewPage request);
-        BaseViewModel<TaskViewPage> update(string id, TaskUpdateViewPage request);
+        BaseViewModel<TaskViewPage> update( TaskUpdateViewPage request);
         BaseViewModel<bool> delete(string id);
     }
 }

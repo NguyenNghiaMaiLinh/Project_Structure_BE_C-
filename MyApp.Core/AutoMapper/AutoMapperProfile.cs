@@ -14,6 +14,9 @@ namespace MyApp.Core.AutoMapper
             CreateMap<UserViewPage, Account>().ReverseMap();
             CreateMap<Account, UserViewPage>().ReverseMap();
 
+            CreateMap<CommentViewPage, Account>().ReverseMap();
+            CreateMap<Account, CommentViewPage>().ReverseMap();
+
             CreateMap<LoginFacebookViewModel, Account>().ReverseMap();
             CreateMap<Account, LoginFacebookViewModel>().ReverseMap();
 

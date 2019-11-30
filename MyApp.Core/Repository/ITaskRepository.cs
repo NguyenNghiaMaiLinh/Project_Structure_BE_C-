@@ -5,6 +5,5 @@ namespace MyApp.Core.Repository
 {
     public interface ITaskRepository : IRepository<Task>
     {
-
     }
 }

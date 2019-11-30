@@ -2,6 +2,7 @@
 using MyApp.Core.Data.Infrastructure;
 using MyApp.Core.Repository;
 using System;
+using System.Linq;
 
 namespace MyApp.Repository.Repository
 {
@@ -13,5 +14,17 @@ namespace MyApp.Repository.Repository
             _dataContext = dataContext;
         }
 
+        public WorkflowMember checkExisted(string member, string workflow)
+        {
+            var check =_dataContext.WorkflowMember.FirstOrDefault(w => w.UserId == member && w.WorkflowMainId == workflow && w.IsDelete == false);
+            if(check == null)
+            {
+                return null;
+            }
+            else
+            {
+                return check;
+            }
+        }
     }
 }

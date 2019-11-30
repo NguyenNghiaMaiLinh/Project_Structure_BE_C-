@@ -27,6 +27,7 @@ namespace MyApp.Core.ViewModel.ViewPage
     }
     public class TaskUpdateViewPage
     {
+        public string Id { get; set; }
         public string TaskName { get; set; }
         public int? Status { get; set; }
         public int? PositionInWorkflow { get; set; }

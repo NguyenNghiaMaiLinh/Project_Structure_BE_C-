@@ -161,6 +161,39 @@ namespace MyApp.Service.Service
             return result;
         }
 
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByHistory(BasePagingRequestViewModel request)
+        {
+            {
+                var pageSize = request.PageSize;
+                var pageIndex = request.PageIndex;
+                var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+                var data = _repository.GetAllWorkflowByStatus(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
+                if (data == null || data.Count == 0)
+                {
+                    result.Description = MessageConstants.NO_RECORD;
+                    result.Code = MessageConstants.NO_RECORD;
+                }
+                else
+                {
+                    var pageSizeReturn = pageSize;
+                    if (data.Count < pageSize)
+                    {
+                        pageSizeReturn = data.Count;
+                    }
+                    result.Data = new PagingResult<WorkflowViewPage>
+                    {
+                        Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                        PageIndex = pageIndex,
+                        PageSize = pageSizeReturn,
+                        TotalRecords = data.Count()
+                    };
+                }
+
+                return result;
+            }
+        }
+
         public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByStatus(BasePagingRequestViewModel request)
         {
             var pageSize = request.PageSize;

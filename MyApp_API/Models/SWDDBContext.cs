@@ -17,6 +17,7 @@ namespace MyApp_API.Models
 
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<TaskAssignee> TaskAssignee { get; set; }
         public virtual DbSet<Workflow> Workflow { get; set; }
@@ -27,7 +28,7 @@ namespace MyApp_API.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=.;database=SWDDB;user=sa;pwd=3031998;");
+                optionsBuilder.UseSqlServer("server=swbserver.database.windows.net;database=SWDDB;user=minhthanh;pwd=Galaxys3;");
             }
         }
 
@@ -131,6 +132,49 @@ namespace MyApp_API.Models
                     .WithMany(p => p.Comment)
                     .HasForeignKey(d => d.WorkflowMemberId)
                     .HasConstraintName("FK_Comment_WorkflowMember");
+            });
+
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CreateAt)
+                    .HasColumnName("Create_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CreateBy)
+                    .HasColumnName("Create_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImageUrl)
+                    .HasColumnName("Image_Url")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+
+                entity.Property(e => e.IsRead).HasColumnName("Is_Read");
+
+                entity.Property(e => e.Message).HasMaxLength(500);
+
+                entity.Property(e => e.Receiver)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Topic).HasMaxLength(200);
+
+                entity.Property(e => e.UpdateAt)
+                    .HasColumnName("Update_At")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateBy)
+                    .HasColumnName("Update_By")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Task>(entity =>

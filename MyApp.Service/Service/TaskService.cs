@@ -35,7 +35,7 @@ namespace MyApp.Service.Service
             throw new System.NotImplementedException();
         }
 
-        public BaseViewModel<TaskViewPage> update(string id, TaskUpdateViewPage request)
+        public BaseViewModel<TaskViewPage> update(TaskUpdateViewPage request)
         {
             throw new System.NotImplementedException();
         }
