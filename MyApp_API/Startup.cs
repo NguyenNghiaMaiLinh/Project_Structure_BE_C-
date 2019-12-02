@@ -70,7 +70,7 @@ namespace MyApp_API
 
             #endregion
 
-            #region ====== Add SignalR ======
+            #region ====== Add Context Accessor ======
 
             services.AddHttpContextAccessor();
 

@@ -431,7 +431,6 @@ C:\Users\DELL\Desktop\Source2\MyApp.Service\obj\Debug\MyApp.Service.dll
 C:\Users\DELL\Desktop\Source2\MyApp.Service\obj\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.dll
-G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\AutoMapper.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\FirebaseAdmin.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\Google.Api.Gax.dll
@@ -506,6 +505,8 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Cryptograph
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Permissions.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Principal.Windows.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Text.Encodings.Web.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\FastMember.Signed.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Repository.pdb
@@ -588,5 +589,6 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\zh-TW\Hangfire.Core.resourc
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csprojAssemblyReference.cache
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CoreCompileInputs.cache
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CopyComplete
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.pdb

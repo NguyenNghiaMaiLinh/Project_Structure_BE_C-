@@ -11,6 +11,9 @@ namespace MyApp.Core.Data.Infrastructure
     {
         // Marks an entity as new
         void Add(T entity);
+        void AddRangeAsync(IEnumerable<T> entitys);
+
+        void AddBulk(IEnumerable<T> entitys);
         void Add(ICollection<T> entities);
         // Marks an entity as modified
         void Update(T entity);

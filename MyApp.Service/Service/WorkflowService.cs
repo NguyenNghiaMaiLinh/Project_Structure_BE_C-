@@ -52,8 +52,6 @@ namespace MyApp.Service.Service
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {
-                Code = MessageConstants.SUCCESS,
-                Description = null,
                 StatusCode = HttpStatusCode.Created,
                 Data = _mapper.Map<WorkflowViewPage>(entity)
             };
@@ -86,8 +84,6 @@ namespace MyApp.Service.Service
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {
-                Code = MessageConstants.SUCCESS,
-                Description = null,
                 StatusCode = HttpStatusCode.Created,
                 Data = _mapper.Map<WorkflowViewPage>(entity)
             };
@@ -111,7 +107,7 @@ namespace MyApp.Service.Service
             {
                 return new BaseViewModel<bool>
                 {
-                    Code = MessageConstants.NOTFOUND,
+                    Code = MessageConstants.FAILURE,
                     Description = ErrMessageConstants.INVALID_PERMISSION,
                     Data = false,
                     StatusCode = HttpStatusCode.PreconditionFailed
@@ -123,8 +119,6 @@ namespace MyApp.Service.Service
             Save();
             return new BaseViewModel<bool>
             {
-                Code = MessageConstants.SUCCESS,
-                Description = null,
                 Data = true,
                 StatusCode = HttpStatusCode.OK
             };
@@ -136,7 +130,38 @@ namespace MyApp.Service.Service
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
 
-            var data = _repository.GetAllWorkflow(pageIndex, pageSize, _repository.GetUsername(),request.Search).ToList();
+            var data = _repository.GetAllWorkflow(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+        }
+
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByCreator(BasePagingRequestViewModel request)
+        {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflowByCreator(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
             if (data == null || data.Count == 0)
             {
                 result.Description = MessageConstants.NO_RECORD;
@@ -168,7 +193,7 @@ namespace MyApp.Service.Service
                 var pageIndex = request.PageIndex;
                 var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
 
-                var data = _repository.GetAllWorkflowByStatus(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
+                var data = _repository.GetAllWorkflowByHistory(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
                 if (data == null || data.Count == 0)
                 {
                     result.Description = MessageConstants.NO_RECORD;
@@ -253,8 +278,6 @@ namespace MyApp.Service.Service
             data.DoneTask = totalTaskDone;
             return new BaseViewModel<WorkflowViewPage>
             {
-                Code = MessageConstants.SUCCESS,
-                Description = null,
                 Data = data,
                 StatusCode = HttpStatusCode.OK
             };
@@ -291,8 +314,6 @@ namespace MyApp.Service.Service
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {
-                Code = MessageConstants.SUCCESS,
-                Description = null,
                 Data = _mapper.Map<WorkflowViewPage>(entity),
                 StatusCode = HttpStatusCode.OK
             };

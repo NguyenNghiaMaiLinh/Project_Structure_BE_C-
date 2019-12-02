@@ -32,10 +32,10 @@ namespace MyApp_API.Controllers
 
         #region Get All Workflow
         /// <summary>
-        /// GetMyProject
+        /// 
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet]
         public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflow([FromQuery]BasePagingRequestViewModel request)
@@ -53,10 +53,10 @@ namespace MyApp_API.Controllers
 
         #region Get All Workflow By History
         /// <summary>
-        /// WorkflowsByHistory
+        /// 
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet("WorkflowsByHistory")]
         public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByHistory([FromQuery]BasePagingRequestViewModel request)
@@ -74,10 +74,10 @@ namespace MyApp_API.Controllers
 
         #region Get All Workflow By Status
         /// <summary>
-        /// WorkflowsByStatus
+        /// 
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet("WorkflowsByStatus")]
         public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByStatus([FromQuery]BasePagingRequestViewModel request)
@@ -93,12 +93,33 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        #region Get My Project
+        #region Get All Workflow By Status
         /// <summary>
-        /// GetMyProject
+        /// 
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("WorkflowsByCreator")]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByCreator([FromQuery]BasePagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getAllWorkflowByCreator(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
+        #region Get My Project
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet("{id}")]
         public ActionResult<BaseViewModel<WorkflowViewPage>> getWorkflow(string id)
@@ -137,7 +158,7 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost("Instance")]
-        public ActionResult<BaseViewModel<WorkflowViewPage>> createInstance( [FromBody] WorkflowCreateInstanceViewPage request)
+        public ActionResult<BaseViewModel<WorkflowViewPage>> createInstance([FromBody] WorkflowCreateInstanceViewPage request)
         {
 
             var result = _projectService.createInstance(request);

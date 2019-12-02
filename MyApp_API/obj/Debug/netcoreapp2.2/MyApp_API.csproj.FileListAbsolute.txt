@@ -84,6 +84,8 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp_API.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Core.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Repository.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Service.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\FastMember.Signed.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Core.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Debug\netcoreapp2.2\MyApp.Repository.pdb

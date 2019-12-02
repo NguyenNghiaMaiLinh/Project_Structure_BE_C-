@@ -272,3 +272,5 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.cspro
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.csproj.CopyComplete
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.pdb
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\FastMember.Signed.dll

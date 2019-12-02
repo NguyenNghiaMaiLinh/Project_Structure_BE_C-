@@ -46,3 +46,5 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\obj\Release\netcoreapp2.2\MyApp_API.Razor
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\obj\Release\netcoreapp2.2\MyApp_API.csproj.CopyComplete
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\obj\Release\netcoreapp2.2\MyApp_API.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\obj\Release\netcoreapp2.2\MyApp_API.pdb
+G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Release\netcoreapp2.2\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp_API\bin\Release\netcoreapp2.2\FastMember.Signed.dll

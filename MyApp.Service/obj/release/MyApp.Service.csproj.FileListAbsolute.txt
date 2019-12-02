@@ -299,3 +299,5 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\Google.Apis.Auth.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\Google.Apis.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\Google.Apis.Core.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\System.Net.Http.Formatting.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\FastMember.Signed.dll

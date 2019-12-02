@@ -266,3 +266,7 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CoreCompil
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CopyComplete
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\obj\Release\MyApp.Core.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\obj\Release\MyApp.Core.pdb
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Release\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Release\FastMember.Signed.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Release\Microsoft.EntityFrameworkCore.Design.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Release\Microsoft.EntityFrameworkCore.Design.xml

@@ -65,6 +65,16 @@ namespace MyApp.Service.Service
                     StatusCode = HttpStatusCode.BadRequest
                 };
             }
+            else if (entity.CreateBy != _repository.GetUsername())
+            {
+                return new BaseViewModel<bool>
+                {
+                    Code = MessageConstants.FAILURE,
+                    Description = ErrMessageConstants.INVALID_PERMISSION,
+                    Data = false,
+                    StatusCode = HttpStatusCode.PreconditionFailed
+                };
+            }
             entity.IsDelete = true;
             _repository.Update(entity);
             Save();

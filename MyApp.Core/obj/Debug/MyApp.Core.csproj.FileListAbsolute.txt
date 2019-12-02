@@ -410,6 +410,8 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\MyApp.Core.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\MyApp.Core.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\MyApp.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\AutoMapper.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\FastMember.Signed.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Hangfire.Core.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Hangfire.SqlServer.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -427,6 +429,7 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.Http.Exte
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.dll
@@ -492,6 +495,7 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.Http.Feat
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.EntityFrameworkCore.SqlServer.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Core\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml

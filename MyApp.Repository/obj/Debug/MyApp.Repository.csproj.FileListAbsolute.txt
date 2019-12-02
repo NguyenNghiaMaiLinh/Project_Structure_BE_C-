@@ -422,6 +422,8 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\MyApp.Repository.dll.con
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\MyApp.Repository.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\MyApp.Repository.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\AutoMapper.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\FastMember.Signed.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\Hangfire.Core.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\Hangfire.SqlServer.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll

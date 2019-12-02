@@ -986,6 +986,10 @@
         }
       },
       "MyApp.Core/1.0.0": {
+        "dependencies": {
+          "EFCore.BulkExtensions": "2.2.0.0",
+          "FastMember.Signed": "1.3.0.0"
+        },
         "runtime": {
           "MyApp.Core.dll": {}
         },
@@ -1014,6 +1018,22 @@
         },
         "compile": {
           "MyApp.Service.dll": {}
+        }
+      },
+      "EFCore.BulkExtensions.Reference/2.2.0.0": {
+        "runtime": {
+          "EFCore.BulkExtensions.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "FastMember.Signed.Reference/1.3.0.0": {
+        "runtime": {
+          "FastMember.Signed.dll": {
+            "assemblyVersion": "1.3.0.0",
+            "fileVersion": "1.3.0.0"
+          }
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -4403,6 +4423,16 @@
     },
     "MyApp.Service/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EFCore.BulkExtensions.Reference/2.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FastMember.Signed.Reference/1.3.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

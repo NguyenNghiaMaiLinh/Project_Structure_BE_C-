@@ -8,8 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+using EFCore.BulkExtensions;
 
 namespace MyApp.Core.Data.Infrastructure
 {
@@ -42,6 +41,16 @@ namespace MyApp.Core.Data.Infrastructure
         public virtual void Add(T entity)
         {
             dbSet.Add(entity);
+        }
+
+        public virtual void AddRangeAsync(IEnumerable<T> entitys)
+        {
+            dbSet.AddRangeAsync(entitys);
+
+        }
+        public virtual void AddBulk(IEnumerable<T> entitys)
+        {
+            dataContext.BulkInsert(entitys.ToList());
         }
 
         public virtual void Add(ICollection<T> entities)
