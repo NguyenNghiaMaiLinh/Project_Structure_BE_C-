@@ -150,6 +150,24 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region change Status
+        /// <summarycreate
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpPatch("{id}")]
+        public ActionResult<BaseViewModel<WorkflowViewPage>> changeStatus(string id, [FromBody]WorkflowChangeStatusViewPage request)
+        {
+
+            var result = _projectService.changeStatus(id, request);
+
+            return result;
+        }
+
+        #endregion
+
         #region create Instance
         /// <summarycreate
         /// create Instance

@@ -1,7 +1,11 @@
-﻿using MyApp.Core.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
 using MyApp.Core.Repository;
+using MyApp.Core.ViewModel.ViewPage;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace MyApp.Repository.Repository
@@ -25,6 +29,21 @@ namespace MyApp.Repository.Repository
             {
                 return check;
             }
+        }
+
+        public IEnumerable<Account> getAllMemberByWorkflowId(int? pageIndex, int? pageSize, string userId, string search)
+        {
+            if (search == null)
+            {
+                search = "";
+            }
+            var par1 = new SqlParameter("@PageIndex", pageIndex);
+            var par2 = new SqlParameter("@PageSize", pageSize);
+            var par3 = new SqlParameter("@WorkflowId", userId);
+            var par4 = new SqlParameter("@Search", search);
+
+            var result = _dataContext.Account.FromSql("getAllMember @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList(); ;
+            return result;
         }
     }
 }

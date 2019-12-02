@@ -293,6 +293,7 @@
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\MemberPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\NotificationViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\TaskViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\WorkflowMemberViewPage.cs" />

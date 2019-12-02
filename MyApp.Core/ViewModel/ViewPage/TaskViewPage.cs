@@ -26,6 +26,10 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string WorkflowId { get; set; }
         public IEnumerable<TaskRequest> tasks { get; set; }
     }
+    public class TaskCreateInstanceViewPage
+    {
+        public string Id { get; set; }
+    }
     public class TaskRequest
     {
         public string TaskName { get; set; }

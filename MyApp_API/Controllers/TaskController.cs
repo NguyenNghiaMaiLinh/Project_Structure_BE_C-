@@ -81,6 +81,24 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region create
+        /// <summarycreate
+        /// create
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpPost("instance")]
+        public ActionResult<BaseViewModel<TaskViewPage>> createInstance([FromBody]TaskCreateInstanceViewPage request)
+        {
+
+            var result = _service.createIntance(request);
+
+            return result;
+        }
+
+        #endregion
+
         #region update
         /// <summary>
         /// update

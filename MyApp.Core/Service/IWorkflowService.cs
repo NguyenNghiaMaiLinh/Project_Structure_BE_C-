@@ -9,10 +9,11 @@ namespace MyApp.Core.Service
         BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByStatus(BasePagingRequestViewModel request);
         BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByHistory(BasePagingRequestViewModel request);
         BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByCreator(BasePagingRequestViewModel request);
+        BaseViewModel<WorkflowViewPage> changeStatus(string id, WorkflowChangeStatusViewPage request);
         BaseViewModel<WorkflowViewPage> getWorkflowById(string id);
         BaseViewModel<WorkflowViewPage> createInstance(WorkflowCreateInstanceViewPage request);
         BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request);
-        BaseViewModel<WorkflowViewPage> update( WorkflowUpdateViewPage request);
+        BaseViewModel<WorkflowViewPage> update(WorkflowUpdateViewPage request);
         BaseViewModel<bool> delete(string id);
     }
 }

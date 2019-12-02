@@ -48,5 +48,25 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Get All Member
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet]
+        public ActionResult<BaseViewModel<PagingResult<Account>>> getAllMember([FromQuery]MemberPagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _service.getAllMember(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
     }
 }

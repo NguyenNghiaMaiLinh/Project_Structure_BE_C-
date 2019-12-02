@@ -6,6 +6,7 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -27,6 +28,29 @@ namespace MyApp.Service.Service
             _taskRepository = taskRepository;
             _projectMembersRepository = projectMembersRepository;
             _mapper = mapper;
+        }
+
+        public BaseViewModel<WorkflowViewPage> changeStatus(string id, WorkflowChangeStatusViewPage request)
+        {
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return new BaseViewModel<WorkflowViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            entity.Status = request.Status;
+            _repository.Update(entity);
+            Save();
+            return new BaseViewModel<WorkflowViewPage>
+            {
+                Data = _mapper.Map<WorkflowViewPage>(entity),
+                StatusCode = HttpStatusCode.OK
+            };
         }
 
         public BaseViewModel<WorkflowViewPage> create(WorkflowCreateViewPage request)
@@ -73,7 +97,7 @@ namespace MyApp.Service.Service
             // TODO check no co  nam trong member ko
             var entity = new Workflow();
             entity.SetDefaultInsertValue(_repository.GetUsername());
-            entity.WorkflowName = request.WorkflowName;
+            entity.WorkflowName = main.WorkflowName;
             entity.Description = request.Description;
             entity.IsDelete = false;
             entity.IsMain = false;
@@ -81,6 +105,26 @@ namespace MyApp.Service.Service
             entity.Status = MyEnum.Status.Started;
             _repository.Add(entity);
 
+            var task = new Task();
+            var listTask = _taskRepository.GetMany(t => t.IsDelete == false && t.WorkflowId == request.Id).ToList();
+
+            var tempListTask = new List<Task>();
+
+            foreach (var item in listTask)
+            {
+                var tempTask = new Task();
+                tempTask.SetDefaultInsertValue(_repository.GetUsername());
+                tempTask.IsMain = false;
+                tempTask.TaskMainId = request.Id;
+                tempTask.Status = MyEnum.Status.Started;
+                tempTask.PositionInWorkflow = item.PositionInWorkflow;
+                tempTask.TaskName = item.TaskName;
+                tempTask.TaskMainId = item.Id;
+
+                tempListTask.Add(tempTask);
+            }
+
+            _taskRepository.AddBulk(tempListTask);
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {

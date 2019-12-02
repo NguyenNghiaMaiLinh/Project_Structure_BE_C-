@@ -84,6 +84,34 @@ namespace MyApp.Service.Service
             };
         }
 
+        public BaseViewModel<TaskViewPage> createIntance(TaskCreateInstanceViewPage request)
+        {
+            var entity = _repository.GetById(request.Id);
+            if (entity == null)
+            {
+                return new BaseViewModel<TaskViewPage>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            var task = new Task();
+            task.SetDefaultInsertValue(_repository.GetUsername());
+            task.IsMain = false;
+            task.IsDelete = false;
+            task.PositionInWorkflow = entity.PositionInWorkflow;
+            task.TaskName = entity.TaskName;
+            task.TaskMainId = entity.Id;
+            task.Status = MyEnum.Status.Started;
+            return new BaseViewModel<TaskViewPage>
+            {
+                Data = _mapper.Map<TaskViewPage>(task),
+                StatusCode = HttpStatusCode.Created
+            };
+        }
+
         public BaseViewModel<bool> delete(string id)
         {
             var entity = _repository.GetById(id);
