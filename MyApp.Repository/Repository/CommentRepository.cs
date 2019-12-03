@@ -25,10 +25,10 @@ namespace MyApp.Repository.Repository
             }
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
-            var par3 = new SqlParameter("@UserId", taskId);
+            var par3 = new SqlParameter("@TaskId", taskId);
             var par4 = new SqlParameter("@Search", search);
 
-            var result = _dataContext.Comment.FromSql("getAllWorkflow @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList();
+            var result = _dataContext.Comment.FromSql("getAllComment @PageIndex, @PageSize, @TaskId, @Search", par1, par2, par3, par4).ToList();
             return result;
         }
     }
