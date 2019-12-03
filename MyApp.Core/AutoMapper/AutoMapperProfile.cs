@@ -41,7 +41,7 @@ namespace MyApp.Core.AutoMapper
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
         }
-       
+
         public class DatetimeToStringConverter : ITypeConverter<DateTime, string>
         {
             public string Convert(DateTime source, string destination, ResolutionContext context)

@@ -28,7 +28,7 @@ namespace MyApp.Repository.Repository
             var par3 = new SqlParameter("@UserId", userId);
             var par4 = new SqlParameter("@Search", search);
 
-            var result = _dataContext.Notification.FromSql("getAllWorkflow @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList(); ;
+            var result = _dataContext.Notification.FromSql("getAllNotification @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList(); ;
             return result;
         }
     }
