@@ -12,9 +12,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? TotalTask { get; set; }
         public bool? IsMain { get; set; }
         public string CreateBy { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public string CreateAt { get; set; }
         public string UpdateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
         public string Status { get; set; }
         public int DoneTask { get; set; }
     }

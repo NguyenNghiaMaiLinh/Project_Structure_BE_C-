@@ -311,3 +311,4 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\System.Threading.Channels
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\System.Threading.Tasks.Extensions.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\Pipelines.Sockets.Unofficial.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\System.IO.Pipelines.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Release\System.Diagnostics.PerformanceCounter.dll

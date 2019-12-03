@@ -12,9 +12,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Receiver { get; set; }
         public string Topic { get; set; }
         public string Message { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public string CreateAt { get; set; }
         public string CreateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
         public string UpdateBy { get; set; }
         public string ImageUrl { get; set; }
         public bool? IsRead { get; set; }

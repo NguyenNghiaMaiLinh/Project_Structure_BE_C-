@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using MyApp.Core.Configs;
 using MyApp.Core.Constaint;
 using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
@@ -7,6 +9,9 @@ using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
 using MyApp.Service.HelperService;
+using Newtonsoft.Json;
+using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,6 +23,7 @@ namespace MyApp.Service.Service
         private readonly IUserRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private static readonly string ACCOUNTS = "accounts";
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper, IUserRepository userRepository)
         {
@@ -25,6 +31,12 @@ namespace MyApp.Service.Service
             _repository = userRepository;
             _mapper = mapper;
         }
+
+        private static Lazy<ConnectionMultiplexer> LazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+        {
+            string connectionString = AppSettings.Configs.GetValue<string>("RedisConnectionString");
+            return ConnectionMultiplexer.Connect(connectionString);
+        });
 
         public BaseViewModel<bool> DeleteAccount(string id)
         {
@@ -98,8 +110,16 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<UserViewModel> GetInformation()
         {
-            var entity = _repository.GetById(_repository.GetUsername());
+            IDatabase cache = LazyConnection.Value.GetDatabase();
+
+            string accounts = cache.StringGet(ACCOUNTS);
+            var list = JsonConvert.DeserializeObject<List<Account>>(accounts);
+            var entity = list.FirstOrDefault(a => a.Username == _repository.GetUsername());
             if (entity == null)
+            {
+                entity = _repository.GetById(_repository.GetUsername());
+            }
+            else if (entity == null)
             {
                 return new BaseViewModel<UserViewModel>
                 {
@@ -188,6 +208,7 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<Account> Register(RegisterViewModel user)
         {
+            IDatabase cache = LazyConnection.Value.GetDatabase();
             var check = _repository.GetById(user.Username);
             var result = new BaseViewModel<Account>()
             {
@@ -216,6 +237,10 @@ namespace MyApp.Service.Service
 
             _repository.Add(entity);
             Save();
+            var list = new List<Account>();
+            list = _repository.GetMany(a => a.IsDelete == false).ToList();
+            var json = JsonConvert.SerializeObject(list);
+            cache.StringSet(ACCOUNTS, json);
 
             result.Code = MessageConstants.SUCCESS;
             result.Description = null;
@@ -224,9 +249,9 @@ namespace MyApp.Service.Service
             return result;
         }
 
-
         public BaseViewModel<UserViewPage> Update(UserUpdateViewPage user)
         {
+            IDatabase cache = LazyConnection.Value.GetDatabase();
             var result = new BaseViewModel<UserViewPage>()
             {
                 Code = MessageConstants.NOTFOUND,
@@ -251,9 +276,22 @@ namespace MyApp.Service.Service
             _repository.Update(entity);
             Save();
 
+            var list = new List<Account>();
+            list = _repository.GetMany(a => a.IsDelete == false).ToList();
+            var json = JsonConvert.SerializeObject(list);
+            cache.StringSet(ACCOUNTS, json);
+
             result.Data = _mapper.Map<UserViewPage>(entity);
 
             return result;
+        }
+
+        private static ConnectionMultiplexer ConnectionRedis
+        {
+            get
+            {
+                return LazyConnection.Value;
+            }
         }
 
         private void Save()

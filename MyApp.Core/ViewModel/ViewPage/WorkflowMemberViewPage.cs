@@ -12,9 +12,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string WorkflowMainId { get; set; }
         public string UserId { get; set; }
         public string CreateBy { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public string CreateAt { get; set; }
         public string UpdateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
     }
     public partial class WorkflowMemberCreateViewPage
     {

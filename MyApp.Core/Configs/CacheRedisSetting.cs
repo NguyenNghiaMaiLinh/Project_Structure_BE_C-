@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
 using System;
 
 namespace MyApp.Core.Configs
@@ -7,7 +8,7 @@ namespace MyApp.Core.Configs
     {
         public static Lazy<ConnectionMultiplexer> LazyConnection = new Lazy<ConnectionMultiplexer>(() =>
         {
-            string connectionString = "swdredis.redis.cache.windows.net:6380,password=74f7MCVo42FYQrSqxPlisRWBJN5xqaKy66kucF5568o=,ssl=True,abortConnect=False";
+            string connectionString = AppSettings.Configs.GetValue<string>("RedisConnectionString");
             return ConnectionMultiplexer.Connect(connectionString);
         });
 
