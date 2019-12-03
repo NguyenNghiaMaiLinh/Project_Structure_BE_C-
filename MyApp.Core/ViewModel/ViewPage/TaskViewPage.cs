@@ -17,9 +17,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? Status { get; set; }
         public int? PositionInWorkflow { get; set; }
         public string CreateBy { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public string CreateAt { get; set; }
         public string UpdateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
     }
     public class TaskCreateViewPage
     {

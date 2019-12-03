@@ -11,6 +11,9 @@ namespace MyApp.Core.AutoMapper
     {
         public AutoMapperProfile()
         {
+            CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
+            CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
+
             CreateMap<UserViewPage, Account>().ReverseMap();
             CreateMap<Account, UserViewPage>().ReverseMap();
 
@@ -43,14 +46,14 @@ namespace MyApp.Core.AutoMapper
         {
             public string Convert(DateTime source, string destination, ResolutionContext context)
             {
-                return source.ToString("yyyyMMdd");
+                return source.ToString("yyyy/MM/dd");
             }
         }
         public class StringToDatetimeConverter : ITypeConverter<string, DateTime>
         {
             public DateTime Convert(string source, DateTime destination, ResolutionContext context)
             {
-                return DateTime.ParseExact(source, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact(source, "yyyy/MM/dd", CultureInfo.InvariantCulture);
             }
         }
     }

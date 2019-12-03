@@ -165,6 +165,7 @@ namespace MyApp.Service.Service
                 {
                     pageSizeReturn = data.Count;
                 }
+
                 result.Data = new PagingResult<TaskViewPage>
                 {
                     Results = _mapper.Map<IEnumerable<TaskViewPage>>(data),
