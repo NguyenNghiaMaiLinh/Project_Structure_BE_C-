@@ -6,7 +6,7 @@ namespace MyApp.Core.Repository
 {
     public interface ITaskRepository : IRepository<Task>
     {
-        IEnumerable<Task> getAllTask(int? pageIndex, int? pageSize, string search);
+        IEnumerable<Task> getAllTask(int? pageIndex, int? pageSize, string workflowId, string search);
         void addBulk(IEnumerable<Task> list);
     }
 }

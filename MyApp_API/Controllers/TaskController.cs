@@ -32,7 +32,7 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet]
-        public ActionResult<BaseViewModel<PagingResult<TaskViewPage>>> getAllTask([FromQuery]BasePagingRequestViewModel request)
+        public ActionResult<BaseViewModel<PagingResult<TaskViewPage>>> getAllTask([FromQuery]TaskPagingRequestViewModel request)
         {
             request.SetDefaultPage();
 

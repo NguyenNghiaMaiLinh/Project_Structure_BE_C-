@@ -6,7 +6,7 @@ namespace MyApp.Core.Service
 {
     public interface ITaskService
     {
-        BaseViewModel<PagingResult<TaskViewPage>> getAllTask(BasePagingRequestViewModel request);
+        BaseViewModel<PagingResult<TaskViewPage>> getAllTask(TaskPagingRequestViewModel request);
         BaseViewModel<TaskViewPage> getTaskById(string id);
         BaseViewModel<IEnumerable<TaskViewPage>> create(TaskCreateViewPage request);
         BaseViewModel<TaskViewPage> createIntance(TaskCreateInstanceViewPage request);

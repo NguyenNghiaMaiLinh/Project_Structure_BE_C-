@@ -8,6 +8,7 @@ namespace MyApp.Core.ViewModel.ViewPage
     {
         public string Id { get; set; }
         public string WorkflowName { get; set; }
+        public string Description { get; set; }
         public int? TotalTask { get; set; }
         public bool? IsMain { get; set; }
         public string CreateBy { get; set; }

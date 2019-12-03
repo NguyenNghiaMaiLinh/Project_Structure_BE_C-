@@ -274,3 +274,14 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\obj\Release\MyApp.Repository.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\EFCore.BulkExtensions.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\FastMember.Signed.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\Pipelines.Sockets.Unofficial.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\StackExchange.Redis.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.Diagnostics.PerformanceCounter.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.IO.Pipelines.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.Threading.Channels.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.Threading.Tasks.Extensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\Pipelines.Sockets.Unofficial.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\StackExchange.Redis.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.IO.Pipelines.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.Threading.Channels.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Repository\bin\Release\System.Threading.Tasks.Extensions.xml

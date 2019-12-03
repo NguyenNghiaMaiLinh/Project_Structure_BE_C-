@@ -24,7 +24,7 @@ namespace MyApp.Repository.Repository
             _dataContext.BulkInsert(list.ToList());
         }
 
-        public IEnumerable<Task> getAllTask(int? pageIndex, int? pageSize, string search)
+        public IEnumerable<Task> getAllTask(int? pageIndex, int? pageSize, string workflowId, string search)
         {
             if (search == null)
             {
@@ -32,9 +32,10 @@ namespace MyApp.Repository.Repository
             }
             var par1 = new SqlParameter("@PageIndex", pageIndex);
             var par2 = new SqlParameter("@PageSize", pageSize);
-            var par3 = new SqlParameter("@Search", search);
+            var par3 = new SqlParameter("@WorkflowId", workflowId);
+            var par4 = new SqlParameter("@Search", search);
 
-            var result = _dataContext.Task.FromSql("getAllTask @PageIndex, @PageSize, @Search", par1, par2, par3).ToList(); ;
+            var result = _dataContext.Task.FromSql("getAllTask @PageIndex, @PageSize, @WorkflowId, @Search", par1, par2, par3, par4).ToList(); ;
             return result;
         }
     }

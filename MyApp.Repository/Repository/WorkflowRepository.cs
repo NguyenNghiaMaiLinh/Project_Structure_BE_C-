@@ -59,7 +59,7 @@ namespace MyApp.Repository.Repository
 
             return _dataContext.WorkflowDto.FromSql("getAllWorkflowByStatus @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList();
         }
-        public IEnumerable<WorkflowDto> GetAllWorkflowByCreator(int? pageIndex, int? pageSize, string userId, string search)
+        public IEnumerable<Workflow> GetAllWorkflowByCreator(int? pageIndex, int? pageSize, string userId, string search)
         {
             if (search == null)
             {
@@ -70,7 +70,7 @@ namespace MyApp.Repository.Repository
             var par3 = new SqlParameter("@UserId", userId);
             var par4 = new SqlParameter("@Search", search);
 
-            return _dataContext.WorkflowDto.FromSql("getAllWorkflowByCreator @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList();
+            return _dataContext.Workflow.FromSql("getAllWorkflowByCreator @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList();
         }
     }
 }

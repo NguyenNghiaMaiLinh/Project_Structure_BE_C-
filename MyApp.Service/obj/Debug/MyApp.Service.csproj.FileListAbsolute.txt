@@ -431,6 +431,7 @@ C:\Users\DELL\Desktop\Source2\MyApp.Service\obj\Debug\MyApp.Service.dll
 C:\Users\DELL\Desktop\Source2\MyApp.Service\obj\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.dll.config
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\AutoMapper.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\FirebaseAdmin.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\Google.Api.Gax.dll
@@ -505,7 +506,12 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Cryptograph
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Permissions.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Security.Principal.Windows.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Text.Encodings.Web.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\StackExchange.Redis.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\EFCore.BulkExtensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Threading.Channels.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\Pipelines.Sockets.Unofficial.dll
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.IO.Pipelines.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\FastMember.Signed.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Core.dll.config
@@ -581,6 +587,11 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Net.Http.Formatting.
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Numerics.Vectors.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Text.Encodings.Web.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\StackExchange.Redis.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Threading.Channels.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\Pipelines.Sockets.Unofficial.xml
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.IO.Pipelines.xml
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\es\Hangfire.Core.resources.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\nl\Hangfire.Core.resources.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\pt-BR\Hangfire.Core.resources.dll
@@ -589,6 +600,5 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\zh-TW\Hangfire.Core.resourc
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csprojAssemblyReference.cache
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CoreCompileInputs.cache
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CopyComplete
-G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\MyApp.Service.pdb
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.pdb

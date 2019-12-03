@@ -10,6 +10,6 @@ namespace MyApp.Core.Repository
         IEnumerable<WorkflowDto> GetAllWorkflow(int? pageIndex, int? pageSize, string userId, string search);
         IEnumerable<WorkflowDto> GetAllWorkflowByStatus(int? pageIndex, int? pageSize, string userId, string search);
         IEnumerable<WorkflowDto> GetAllWorkflowByHistory(int? pageIndex, int? pageSize, string userId, string search);
-        IEnumerable<WorkflowDto> GetAllWorkflowByCreator(int? pageIndex, int? pageSize, string userId, string search);
+        IEnumerable<Workflow> GetAllWorkflowByCreator(int? pageIndex, int? pageSize, string userId, string search);
     }
 }

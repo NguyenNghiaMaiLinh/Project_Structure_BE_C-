@@ -146,13 +146,13 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<PagingResult<TaskViewPage>> getAllTask(BasePagingRequestViewModel request)
+        public BaseViewModel<PagingResult<TaskViewPage>> getAllTask(TaskPagingRequestViewModel request)
         {
             var pageSize = request.PageSize;
             var pageIndex = request.PageIndex;
             var result = new BaseViewModel<PagingResult<TaskViewPage>>();
 
-            var data = _repository.getAllTask(pageIndex, pageSize, request.Search).ToList();
+            var data = _repository.getAllTask(pageIndex, pageSize, request.WorkflowId, request.Search).ToList();
             if (data == null || data.Count == 0)
             {
                 result.Description = MessageConstants.NO_RECORD;
