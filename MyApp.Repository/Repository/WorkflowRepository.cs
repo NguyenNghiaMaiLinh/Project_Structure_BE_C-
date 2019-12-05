@@ -72,5 +72,19 @@ namespace MyApp.Repository.Repository
 
             return _dataContext.Workflow.FromSql("getAllWorkflowByCreator @PageIndex, @PageSize, @UserId, @Search", par1, par2, par3, par4).ToList();
         }
+
+        public IEnumerable<Workflow> GetAllWorkflowByWorkflowId(int? pageIndex, int? pageSize, string workflowId, string search)
+        {
+            if (search == null)
+            {
+                search = "";
+            }
+            var par1 = new SqlParameter("@PageIndex", pageIndex);
+            var par2 = new SqlParameter("@PageSize", pageSize);
+            var par3 = new SqlParameter("@WorkflowId", workflowId);
+            var par4 = new SqlParameter("@Search", search);
+
+            return _dataContext.Workflow.FromSql("getAllWorkflowByWorkflowId @PageIndex, @PageSize, @WorkflowId, @Search", par1, par2, par3, par4).ToList();
+        }
     }
 }

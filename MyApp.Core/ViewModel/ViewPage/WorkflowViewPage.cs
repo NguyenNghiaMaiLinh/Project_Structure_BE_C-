@@ -27,6 +27,7 @@ namespace MyApp.Core.ViewModel.ViewPage
     public partial class WorkflowCreateInstanceViewPage
     {
         public string Id { get; set; }
+        public string WorkflowName { get; set; }
         public string Description { get; set; }
     }
 

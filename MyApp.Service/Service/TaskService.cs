@@ -70,7 +70,7 @@ namespace MyApp.Service.Service
                 entity.IsMain = true;
                 entity.PositionInWorkflow = item.PositionInWorkflow;
                 entity.TaskName = item.TaskName;
-                entity.Status = MyEnum.Status.None;
+                entity.Status = MyEnum.Status.Doing;
                 entity.TaskMainId = entity.Id;
                 entity.WorkflowId = request.WorkflowId;
                 list.Add(entity);
@@ -104,7 +104,7 @@ namespace MyApp.Service.Service
             task.PositionInWorkflow = entity.PositionInWorkflow;
             task.TaskName = entity.TaskName;
             task.TaskMainId = entity.Id;
-            task.Status = MyEnum.Status.Started;
+            task.Status = MyEnum.Status.Doing;
             return new BaseViewModel<TaskViewPage>
             {
                 Data = _mapper.Map<TaskViewPage>(task),

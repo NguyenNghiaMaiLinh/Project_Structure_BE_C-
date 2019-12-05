@@ -63,7 +63,7 @@ namespace MyApp.Service.Service
             entity.IsDelete = false;
             entity.IsMain = true;
             entity.WorkflowMainId = entity.Id;
-            entity.Status = MyEnum.Status.None;
+            entity.Status = MyEnum.Status.Doing;
             _repository.Add(entity);
 
             var temp = new WorkflowMember();
@@ -97,12 +97,12 @@ namespace MyApp.Service.Service
             // TODO check no co  nam trong member ko
             var entity = new Workflow();
             entity.SetDefaultInsertValue(_repository.GetUsername());
-            entity.WorkflowName = main.WorkflowName;
+            entity.WorkflowName = request.WorkflowName;
             entity.Description = request.Description;
             entity.IsDelete = false;
             entity.IsMain = false;
             entity.WorkflowMainId = main.Id;
-            entity.Status = MyEnum.Status.Started;
+            entity.Status = MyEnum.Status.Doing;
             _repository.Add(entity);
 
             var task = new Task();
@@ -115,16 +115,24 @@ namespace MyApp.Service.Service
                 var tempTask = new Task();
                 tempTask.SetDefaultInsertValue(_repository.GetUsername());
                 tempTask.IsMain = false;
-                tempTask.TaskMainId = request.Id;
-                tempTask.Status = MyEnum.Status.Started;
+                tempTask.WorkflowId = entity.Id;
+                tempTask.Status = MyEnum.Status.Doing;
                 tempTask.PositionInWorkflow = item.PositionInWorkflow;
                 tempTask.TaskName = item.TaskName;
                 tempTask.TaskMainId = item.Id;
-
+                tempTask.IsDelete = false;
                 tempListTask.Add(tempTask);
             }
 
-            _taskRepository.AddBulk(tempListTask);
+            _taskRepository.AddRangeAsync(tempListTask);
+
+            var temp = new WorkflowMember();
+            temp.SetDefaultInsertValue(_repository.GetUsername());
+            temp.IsDelete = false;
+            temp.WorkflowMainId = entity.Id;
+            temp.UserId = _repository.GetUsername();
+            _projectMembersRepository.Add(temp);
+
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {
@@ -232,35 +240,34 @@ namespace MyApp.Service.Service
 
         public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByHistory(BasePagingRequestViewModel request)
         {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflowByHistory(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
+            if (data == null || data.Count == 0)
             {
-                var pageSize = request.PageSize;
-                var pageIndex = request.PageIndex;
-                var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
-
-                var data = _repository.GetAllWorkflowByHistory(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
-                if (data == null || data.Count == 0)
-                {
-                    result.Description = MessageConstants.NO_RECORD;
-                    result.Code = MessageConstants.NO_RECORD;
-                }
-                else
-                {
-                    var pageSizeReturn = pageSize;
-                    if (data.Count < pageSize)
-                    {
-                        pageSizeReturn = data.Count;
-                    }
-                    result.Data = new PagingResult<WorkflowViewPage>
-                    {
-                        Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
-                        PageIndex = pageIndex,
-                        PageSize = pageSizeReturn,
-                        TotalRecords = data.Count()
-                    };
-                }
-
-                return result;
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
             }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+
         }
 
         public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByStatus(BasePagingRequestViewModel request)
@@ -294,6 +301,38 @@ namespace MyApp.Service.Service
             return result;
         }
 
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByWorkflowId(TaskPagingRequestViewModel request)
+        {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflowByWorkflowId(pageIndex, pageSize, request.WorkflowId, request.Search).ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+
+        }
+
         public BaseViewModel<WorkflowViewPage> getWorkflowById(string id)
         {
             var entity = _repository.GetById(id);
@@ -307,7 +346,7 @@ namespace MyApp.Service.Service
                     StatusCode = HttpStatusCode.BadRequest
                 };
             }
-            var totalTaskDone = _taskRepository.GetAll().Where(_ => _.Status == MyEnum.Status.Done
+            var totalTaskDone = _taskRepository.GetAll().Where(_ => _.Status == MyEnum.Status.Doing
                                 && _.CreateBy == _repository.GetUsername()
                                 && _.WorkflowId == id
                                 && _.IsDelete == false)

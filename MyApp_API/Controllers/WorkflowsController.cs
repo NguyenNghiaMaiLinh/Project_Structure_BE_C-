@@ -72,6 +72,27 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Get All Workflow By Workflow Id
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("WorkflowsByWorkflowId")]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByWorkflowId([FromQuery]TaskPagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getAllWorkflowByWorkflowId(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
         #region Get All Workflow By Status
         /// <summary>
         /// 
