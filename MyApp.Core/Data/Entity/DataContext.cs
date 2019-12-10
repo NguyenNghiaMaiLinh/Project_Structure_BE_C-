@@ -34,7 +34,7 @@ namespace MyApp.Core.Data.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=swbserver.database.windows.net;database=SWDDB;user=minhthanh;pwd=Galaxys3;");
+                optionsBuilder.UseSqlServer("server=swdserverdb.database.windows.net;database=SWDDB;user=mailinh;pwd=Admin123;");
             }
         }
 

@@ -18,7 +18,18 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Status { get; set; }
         public int DoneTask { get; set; }
     }
-
+    public partial class WorkflowsViewPage
+    {
+        public string Id { get; set; }
+        public string WorkflowName { get; set; }
+        public string Description { get; set; }
+        public bool? IsMain { get; set; }
+        public string CreateBy { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateBy { get; set; }
+        public string UpdateAt { get; set; }
+        public string Status { get; set; }
+    }
     public partial class WorkflowCreateViewPage
     {
         public string WorkflowName { get; set; }

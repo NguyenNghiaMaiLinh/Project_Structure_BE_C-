@@ -24,5 +24,10 @@ namespace MyApp.Repository.Repository
 
             return _dataContext.Account.FromSql("getAllUser @PageIndex, @PageSize", par1, par2).ToList();
         }
+
+        public IEnumerable<Account> searchUser(string search)
+        {
+            return _dataContext.Account.Where(a => a.Username.Contains(search));
+        }
     }
 }

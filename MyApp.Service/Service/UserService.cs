@@ -298,5 +298,34 @@ namespace MyApp.Service.Service
         {
             _unitOfWork.Commit();
         }
+
+        public BaseViewModel<IEnumerable<UserViewModel>> SeachAccount(string userId)
+        {
+            IDatabase cache = LazyConnection.Value.GetDatabase();
+
+            string accounts = cache.StringGet(ACCOUNTS);
+            var list = JsonConvert.DeserializeObject<List<Account>>(accounts);
+            var entity = list.Where(a => a.Username.Contains(userId)).ToList();
+            if (entity == null)
+            {
+                entity = _repository.searchUser(userId).ToList();
+            }
+            else if (entity == null)
+            {
+                return new BaseViewModel<IEnumerable<UserViewModel>>
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Code = ErrMessageConstants.NOTFOUND,
+                    Data = null
+                };
+            }
+
+            return new BaseViewModel<IEnumerable<UserViewModel>>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Data = _mapper.Map<IEnumerable<UserViewModel>>(entity)
+            };
+        }
     }
 }

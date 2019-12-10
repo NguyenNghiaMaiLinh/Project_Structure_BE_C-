@@ -38,10 +38,10 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost]
-        public ActionResult<BaseViewModel<WorkflowMemberViewPage>> addMember([FromBody]WorkflowMemberCreateViewPage request)
+        public async Task<ActionResult<BaseViewModel<WorkflowMemberViewPage>>> addMember([FromBody]WorkflowMemberCreateViewPage request)
         {
 
-            var result = _service.addMember(request);
+            var result = await _service.addMember(request);
 
             return result;
         }

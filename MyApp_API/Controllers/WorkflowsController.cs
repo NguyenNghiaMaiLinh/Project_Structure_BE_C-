@@ -72,6 +72,48 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Get Workflow Of User By Admin
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("WorkflowOfUserByAdmin")]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getWorkflowOfUserByAdmin([FromQuery]WorkflowAdminRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getWorkflowUserByAdmin(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
+        #region Get All Workflow By Admin
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("WorkflowsByAdmin")]
+        public ActionResult<BaseViewModel<PagingResult<WorkflowViewPage>>> getAllWorkflowByAdmin([FromQuery]BasePagingRequestViewModel request)
+        {
+            request.SetDefaultPage();
+
+            var result = _projectService.getAllWorkflowByAdmin(request);
+
+            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
         #region Get All Workflow By Workflow Id
         /// <summary>
         /// 
@@ -114,7 +156,7 @@ namespace MyApp_API.Controllers
 
         #endregion
 
-        #region Get All Workflow By Status
+        #region Get All Workflow By Creator
         /// <summary>
         /// 
         /// </summary>

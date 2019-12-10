@@ -8,6 +8,7 @@ using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
 using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace MyApp_API.Controllers
@@ -43,6 +44,24 @@ namespace MyApp_API.Controllers
             var result = _userService.GetAllUser(request);
 
             this.HttpContext.Response.StatusCode = (int)result.StatusCode;
+
+            return result;
+        }
+
+        #endregion
+
+        #region Search
+        /// <summary>
+        /// GetMyUser
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<UserViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("{id}")]
+        public ActionResult<BaseViewModel<IEnumerable<UserViewModel>>> searchUser(string id)
+        {
+
+            var result = _userService.SeachAccount(id);
 
             return result;
         }

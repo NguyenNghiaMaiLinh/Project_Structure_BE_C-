@@ -602,3 +602,4 @@ G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CoreCo
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.csproj.CopyComplete
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.dll
 G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\obj\Debug\MyApp.Service.pdb
+G:\Chuyen_Nganh_7\SWD391\API\MyApp.Service\bin\Debug\System.Diagnostics.PerformanceCounter.dll

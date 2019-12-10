@@ -321,6 +321,7 @@
     <Compile Include="ViewModel\ViewPage\NotificationViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\TaskPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\TaskViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\WorkflowAdminRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\WorkflowMemberViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\WorkflowViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />

@@ -24,7 +24,7 @@
         public const string WORKFLOWEXISTED = "Tài khoản đã tồn tại";
         public const string INVALID_PERMISSION = "Bạn không có quyền truy cập";
         public const string ACCOUNT_ALREADY_EXISTS = "Tài khoản đã tồn tại";
-
+        public const string ACCOUNT_ALREADY_EXISTED = "Tài khoản đã được thêm";
     }
     public class MessageConstants
     {

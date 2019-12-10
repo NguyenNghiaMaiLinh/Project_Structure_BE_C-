@@ -9,6 +9,7 @@ using MyApp.Core.ViewModel.ViewPage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace MyApp.Service.Service
 {
@@ -29,8 +30,9 @@ namespace MyApp.Service.Service
             _mapper = mapper;
         }
 
-        public BaseViewModel<WorkflowMemberViewPage> addMember(WorkflowMemberCreateViewPage request)
+        public async Task<BaseViewModel<WorkflowMemberViewPage>> addMember(WorkflowMemberCreateViewPage request)
         {
+            PushNotification push = new PushNotification();
             var member = _userRepository.GetById(request.UserId);
             var workflow = _workflowRepository.GetById(request.WorkflowMainId);
             var workflowMember = _repository.checkExisted(request.UserId, request.WorkflowMainId);
@@ -59,18 +61,20 @@ namespace MyApp.Service.Service
             {
                 return new BaseViewModel<WorkflowMemberViewPage>
                 {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.WORKFLOWEXISTED,
+                    Code = MessageConstants.FAILURE,
+                    Description = ErrMessageConstants.ACCOUNT_ALREADY_EXISTED,
                     Data = null,
-                    StatusCode = HttpStatusCode.BadRequest
+                    StatusCode = HttpStatusCode.PreconditionFailed
                 };
             }
-            workflowMember.SetDefaultInsertValue(_repository.GetUsername());
-            workflowMember.UserId = request.UserId;
-            workflowMember.WorkflowMainId = request.WorkflowMainId;
-            _repository.Add(workflowMember);
+            var entity = new WorkflowMember();
+            entity.SetDefaultInsertValue(_repository.GetUsername());
+            entity.UserId = request.UserId;
+            entity.WorkflowMainId = request.WorkflowMainId;
+            entity.IsDelete = false;
+            _repository.Add(entity);
 
-            //TODO: send notification
+           await push.NotifyAsync(member.DeviceToken, workflow.WorkflowName,"Bạn đã được thêm trong workflow "+ workflow.WorkflowName+" bởi "+_repository.GetUsername());
 
             Save();
             return new BaseViewModel<WorkflowMemberViewPage>

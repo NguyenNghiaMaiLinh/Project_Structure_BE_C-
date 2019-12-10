@@ -1,11 +1,7 @@
-﻿using MyApp.Core.Constaint;
-using System;
-
-namespace MyApp.Core.ViewModel.ViewPage
+﻿namespace MyApp.Core.ViewModel.ViewPage
 {
     public class UserViewPage
     {
-        public string Id { get; set; }
         public string Username { get; set; }
         public string FullName { get; set; }
         public string AvatarPath { get; set; }

@@ -207,6 +207,37 @@ namespace MyApp.Service.Service
             return result;
         }
 
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByAdmin(BasePagingRequestViewModel request)
+        {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflowByAdmin(pageIndex, pageSize, request.Search).ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+        }
+
         public BaseViewModel<PagingResult<WorkflowViewPage>> getAllWorkflowByCreator(BasePagingRequestViewModel request)
         {
             var pageSize = request.PageSize;
@@ -364,6 +395,37 @@ namespace MyApp.Service.Service
                 Data = data,
                 StatusCode = HttpStatusCode.OK
             };
+        }
+
+        public BaseViewModel<PagingResult<WorkflowViewPage>> getWorkflowUserByAdmin(WorkflowAdminRequestViewModel request)
+        {
+            var pageSize = request.PageSize;
+            var pageIndex = request.PageIndex;
+            var result = new BaseViewModel<PagingResult<WorkflowViewPage>>();
+
+            var data = _repository.GetAllWorkflow(pageIndex, pageSize, request.UserId, request.Search).ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+                var pageSizeReturn = pageSize;
+                if (data.Count < pageSize)
+                {
+                    pageSizeReturn = data.Count;
+                }
+                result.Data = new PagingResult<WorkflowViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<WorkflowViewPage>>(data),
+                    PageIndex = pageIndex,
+                    PageSize = pageSizeReturn,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
         }
 
         public BaseViewModel<WorkflowViewPage> update(WorkflowUpdateViewPage request)

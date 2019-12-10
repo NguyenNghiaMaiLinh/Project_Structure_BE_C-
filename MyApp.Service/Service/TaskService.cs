@@ -75,7 +75,7 @@ namespace MyApp.Service.Service
                 entity.WorkflowId = request.WorkflowId;
                 list.Add(entity);
             }
-            _repository.AddBulk(list);
+            _repository.AddRangeAsync(list);
             Save();
             return new BaseViewModel<IEnumerable<TaskViewPage>>
             {
