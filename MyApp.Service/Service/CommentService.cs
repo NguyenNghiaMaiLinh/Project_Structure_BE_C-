@@ -6,14 +6,9 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyApp.Service.Service
@@ -21,28 +16,59 @@ namespace MyApp.Service.Service
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _repository;
+        private readonly IWorkflowMembersRepository _workflowMembersRepository;
+        private readonly ITaskRepository _taskRepository;
+        private readonly IWorkflowRepository _workflowRepository;
+        private readonly INotificationRepository _notiRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository)
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository,IWorkflowMembersRepository workflowMembersRepository,INotificationRepository notificationRepository, IUserRepository userRepository,ITaskRepository taskRepository,IWorkflowRepository workflowRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = commentRepository;
+            _taskRepository = taskRepository;
+            _workflowRepository = workflowRepository;
+            _userRepository = userRepository;
+            _notiRepository = notificationRepository;
+            _workflowMembersRepository = workflowMembersRepository;
             _mapper = mapper;
         }
 
-        public BaseViewModel<CommentViewPage> create(CommentCreateViewPage request)
+        public async Task<BaseViewModel<CommentViewPage>> create(CommentCreateViewPage request)
         {
+            PushNotification push = new PushNotification();
             var entity = new Comment();
             entity.SetDefaultInsertValue(_repository.GetUsername());
             entity.Detail = request.Detail;
             entity.ImageUrl = request.ImageUrl;
-            entity.WorkflowMemberId = _repository.GetUsername();
+            entity.WorkflowMemberId = request.WorkflowMemberId;
             entity.TaskId = request.TaskId;
             entity.IsDelete = false;
             _repository.Add(entity);
 
-            //TODO: send notification
+            var workflowId = _workflowMembersRepository.GetById(request.WorkflowMemberId).WorkflowMainId;
+            var nameWorkflow = _workflowRepository.GetById(workflowId).WorkflowName;
+            var nameTask = _taskRepository.GetById(request.TaskId).TaskName;
+
+            var members = _workflowMembersRepository.getAllMemberByWorkflowId(workflowId).ToList();
+            foreach (var item in members)
+            {
+                var account = _userRepository.GetById(_repository.GetUsername());
+                var message =  account.FullName + " đã thêm bình luận trong workfow [" + nameWorkflow + "] - task [" + nameTask + "]";
+                await push.NotifyAsync(account.DeviceToken, "Comment", message);
+                Notification notification = new Notification();
+                notification.SetDefaultInsertValue(_repository.GetUsername());
+                notification.Message = message;
+                notification.ImageUrl = request.ImageUrl;
+                notification.IsRead = false;
+                notification.Receiver = account.Username;
+                notification.Topic = "Comment";
+                notification.IsDelete = false;
+                _notiRepository.Add(notification);
+            }
+
 
             Save();
             return new BaseViewModel<CommentViewPage>
@@ -105,9 +131,16 @@ namespace MyApp.Service.Service
                 {
                     pageSizeReturn = data.Count;
                 }
+                var entity = new List<CommentViewPage>();
+                entity = _mapper.Map<List<CommentViewPage>>(data);
+                foreach (var item in entity)
+                {
+                    item.Username =  _workflowMembersRepository.GetById(item.WorkflowMemberId).UserId;
+                    item.AvatarPath = _userRepository.GetById(item.Username).AvatarPath;
+                }
                 result.Data = new PagingResult<CommentViewPage>
                 {
-                    Results = _mapper.Map<IEnumerable<CommentViewPage>>(data),
+                    Results = _mapper.Map<IEnumerable<CommentViewPage>>(entity),
                     PageIndex = pageIndex,
                     PageSize = pageSizeReturn,
                     TotalRecords = data.Count()
@@ -134,6 +167,26 @@ namespace MyApp.Service.Service
             {
                 StatusCode = HttpStatusCode.OK,
                 Data = _mapper.Map<CommentViewPage>(entity)
+            };
+        }
+
+        public BaseViewModel<string> getMemberId(string workflowId)
+        {
+            var entity = _workflowMembersRepository.getMemberId(workflowId,_repository.GetUsername()).Id;
+            if (entity == null)
+            {
+                return new BaseViewModel<string>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = null,
+                    StatusCode = HttpStatusCode.BadRequest
+                };
+            }
+            return new BaseViewModel<string>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Data = entity
             };
         }
 

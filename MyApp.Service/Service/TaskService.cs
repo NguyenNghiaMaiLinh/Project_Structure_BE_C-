@@ -6,6 +6,7 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -68,7 +69,7 @@ namespace MyApp.Service.Service
                 entity.SetDefaultInsertValue(_repository.GetUsername());
                 entity.IsDelete = false;
                 entity.IsMain = true;
-                entity.PositionInWorkflow = item.PositionInWorkflow;
+                entity.PositionInWorkflow = Int32.Parse(item.PositionInWorkflow);
                 entity.TaskName = item.TaskName;
                 entity.Status = MyEnum.Status.Doing;
                 entity.TaskMainId = entity.Id;
@@ -198,37 +199,32 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<TaskViewPage> update(TaskUpdateViewPage request)
+        public BaseViewModel<IEnumerable<TaskViewPage>> update(TaskUpdateViewPage request)
         {
-            var entity = _repository.GetById(request.Id);
-            if (entity == null)
+            var list = new List<Task>();
+            var taskList = _repository.GetMany(t => t.IsDelete == false && t.WorkflowId == request.WorkflowId);
+            foreach (var item in taskList)
             {
-                return new BaseViewModel<TaskViewPage>
-                {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.NOTFOUND,
-                    Data = null,
-                    StatusCode = HttpStatusCode.BadRequest
-                };
+                _repository.Delete(item);
             }
-            else if (entity.CreateBy != _repository.GetUsername())
+            foreach (var item in request.tasks)
             {
-                return new BaseViewModel<TaskViewPage>
-                {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.INVALID_PERMISSION,
-                    Data = null,
-                    StatusCode = HttpStatusCode.PreconditionFailed
-                };
+                var entity = new Task();
+                entity.SetDefaultInsertValue(_repository.GetUsername());
+                entity.IsDelete = false;
+                entity.IsMain = true;
+                entity.PositionInWorkflow = Int32.Parse(item.PositionInWorkflow);
+                entity.TaskName = item.TaskName;
+                entity.Status = MyEnum.Status.Doing;
+                entity.TaskMainId = entity.Id;
+                entity.WorkflowId = request.WorkflowId;
+                list.Add(entity);
             }
-            entity.SetDefaultUpdateValue(_repository.GetUsername());
-            entity.TaskName = request.TaskName;
-            entity.PositionInWorkflow = request.PositionInWorkflow;
-            _repository.Update(entity);
+            _repository.AddRangeAsync(list);
             Save();
-            return new BaseViewModel<TaskViewPage>
+            return new BaseViewModel<IEnumerable<TaskViewPage>>
             {
-                Data = _mapper.Map<TaskViewPage>(entity),
+                Data = _mapper.Map<IEnumerable<TaskViewPage>>(list),
                 StatusCode = HttpStatusCode.OK
             };
         }

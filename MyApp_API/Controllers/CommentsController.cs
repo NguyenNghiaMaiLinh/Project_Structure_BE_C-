@@ -53,7 +53,7 @@ namespace MyApp_API.Controllers
 
         #region Get Comment By Id
         /// <summary>
-        /// WorkflowsByHistory
+        /// 
         /// </summary>
         /// <param name="request"></param>
         /// <returns>PagingResult<ProjectViewPage>></returns>
@@ -69,6 +69,24 @@ namespace MyApp_API.Controllers
 
         #endregion
 
+        #region Get Member IdS
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<ProjectViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("getMemberId")]
+        public ActionResult<BaseViewModel<string>> getMemberId([FromQuery]string workflowId)
+        {
+
+            var result = _commentService.getMemberId(workflowId);
+
+            return result;
+        }
+
+        #endregion
+
         #region create
         /// <summarycreate
         /// create
@@ -77,10 +95,10 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPost]
-        public ActionResult<BaseViewModel<CommentViewPage>> create([FromBody]CommentCreateViewPage request)
+        public async Task<ActionResult<BaseViewModel<CommentViewPage>>> create([FromBody]CommentCreateViewPage request)
         {
 
-            var result = _commentService.create(request);
+            var result = await _commentService.create(request);
 
             return result;
         }

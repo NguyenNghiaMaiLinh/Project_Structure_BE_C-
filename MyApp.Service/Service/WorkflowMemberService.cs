@@ -18,14 +18,16 @@ namespace MyApp.Service.Service
         private readonly IWorkflowMembersRepository _repository;
         private readonly IWorkflowRepository _workflowRepository;
         private readonly IUserRepository _userRepository;
+        private readonly INotificationRepository _notificationRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public WorkflowMemberService(IUnitOfWork unitOfWork, IMapper mapper, IWorkflowMembersRepository workflowMembersRepository, IUserRepository userRepository, IWorkflowRepository workflowRepository)
+        public WorkflowMemberService(IUnitOfWork unitOfWork, IMapper mapper,INotificationRepository notificationRepository, IWorkflowMembersRepository workflowMembersRepository, IUserRepository userRepository, IWorkflowRepository workflowRepository)
         {
             _unitOfWork = unitOfWork;
             _workflowRepository = workflowRepository;
             _userRepository = userRepository;
+            _notificationRepository = notificationRepository;
             _repository = workflowMembersRepository;
             _mapper = mapper;
         }
@@ -74,7 +76,18 @@ namespace MyApp.Service.Service
             entity.IsDelete = false;
             _repository.Add(entity);
 
-           await push.NotifyAsync(member.DeviceToken, workflow.WorkflowName,"Bạn đã được thêm trong workflow "+ workflow.WorkflowName+" bởi "+_repository.GetUsername());
+            var name = _userRepository.GetById(_repository.GetUsername()).FullName;
+            var message = "Bạn đã được thêm trong workflow " + workflow.WorkflowName + " bởi " + name;
+           await push.NotifyAsync(member.DeviceToken, workflow.WorkflowName, message);
+            Notification notification = new Notification();
+            notification.SetDefaultInsertValue(_repository.GetUsername());
+            notification.Message = message;
+            notification.ImageUrl = "";
+            notification.IsRead = false;
+            notification.Receiver = request.UserId;
+            notification.Topic = workflow.WorkflowName;
+            notification.IsDelete = false;
+            _notificationRepository.Add(notification);
 
             Save();
             return new BaseViewModel<WorkflowMemberViewPage>
@@ -84,37 +97,6 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<PagingResult<Account>> getAllMember(MemberPagingRequestViewModel request)
-        {
-
-            var pageSize = request.PageSize;
-            var pageIndex = request.PageIndex;
-            var result = new BaseViewModel<PagingResult<Account>>();
-
-            var data = _repository.getAllMemberByWorkflowId(pageIndex, pageSize, _repository.GetUsername(), request.Search).ToList();
-            if (data == null || data.Count == 0)
-            {
-                result.Description = MessageConstants.NO_RECORD;
-                result.Code = MessageConstants.NO_RECORD;
-            }
-            else
-            {
-                var pageSizeReturn = pageSize;
-                if (data.Count < pageSize)
-                {
-                    pageSizeReturn = data.Count;
-                }
-                result.Data = new PagingResult<Account>
-                {
-                    Results = _mapper.Map<IEnumerable<Account>>(data),
-                    PageIndex = pageIndex,
-                    PageSize = pageSizeReturn,
-                    TotalRecords = data.Count()
-                };
-            }
-
-            return result;
-        }
 
         private void Save()
         {

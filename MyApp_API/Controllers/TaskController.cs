@@ -107,7 +107,7 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpPut]
-        public ActionResult<BaseViewModel<TaskViewPage>> update([FromBody]TaskUpdateViewPage request)
+        public ActionResult<BaseViewModel<IEnumerable<TaskViewPage>>> update([FromBody]TaskUpdateViewPage request)
         {
 
             var result = _service.update(request);

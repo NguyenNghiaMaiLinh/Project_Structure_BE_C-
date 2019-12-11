@@ -8,6 +8,7 @@ namespace MyApp.Core.Repository
     public interface IWorkflowMembersRepository : IRepository<WorkflowMember>
     {
         WorkflowMember checkExisted(string member, string workflow);
-        IEnumerable<Account> getAllMemberByWorkflowId(int? pageIndex, int? pageSize, string userId, string search);
+        IEnumerable<WorkflowMember> getAllMemberByWorkflowId(string workflowId);
+        WorkflowMember getMemberId(string workflowId, string username);
     }
 }

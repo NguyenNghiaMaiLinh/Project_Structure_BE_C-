@@ -1,4 +1,5 @@
-﻿using MyApp.Core.Data.Entity;
+﻿using MyApp.Core.Data.DTO;
+using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
 using System.Collections.Generic;
 

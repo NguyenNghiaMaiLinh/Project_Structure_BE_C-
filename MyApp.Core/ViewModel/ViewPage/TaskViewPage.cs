@@ -33,13 +33,12 @@ namespace MyApp.Core.ViewModel.ViewPage
     public class TaskRequest
     {
         public string TaskName { get; set; }
-        public int? PositionInWorkflow { get; set; }
+        public string PositionInWorkflow { get; set; }
     }
     public class TaskUpdateViewPage
     {
-        public string Id { get; set; }
-        public string TaskName { get; set; }
-        public int? PositionInWorkflow { get; set; }
+        public string WorkflowId { get; set; }
+        public IEnumerable<TaskRequest> tasks { get; set; }
     }
     public class TaskChangeStatusViewPage
     {

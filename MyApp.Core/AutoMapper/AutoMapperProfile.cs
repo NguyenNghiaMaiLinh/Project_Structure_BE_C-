@@ -17,8 +17,11 @@ namespace MyApp.Core.AutoMapper
             CreateMap<UserViewPage, Account>().ReverseMap();
             CreateMap<Account, UserViewPage>().ReverseMap();
 
-            CreateMap<CommentViewPage, Account>().ReverseMap();
-            CreateMap<Account, CommentViewPage>().ReverseMap();
+            CreateMap<CommentViewPage, Comment>().ReverseMap();
+            CreateMap<Comment, CommentViewPage>().ReverseMap();
+
+            CreateMap<CommentViewPage, CommentDto>().ReverseMap();
+            CreateMap<CommentDto, CommentViewPage>().ReverseMap();
 
             CreateMap<NotificationViewPage, Notification>().ReverseMap();
             CreateMap<Notification, NotificationViewPage>().ReverseMap();

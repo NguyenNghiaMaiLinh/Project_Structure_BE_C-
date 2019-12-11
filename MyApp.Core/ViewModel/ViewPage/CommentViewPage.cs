@@ -7,6 +7,8 @@
         public string TaskId { get; set; }
         public string ImageUrl { get; set; }
         public string Detail { get; set; }
+        public string Username { get; set; }
+        public string AvatarPath { get; set; }
     }
     public partial class CommentCreateViewPage
     {
@@ -15,6 +17,7 @@
         public string ImageUrl { get; set; }
         public string Detail { get; set; }
     }
+
     public partial class CommentUpdateViewPage
     {
         public string Id { get; set; }

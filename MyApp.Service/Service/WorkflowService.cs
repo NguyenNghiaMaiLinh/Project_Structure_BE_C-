@@ -456,6 +456,7 @@ namespace MyApp.Service.Service
             entity.Description = request.Description;
             entity.Status = request.Status;
             _repository.Update(entity);
+
             Save();
             return new BaseViewModel<WorkflowViewPage>
             {

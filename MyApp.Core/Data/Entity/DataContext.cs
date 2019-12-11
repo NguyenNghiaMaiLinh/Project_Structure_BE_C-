@@ -20,6 +20,7 @@ namespace MyApp.Core.Data.Entity
 
         #region Dto
         public virtual DbSet<WorkflowDto> WorkflowDto { get; set; }
+        public virtual DbSet<CommentDto> CommentDto { get; set; }
 
         #endregion
         public virtual DbSet<Account> Account { get; set; }
