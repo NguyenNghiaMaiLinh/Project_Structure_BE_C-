@@ -28,22 +28,3 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure for Students Starter(1)(9d692346-912b-4783-99c0-a8295ef1f21a)'
-    appType: 'webApp'
-    WebAppName: 'MyAppAPI20191212090448'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'swddevops-rg'
-    SlotName: 'production'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-      ConnectionType: 'AzureRM'
-      azureSubscription: 'Azure for Students Starter(9d692346-912b-4783-99c0-a8295ef1f21a)'
-      appType: 'webApp'
-      WebAppName: 'MyAppAPI20191212090448'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
