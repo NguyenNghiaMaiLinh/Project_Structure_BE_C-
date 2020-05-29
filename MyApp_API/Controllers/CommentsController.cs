@@ -80,9 +80,9 @@ namespace MyApp_API.Controllers
         public ActionResult<BaseViewModel<string>> getMemberId([FromQuery]string workflowId)
         {
 
-            var result = _commentService.getMemberId(workflowId);
+            //var result = _commentService.getMemberId(workflowId);
 
-            return result;
+            return null;
         }
 
         #endregion

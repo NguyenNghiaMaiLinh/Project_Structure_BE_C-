@@ -5,11 +5,6 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class Account 
     {
-        public Account()
-        {
-            Workflow = new HashSet<Workflow>();
-            WorkflowMember = new HashSet<WorkflowMember>();
-        }
 
         public string Username { get; set; }
         public string FullName { get; set; }
@@ -21,7 +16,5 @@ namespace MyApp.Core.Data.Entity
         public string Role { get; set; }
         public string DeviceToken { get; set; }
 
-        public virtual ICollection<Workflow> Workflow { get; set; }
-        public virtual ICollection<WorkflowMember> WorkflowMember { get; set; }
     }
 }

@@ -16,66 +16,21 @@ namespace MyApp.Service.Service
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _repository;
-        private readonly IWorkflowMembersRepository _workflowMembersRepository;
-        private readonly ITaskRepository _taskRepository;
-        private readonly IWorkflowRepository _workflowRepository;
-        private readonly INotificationRepository _notiRepository;
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository,IWorkflowMembersRepository workflowMembersRepository,INotificationRepository notificationRepository, IUserRepository userRepository,ITaskRepository taskRepository,IWorkflowRepository workflowRepository)
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = commentRepository;
-            _taskRepository = taskRepository;
-            _workflowRepository = workflowRepository;
-            _userRepository = userRepository;
-            _notiRepository = notificationRepository;
-            _workflowMembersRepository = workflowMembersRepository;
+        
             _mapper = mapper;
         }
 
-        public async Task<BaseViewModel<CommentViewPage>> create(CommentCreateViewPage request)
+        public Task<BaseViewModel<CommentViewPage>> create(CommentCreateViewPage request)
         {
-            PushNotification push = new PushNotification();
-            var entity = new Comment();
-            entity.SetDefaultInsertValue(_repository.GetUsername());
-            entity.Detail = request.Detail;
-            entity.ImageUrl = request.ImageUrl;
-            entity.WorkflowMemberId = request.WorkflowMemberId;
-            entity.TaskId = request.TaskId;
-            entity.IsDelete = false;
-            _repository.Add(entity);
-
-            var workflowId = _workflowMembersRepository.GetById(request.WorkflowMemberId).WorkflowMainId;
-            var nameWorkflow = _workflowRepository.GetById(workflowId).WorkflowName;
-            var nameTask = _taskRepository.GetById(request.TaskId).TaskName;
-
-            var members = _workflowMembersRepository.getAllMemberByWorkflowId(workflowId).ToList();
-            foreach (var item in members)
-            {
-                var account = _userRepository.GetById(_repository.GetUsername());
-                var message =  account.FullName + " đã thêm bình luận trong workfow [" + nameWorkflow + "] - task [" + nameTask + "]";
-                await push.NotifyAsync(account.DeviceToken, "Comment", message);
-                Notification notification = new Notification();
-                notification.SetDefaultInsertValue(_repository.GetUsername());
-                notification.Message = message;
-                notification.ImageUrl = request.ImageUrl;
-                notification.IsRead = false;
-                notification.Receiver = account.Username;
-                notification.Topic = "Comment";
-                notification.IsDelete = false;
-                _notiRepository.Add(notification);
-            }
-
-
-            Save();
-            return new BaseViewModel<CommentViewPage>
-            {
-                StatusCode = HttpStatusCode.Created,
-                Data = _mapper.Map<CommentViewPage>(entity)
-            };
+            throw new System.NotImplementedException();
         }
 
         public BaseViewModel<bool> delete(string id)
@@ -135,7 +90,7 @@ namespace MyApp.Service.Service
                 entity = _mapper.Map<List<CommentViewPage>>(data);
                 foreach (var item in entity)
                 {
-                    item.Username =  _workflowMembersRepository.GetById(item.WorkflowMemberId).UserId;
+             
                     item.AvatarPath = _userRepository.GetById(item.Username).AvatarPath;
                 }
                 result.Data = new PagingResult<CommentViewPage>
@@ -170,25 +125,7 @@ namespace MyApp.Service.Service
             };
         }
 
-        public BaseViewModel<string> getMemberId(string workflowId)
-        {
-            var entity = _workflowMembersRepository.getMemberId(workflowId,_repository.GetUsername()).Id;
-            if (entity == null)
-            {
-                return new BaseViewModel<string>
-                {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.NOTFOUND,
-                    Data = null,
-                    StatusCode = HttpStatusCode.BadRequest
-                };
-            }
-            return new BaseViewModel<string>
-            {
-                StatusCode = HttpStatusCode.OK,
-                Data = entity
-            };
-        }
+
 
         public BaseViewModel<CommentViewPage> update(CommentUpdateViewPage request)
         {

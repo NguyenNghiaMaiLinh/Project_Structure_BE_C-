@@ -38,23 +38,16 @@ namespace MyApp_API.Extentions
         public static void AddServiceDI(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IWorkflowService, WorkflowService>();
-            services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<ICommentService, CommentService>();
-            services.AddTransient<INotificationService, NotificationService>();
-            services.AddTransient<IWorkflowMemberService, WorkflowMemberService>();
+
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IWorkflowRepository, WorkflowRepository>();
-            services.AddTransient<IWorkflowMembersRepository, WorkflowMembersRepository>();
-            services.AddTransient<ITaskAssigneeRepository, TaskAssigneeRepository>();
-            services.AddTransient<ITaskRepository, TaskRepository>();
-            services.AddTransient<ICommentRepository, CommentRepository>();
-            services.AddTransient<INotificationRepository, NotificationRepository>();
 
+            services.AddTransient<ICommentRepository, CommentRepository>();
+    
         }
 
     }

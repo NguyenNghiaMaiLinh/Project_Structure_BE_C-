@@ -19,15 +19,17 @@ namespace MyApp.Repository.Repository
 
         public IEnumerable<Account> getAllUser(int? pageIndex, int? pageSize)
         {
-            var par1 = new SqlParameter("@PageIndex", pageIndex);
-            var par2 = new SqlParameter("@PageSize", pageSize);
+            //var par1 = new SqlParameter("@PageIndex", pageIndex);
+            //var par2 = new SqlParameter("@PageSize", pageSize);
 
-            return _dataContext.Account.FromSql("getAllUser @PageIndex, @PageSize", par1, par2).ToList();
+            //return _dataContext.Account.FromSql("getAllUser @PageIndex, @PageSize", par1, par2).ToList();
+            return null;
         }
 
         public IEnumerable<Account> searchUser(string search)
         {
-            return _dataContext.Account.Where(a => a.Username.Contains(search));
+            //return _dataContext.Account.Where(a => a.Username.Contains(search));
+            return null;
         }
     }
 }

@@ -46,8 +46,4 @@
     <ProjectReference Include="..\MyApp.Service\MyApp.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

@@ -282,15 +282,17 @@
     <Compile Include="Constaint\MyEnum.cs" />
     <Compile Include="Data\DTO\CommentDto.cs" />
     <Compile Include="Data\Entity\Account.cs" />
+    <Compile Include="Data\Entity\Active.cs" />
     <Compile Include="Data\Entity\BaseEntity.cs" />
     <Compile Include="Data\Entity\Comment.cs" />
     <Compile Include="Data\Entity\DataContext.cs" />
-    <Compile Include="Data\Entity\Notification.cs" />
-    <Compile Include="Data\Entity\Task.cs" />
-    <Compile Include="Data\Entity\TaskAssignee.cs" />
-    <Compile Include="Data\Entity\Workflow.cs" />
+    <Compile Include="Data\Entity\Follower.cs" />
+    <Compile Include="Data\Entity\Material.cs" />
+    <Compile Include="Data\Entity\Recipe.cs" />
+    <Compile Include="Data\Entity\RecipeRegister.cs" />
+    <Compile Include="Data\Entity\Register.cs" />
+    <Compile Include="Data\Entity\Step.cs" />
     <Compile Include="Data\DTO\WorkflowDto.cs" />
-    <Compile Include="Data\Entity\WorkflowMember.cs" />
     <Compile Include="Data\Infrastructure\DbFactory.cs" />
     <Compile Include="Data\Infrastructure\Disposable.cs" />
     <Compile Include="Data\Infrastructure\IDbFactory.cs" />
@@ -300,17 +302,8 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICommentRepository.cs" />
-    <Compile Include="Repository\INotificationRepository.cs" />
-    <Compile Include="Repository\ITaskRepository.cs" />
-    <Compile Include="Repository\ITaskAssigneeRepository.cs" />
-    <Compile Include="Repository\IWorkflowMembersRepository.cs" />
-    <Compile Include="Repository\IWorkflowRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
-    <Compile Include="Service\IWorkflowMemberService.cs" />
-    <Compile Include="Service\INotificationService.cs" />
     <Compile Include="Service\ICommentService.cs" />
-    <Compile Include="Service\ITaskService.cs" />
-    <Compile Include="Service\IWorkflowService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\PagingResult.cs" />
@@ -318,13 +311,6 @@
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\MemberPagingRequestViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\NotificationViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\TaskPagingRequestViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\TaskViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\WorkflowAdminRequestViewModel.cs" />
-    <Compile Include="ViewModel\ViewPage\WorkflowMemberViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\WorkflowViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />
   </ItemGroup>
   <ItemGroup>

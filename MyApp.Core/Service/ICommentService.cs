@@ -9,7 +9,6 @@ namespace MyApp.Core.Service
         BaseViewModel<PagingResult<CommentViewPage>> getAllComment(CommentPagingRequestViewModel request);
         BaseViewModel<CommentViewPage> getCommentById(string id);
         Task<BaseViewModel<CommentViewPage>> create(CommentCreateViewPage request);
-        BaseViewModel<string> getMemberId(string workflowId);
         BaseViewModel<CommentViewPage> update(CommentUpdateViewPage request);
         BaseViewModel<bool> delete(string id);
     }

@@ -8,7 +8,6 @@
         public string ImageUrl { get; set; }
         public string Detail { get; set; }
 
-        public virtual Task Task { get; set; }
-        public virtual WorkflowMember WorkflowMember { get; set; }
+   
     }
 }

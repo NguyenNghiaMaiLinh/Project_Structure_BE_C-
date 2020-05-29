@@ -23,23 +23,8 @@ namespace MyApp.Core.AutoMapper
             CreateMap<CommentViewPage, CommentDto>().ReverseMap();
             CreateMap<CommentDto, CommentViewPage>().ReverseMap();
 
-            CreateMap<NotificationViewPage, Notification>().ReverseMap();
-            CreateMap<Notification, NotificationViewPage>().ReverseMap();
-
             CreateMap<LoginFacebookViewModel, Account>().ReverseMap();
             CreateMap<Account, LoginFacebookViewModel>().ReverseMap();
-
-            CreateMap<WorkflowViewPage, Workflow>().ReverseMap();
-            CreateMap<Workflow, WorkflowViewPage>().ReverseMap();
-
-            CreateMap<WorkflowViewPage, WorkflowDto>().ReverseMap();
-            CreateMap<WorkflowDto, WorkflowViewPage>().ReverseMap();
-
-            CreateMap<UserViewModel, Account>().ReverseMap();
-            CreateMap<Account, UserViewModel>().ReverseMap();
-
-            CreateMap<TaskViewPage, Task>().ReverseMap();
-            CreateMap<Task, TaskViewPage>().ReverseMap();
 
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());

@@ -31,8 +31,9 @@ namespace MyApp.Repository.Repository
 
             //var result = _dataContext.Comment.FromSql("getAllComment @PageIndex, @PageSize, @TaskId, @Search", par1, par2, par3, par4).ToList();
             //return result;
-            var result = _dataContext.Comment.Where(c => c.TaskId == taskId && c.IsDelete == false);
-            return result;
+            //var result = _dataContext.Comment.Where(c => c.TaskId == taskId && c.IsDelete == false);
+            //return result;
+            return null;
         }
 
     }
