@@ -13,14 +13,11 @@ namespace MyApp_API.Models
 
         public string Username { get; set; }
         public string Role { get; set; }
+        public string Fullname { get; set; }
         public string HashPassword { get; set; }
         public string SaltPassword { get; set; }
-        public string Avarter { get; set; }
+        public string Avartar { get; set; }
         public string Cover { get; set; }
-        public DateTime? CreateAt { get; set; }
-        public string CreateBy { get; set; }
-        public DateTime? UpdateAt { get; set; }
-        public string UpdateBy { get; set; }
         public bool? IsDelete { get; set; }
 
         public virtual ICollection<Follower> FollowerAuthorNavigation { get; set; }

@@ -23,7 +23,7 @@ namespace MyApp_API.Controllers
     {
         #region Field
 
-        private readonly IUserService _userService;
+        private readonly IRegisterService _userService;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _accessor;
 
@@ -35,7 +35,7 @@ namespace MyApp_API.Controllers
         {
             _mapper = serviceProvider.GetRequiredService<IMapper>();
             _accessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
-            _userService = serviceProvider.GetRequiredService<IUserService>();
+            _userService = serviceProvider.GetRequiredService<IRegisterService>();
         }
 
         #endregion
@@ -52,49 +52,6 @@ namespace MyApp_API.Controllers
         public ActionResult<BaseViewModel<TokenViewModel>> Login([FromBody]LoginViewModel request)
         {
             var entity = _userService.Login(request);
-            if (entity.Data == null)
-            {
-                return BadRequest(new BaseViewModel<TokenViewModel>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code
-                });
-
-            }
-
-            return Ok(new BaseViewModel<TokenViewModel>
-            {
-                Data = GenerateToken(entity.Data),
-            });
-
-        }
-
-        #endregion
-
-        #region Login By Facebook
-
-        /// <summary>
-        /// Login
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        /// <author>linhnnm</author>
-        [HttpPost("LoginByFacebook")]
-        public ActionResult<BaseViewModel<TokenViewModel>> LoginByFacebook([FromBody]LoginFacebookViewModel request)
-        {
-            var entity = _userService.LoginByFacebook(request);
-            if (entity.Data == null)
-            {
-                return BadRequest(new BaseViewModel<TokenViewModel>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code
-                });
-
-            }
-
             return Ok(new BaseViewModel<TokenViewModel>
             {
                 Data = GenerateToken(entity.Data),
@@ -116,27 +73,16 @@ namespace MyApp_API.Controllers
         public ActionResult Register([FromBody]RegisterViewModel request)
         {
             var entity = _userService.Register(request);
-            if (entity.Data != null)
-            {
-                return Ok(new BaseViewModel<TokenViewModel>(GenerateToken(entity.Data)));
-            }
-            else
-            {
 
-                return BadRequest(new BaseViewModel<TokenViewModel>
-                {
-                    StatusCode = entity.StatusCode,
-                    Description = entity.Description,
-                    Code = entity.Code,
-                });
-            }
+            return Ok(new BaseViewModel<TokenViewModel>(GenerateToken(entity.Data)));
+
         }
 
         #endregion
 
         #region ===== Generate Token ======
 
-        private TokenViewModel GenerateToken(Account user)
+        private TokenViewModel GenerateToken(Register user)
         {
 
             var Key = BuildRsaSigningKey();
@@ -152,7 +98,7 @@ namespace MyApp_API.Controllers
             //create token
             var token = new JwtSecurityToken(
                     issuer: AppSettings.Configs.GetValue<string>("JwtSettings:Issuer"),
-                    audience: user.FullName,
+                    audience: user.Fullname,
                     expires: DateTime.Now.AddYears(1),
                     signingCredentials: signingCredentials,
                     claims: claims
@@ -161,8 +107,6 @@ namespace MyApp_API.Controllers
             return new TokenViewModel
             {
                 Roles = user.Role,
-                FullName = user.FullName,
-                AvatarPath = user.AvatarPath,
                 Access_token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expires_in = DateTime.Now.AddYears(1),
 

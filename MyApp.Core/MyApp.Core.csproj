@@ -281,7 +281,6 @@
     <Compile Include="Constaint\Constants.cs" />
     <Compile Include="Constaint\MyEnum.cs" />
     <Compile Include="Data\DTO\CommentDto.cs" />
-    <Compile Include="Data\Entity\Account.cs" />
     <Compile Include="Data\Entity\Active.cs" />
     <Compile Include="Data\Entity\BaseEntity.cs" />
     <Compile Include="Data\Entity\Comment.cs" />
@@ -302,16 +301,19 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICommentRepository.cs" />
-    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\IRecipeRepository.cs" />
+    <Compile Include="Repository\IRegisterRepository.cs" />
     <Compile Include="Service\ICommentService.cs" />
-    <Compile Include="Service\IUserService.cs" />
+    <Compile Include="Service\IRecipeService.cs" />
+    <Compile Include="Service\IRegisterService.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\PagingResult.cs" />
     <Compile Include="ViewModel\ViewPage\AuthViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentViewPage.cs" />
-    <Compile Include="ViewModel\ViewPage\UserViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\RecipeViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\RegisterViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -14,8 +14,8 @@ namespace MyApp.Core.AutoMapper
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
 
-            CreateMap<UserViewPage, Account>().ReverseMap();
-            CreateMap<Account, UserViewPage>().ReverseMap();
+            CreateMap<RegisterViewPage, Register>().ReverseMap();
+            CreateMap<Register, RegisterViewPage>().ReverseMap();
 
             CreateMap<CommentViewPage, Comment>().ReverseMap();
             CreateMap<Comment, CommentViewPage>().ReverseMap();
@@ -23,8 +23,17 @@ namespace MyApp.Core.AutoMapper
             CreateMap<CommentViewPage, CommentDto>().ReverseMap();
             CreateMap<CommentDto, CommentViewPage>().ReverseMap();
 
-            CreateMap<LoginFacebookViewModel, Account>().ReverseMap();
-            CreateMap<Account, LoginFacebookViewModel>().ReverseMap();
+            CreateMap<RecipeCreateViewPage, Recipe>().ReverseMap();
+            CreateMap<Recipe, RecipeCreateViewPage>().ReverseMap();
+
+            CreateMap<RecipeViewPage, Recipe>().ReverseMap();
+            CreateMap<Recipe, RecipeViewPage>().ReverseMap();
+
+            CreateMap<RecipeUpdateViewPage, Recipe>().ReverseMap();
+            CreateMap<Recipe, RecipeUpdateViewPage>().ReverseMap();
+
+            CreateMap<LoginFacebookViewModel, Register>().ReverseMap();
+            CreateMap<Register, LoginFacebookViewModel>().ReverseMap();
 
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());

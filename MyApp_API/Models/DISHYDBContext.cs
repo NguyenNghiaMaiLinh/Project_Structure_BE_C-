@@ -251,7 +251,7 @@ namespace MyApp_API.Models
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Avarter)
+                entity.Property(e => e.Avartar)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
@@ -259,14 +259,7 @@ namespace MyApp_API.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Fullname).HasMaxLength(100);
 
                 entity.Property(e => e.HashPassword)
                     .HasMaxLength(1000)
@@ -280,15 +273,6 @@ namespace MyApp_API.Models
 
                 entity.Property(e => e.SaltPassword)
                     .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

@@ -9,7 +9,12 @@
       "restore": {
         "projectUniqueName": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj",
         "projectName": "MyApp.Core",
-        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
       },
       "frameworks": {
         "net472": {}

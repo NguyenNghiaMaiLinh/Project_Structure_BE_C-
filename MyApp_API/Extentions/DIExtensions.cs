@@ -37,17 +37,16 @@ namespace MyApp_API.Extentions
 
         public static void AddServiceDI(IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ICommentService, CommentService>();
-
+         
+            services.AddTransient<IRegisterService, RegisterService>();
+            services.AddTransient<IRecipeService, RecipeService>();
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddTransient<ICommentRepository, CommentRepository>();
-    
+            services.AddTransient<IRegisterRepository, RegisterRepository>();
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
         }
 
     }

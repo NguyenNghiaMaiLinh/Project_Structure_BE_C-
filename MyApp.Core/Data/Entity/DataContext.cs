@@ -36,6 +36,7 @@ namespace MyApp.Core.Data.Entity
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("server=dishyserverdb.database.windows.net;database=dishydb;user=dishy;pwd=Admin123;");
+                //optionsBuilder.UseSqlServer("server=.;database=DISHYDB;user=sa;pwd=3031998;");
             }
         }
 
@@ -258,7 +259,7 @@ namespace MyApp.Core.Data.Entity
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Avarter)
+                entity.Property(e => e.Avartar)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
@@ -266,14 +267,7 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Fullname).HasMaxLength(100);
 
                 entity.Property(e => e.HashPassword)
                     .HasMaxLength(1000)
@@ -287,15 +281,6 @@ namespace MyApp.Core.Data.Entity
 
                 entity.Property(e => e.SaltPassword)
                     .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MyApp.Core.Constaint;
-using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
 using MyApp.Core.Repository;
 using MyApp.Core.Service;
@@ -16,15 +15,15 @@ namespace MyApp.Service.Service
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _repository;
-        private readonly IUserRepository _userRepository;
+        private readonly IRegisterRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository)
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, ICommentRepository commentRepository, IRegisterRepository registerRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = commentRepository;
-        
+            _userRepository = registerRepository;
             _mapper = mapper;
         }
 
@@ -90,8 +89,8 @@ namespace MyApp.Service.Service
                 entity = _mapper.Map<List<CommentViewPage>>(data);
                 foreach (var item in entity)
                 {
-             
-                    item.AvatarPath = _userRepository.GetById(item.Username).AvatarPath;
+
+                    item.AvatarPath = _userRepository.GetById(item.Username).Avartar;
                 }
                 result.Data = new PagingResult<CommentViewPage>
                 {
