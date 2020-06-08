@@ -1,4 +1,7 @@
 # ASP.NET Core (.NET Framework)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
 trigger:
 - master
 
@@ -28,3 +31,4 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+- task: PublishBuildArtifacts@1
