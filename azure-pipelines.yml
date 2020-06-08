@@ -1,4 +1,7 @@
 # ASP.NET Core (.NET Framework)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
 trigger:
 - master
 
