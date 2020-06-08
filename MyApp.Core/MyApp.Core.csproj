@@ -301,9 +301,11 @@
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICommentRepository.cs" />
+    <Compile Include="Repository\IFollowerRepository.cs" />
     <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\IRegisterRepository.cs" />
     <Compile Include="Service\ICommentService.cs" />
+    <Compile Include="Service\IFollowerService.cs" />
     <Compile Include="Service\IRecipeService.cs" />
     <Compile Include="Service\IRegisterService.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -312,6 +314,7 @@
     <Compile Include="ViewModel\ViewPage\BasePagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentPagingRequestViewModel.cs" />
     <Compile Include="ViewModel\ViewPage\CommentViewPage.cs" />
+    <Compile Include="ViewModel\ViewPage\FollowerViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\RecipeViewPage.cs" />
     <Compile Include="ViewModel\ViewPage\RegisterViewPage.cs" />
   </ItemGroup>

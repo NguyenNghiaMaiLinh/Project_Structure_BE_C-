@@ -9,6 +9,5 @@ namespace MyApp.Core.Service
         BaseViewModel<RegisterViewPage> GetInformation();
         BaseViewModel<Register> Register(RegisterViewModel user);
         BaseViewModel<Register> Login(LoginViewModel user);
-
     }
 }

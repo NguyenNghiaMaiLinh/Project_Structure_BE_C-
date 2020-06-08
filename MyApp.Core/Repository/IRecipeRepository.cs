@@ -6,7 +6,6 @@ namespace MyApp.Core.Repository
 {
     public interface IRecipeRepository :IRepository<Recipe>
     {
-        IEnumerable<Recipe> getAllRecipe(int? pageIndex, int? pageSize, string search, string author);
 
         IEnumerable<Recipe> getAllRecipeByAuthor(string author);
     }

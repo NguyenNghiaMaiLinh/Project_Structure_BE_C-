@@ -25,6 +25,7 @@
         public const string INVALID_PERMISSION = "Bạn không có quyền truy cập";
         public const string ACCOUNT_ALREADY_EXISTS = "Tài khoản đã tồn tại";
         public const string ACCOUNT_ALREADY_EXISTED = "Tài khoản đã được thêm";
+        public const string FOLLOWER_ALREADY_EXISTED = "Tài khoản đã được theo dõi";
     }
     public class MessageConstants
     {
@@ -32,5 +33,6 @@
         public const string NO_RECORD = "No_Record";
         public const string FAILURE = "Failure";
         public const string NOTFOUND = "Not_Found";
+        public const string FOLLOWER_EXISTED = "Follower_Existed";
     }
 }

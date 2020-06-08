@@ -7,7 +7,6 @@ using MyApp.Core.Service;
 using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
 using MyApp.Service.HelperService;
-using System;
 using System.Linq;
 using System.Net;
 
@@ -17,15 +16,17 @@ namespace MyApp.Service.Service
     {
         private readonly IRegisterRepository _repository;
         private readonly IRecipeRepository _recipeRepository;
+        private readonly IFollowerRepository _followerRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private static readonly string ACCOUNTS = "accounts";
 
-        public RegisterService(IUnitOfWork unitOfWork, IMapper mapper,IRecipeRepository recipeRepository, IRegisterRepository registerRepository)
+        public RegisterService(IUnitOfWork unitOfWork, IMapper mapper,IRecipeRepository recipeRepository, IRegisterRepository registerRepository,IFollowerRepository followerRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = registerRepository;
             _recipeRepository = recipeRepository;
+            _followerRepository = followerRepository;
             _mapper = mapper;
         }
         public BaseViewModel<RegisterViewPage> GetInformation()
@@ -43,6 +44,7 @@ namespace MyApp.Service.Service
             }
             var data = _mapper.Map<RegisterViewPage>(entity);
             data.NumberRecipe = _recipeRepository.getAllRecipeByAuthor(_recipeRepository.GetCurrentUserId()).Count();
+            data.NumberFollower = _followerRepository.getALlFollowerByAuthor(_repository.GetCurrentUserId()).Count();
             return new BaseViewModel<RegisterViewPage>
             {
                 StatusCode = HttpStatusCode.OK,
@@ -51,7 +53,7 @@ namespace MyApp.Service.Service
                 Data = data
             };
         }
-
+      
         public BaseViewModel<Register> Login(LoginViewModel user)
         {
             var entity = _repository.GetById(user.Username);

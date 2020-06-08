@@ -35,6 +35,12 @@ namespace MyApp.Core.AutoMapper
             CreateMap<LoginFacebookViewModel, Register>().ReverseMap();
             CreateMap<Register, LoginFacebookViewModel>().ReverseMap();
 
+            CreateMap<FollowerViewPage, Register>().ReverseMap();
+            CreateMap<Register, FollowerViewPage>().ReverseMap();
+
+            CreateMap<FollowerViewPage, Follower>().ReverseMap();
+            CreateMap<Follower, FollowerViewPage>().ReverseMap();
+
             CreateMap<DateTime, string>().ConvertUsing(new DatetimeToStringConverter());
             CreateMap<string, DateTime>().ConvertUsing(new StringToDatetimeConverter());
         }

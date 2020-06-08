@@ -17,11 +17,11 @@ namespace MyApp.Service.Service
         private readonly IRecipeRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository  recipeRepository)
+        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository recipeRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = recipeRepository;
-          
+
             _mapper = mapper;
         }
         public BaseViewModel<RecipeViewPage> create(RecipeCreateViewPage request)
@@ -38,18 +38,46 @@ namespace MyApp.Service.Service
             };
         }
 
-            public BaseViewModel<bool> delete(string id)
+        public BaseViewModel<bool> delete(string id)
         {
-            throw new System.NotImplementedException();
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return new BaseViewModel<bool>
+                {
+                    Code = MessageConstants.NOTFOUND,
+                    Description = ErrMessageConstants.NOTFOUND,
+                    Data = false,
+                    StatusCode = HttpStatusCode.PreconditionFailed
+                };
+            }
+            else if (entity.CreateBy != _repository.GetUsername())
+            {
+                return new BaseViewModel<bool>
+                {
+                    Code = MessageConstants.FAILURE,
+                    Description = ErrMessageConstants.INVALID_PERMISSION,
+                    Data = false,
+                    StatusCode = HttpStatusCode.PreconditionFailed
+                };
+            }
+            entity.IsDelete = true;
+            _repository.Update(entity);
+            Save();
+
+            return new BaseViewModel<bool>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Data = true
+            };
         }
 
-        public BaseViewModel<PagingResult<RecipeViewPage>> getAllRecipe(BasePagingRequestViewModel request)
+        public BaseViewModel<PagingResult<RecipeViewPage>> getAllRecipeByAuthor()
         {
-            var pageSize = request.PageSize;
-            var pageIndex = request.PageIndex;
+
             var result = new BaseViewModel<PagingResult<RecipeViewPage>>();
 
-            var data = _repository.getAllRecipe(pageIndex, pageSize, request.Search, _repository.GetCurrentUserId()).ToList();
+            var data = _repository.getAllRecipeByAuthor(_repository.GetCurrentUserId()).ToList();
             if (data == null || data.Count == 0)
             {
                 result.Description = MessageConstants.NO_RECORD;
@@ -57,19 +85,15 @@ namespace MyApp.Service.Service
             }
             else
             {
-                var pageSizeReturn = pageSize;
-                if (data.Count < pageSize)
-                {
-                    pageSizeReturn = data.Count;
-                }
+
                 var entity = new List<RecipeViewPage>();
                 entity = _mapper.Map<List<RecipeViewPage>>(data);
-                
+
                 result.Data = new PagingResult<RecipeViewPage>
                 {
                     Results = _mapper.Map<IEnumerable<RecipeViewPage>>(entity),
-                    PageIndex = pageIndex,
-                    PageSize = pageSizeReturn,
+                    PageIndex = 0,
+                    PageSize = 0,
                     TotalRecords = data.Count()
                 };
             }
@@ -119,9 +143,9 @@ namespace MyApp.Service.Service
                 Data = _mapper.Map<RecipeViewPage>(entity)
             };
         }
-            private void Save()
-            {
-                _unitOfWork.Commit();
-            }
+        private void Save()
+        {
+            _unitOfWork.Commit();
         }
+    }
 }

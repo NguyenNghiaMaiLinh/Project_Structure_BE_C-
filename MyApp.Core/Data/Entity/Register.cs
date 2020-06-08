@@ -7,8 +7,8 @@ namespace MyApp.Core.Data.Entity
     {
         public Register()
         {
-            FollowerAuthorNavigation = new HashSet<Follower>();
-            FollowerFollower1Navigation = new HashSet<Follower>();
+            FollowerAuthor = new HashSet<Follower>();
+            FollowerFollowerNavigation = new HashSet<Follower>();
         }
 
         public string Username { get; set; }
@@ -20,7 +20,7 @@ namespace MyApp.Core.Data.Entity
         public string Cover { get; set; }
         public bool? IsDelete { get; set; }
 
-        public virtual ICollection<Follower> FollowerAuthorNavigation { get; set; }
-        public virtual ICollection<Follower> FollowerFollower1Navigation { get; set; }
+        public virtual ICollection<Follower> FollowerAuthor { get; set; }
+        public virtual ICollection<Follower> FollowerFollowerNavigation { get; set; }
     }
 }

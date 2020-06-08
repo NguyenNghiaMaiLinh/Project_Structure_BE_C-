@@ -84,7 +84,7 @@ namespace MyApp_API.Models
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Author)
+                entity.Property(e => e.AuthorId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -97,8 +97,7 @@ namespace MyApp_API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Follower1)
-                    .HasColumnName("Follower")
+                entity.Property(e => e.FollowerId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -113,15 +112,15 @@ namespace MyApp_API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.AuthorNavigation)
-                    .WithMany(p => p.FollowerAuthorNavigation)
-                    .HasForeignKey(d => d.Author)
-                    .HasConstraintName("FK_Follower_Register");
+                entity.HasOne(d => d.Author)
+                    .WithMany(p => p.FollowerAuthor)
+                    .HasForeignKey(d => d.AuthorId)
+                    .HasConstraintName("FK_Follower_Register3");
 
-                entity.HasOne(d => d.Follower1Navigation)
-                    .WithMany(p => p.FollowerFollower1Navigation)
-                    .HasForeignKey(d => d.Follower1)
-                    .HasConstraintName("FK_Follower_Register1");
+                entity.HasOne(d => d.FollowerNavigation)
+                    .WithMany(p => p.FollowerFollowerNavigation)
+                    .HasForeignKey(d => d.FollowerId)
+                    .HasConstraintName("FK_Follower_Register2");
             });
 
             modelBuilder.Entity<Material>(entity =>

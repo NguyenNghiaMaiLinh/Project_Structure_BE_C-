@@ -15,7 +15,7 @@ namespace MyApp.Core.Data.Entity
         }
         public void Commit()
         {
-                SaveChanges();
+            SaveChanges();
         }
 
         #region Dto
@@ -35,7 +35,7 @@ namespace MyApp.Core.Data.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=dishyserverdb.database.windows.net;database=dishydb;user=dishy;pwd=Admin123;");
+                optionsBuilder.UseSqlServer("server=dishyserverdb.database.windows.net;database=prc391db;user=dishy;pwd=Admin123;");
                 //optionsBuilder.UseSqlServer("server=.;database=DISHYDB;user=sa;pwd=3031998;");
             }
         }
@@ -92,7 +92,7 @@ namespace MyApp.Core.Data.Entity
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Author)
+                entity.Property(e => e.AuthorId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -105,8 +105,7 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Follower1)
-                    .HasColumnName("Follower")
+                entity.Property(e => e.FollowerId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -121,15 +120,15 @@ namespace MyApp.Core.Data.Entity
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.AuthorNavigation)
-                    .WithMany(p => p.FollowerAuthorNavigation)
-                    .HasForeignKey(d => d.Author)
-                    .HasConstraintName("FK_Follower_Register");
+                entity.HasOne(d => d.Author)
+                    .WithMany(p => p.FollowerAuthor)
+                    .HasForeignKey(d => d.AuthorId)
+                    .HasConstraintName("FK_Follower_Register3");
 
-                entity.HasOne(d => d.Follower1Navigation)
-                    .WithMany(p => p.FollowerFollower1Navigation)
-                    .HasForeignKey(d => d.Follower1)
-                    .HasConstraintName("FK_Follower_Register1");
+                entity.HasOne(d => d.FollowerNavigation)
+                    .WithMany(p => p.FollowerFollowerNavigation)
+                    .HasForeignKey(d => d.FollowerId)
+                    .HasConstraintName("FK_Follower_Register2");
             });
 
             modelBuilder.Entity<Material>(entity =>
@@ -335,6 +334,6 @@ namespace MyApp.Core.Data.Entity
                     .HasConstraintName("FK_Step_Recipe");
             });
         }
-    }
 
+    }
 }

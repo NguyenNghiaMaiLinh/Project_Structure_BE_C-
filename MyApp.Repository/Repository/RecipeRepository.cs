@@ -25,19 +25,19 @@ namespace MyApp.Repository.Repository
 
         public IEnumerable<Recipe> getAllRecipe(int? pageIndex, int? pageSize, string search, string author)
         {
-            if (search == null)
-            {
-                search = "";
-            }
-            var par1 = new SqlParameter("@PageIndex", pageIndex);
-            var par2 = new SqlParameter("@PageSize", pageSize);
-            var par3 = new SqlParameter("@Search", search);
-            var par4 = new SqlParameter("@Author", author);
+            //if (search == null)
+            //{
+            //    search = "";
+            //}
+            //var par1 = new SqlParameter("@PageIndex", pageIndex);
+            //var par2 = new SqlParameter("@PageSize", pageSize);
+            //var par3 = new SqlParameter("@Search", search);
+            //var par4 = new SqlParameter("@Author", author);
 
-            var result = _dataContext.Recipe.FromSql("getAllRecipe @PageIndex, @PageSize, @Search, @Author", par1, par2, par3, par4).ToList();
+            //var result = _dataContext.Recipe.FromSql("getAllRecipe @PageIndex, @PageSize, @Search, @Author", par1, par2, par3, par4).ToList();
 
             //var result = _dataContext.Comment.Where(c => c.TaskId == taskId && c.IsDelete == false);
-            return result;
+            return null;
         }
 
         public IEnumerable<Recipe> getAllRecipeByAuthor(string author)
