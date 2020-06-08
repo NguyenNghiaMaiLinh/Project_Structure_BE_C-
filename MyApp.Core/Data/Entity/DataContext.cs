@@ -17,9 +17,7 @@ namespace MyApp.Core.Data.Entity
         {
             SaveChanges();
         }
-
         #region Dto
-        public virtual DbSet<WorkflowDto> WorkflowDto { get; set; }
         public virtual DbSet<CommentDto> CommentDto { get; set; }
 
         #endregion
