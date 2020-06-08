@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MyApp.Core.Service;
+using MyApp.Core.ViewModel;
 using MyApp.Core.ViewModel.ViewPage;
 using System;
 
@@ -42,10 +43,10 @@ namespace MyApp_API.Controllers
         /// <returns></returns>
         /// <author>Linhnnm</author>
         [HttpGet("GetInformation")]
-        public ActionResult GetInformation()
+        public ActionResult<BaseViewModel<RegisterViewPage>> GetInformation()
         {
             var entity = _userService.GetInformation();
-            return Ok(entity);
+            return entity;
         }
 
         #endregion
