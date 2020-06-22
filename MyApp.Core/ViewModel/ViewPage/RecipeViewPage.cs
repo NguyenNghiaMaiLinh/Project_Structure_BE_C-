@@ -18,6 +18,8 @@ namespace MyApp.Core.ViewModel.ViewPage
         public int? Liked { get; set; }
         public int? Disliked { get; set; }
         public string CreateBy { get; set; }
+        public IEnumerable<MaterialViewPage> Materials { get; set; }
+        public IEnumerable<StepViewPage> Steps { get; set; } 
     }
     public partial class RecipeCreateViewPage
     {
@@ -26,6 +28,9 @@ namespace MyApp.Core.ViewModel.ViewPage
         public string Image { get; set; }
         public int? TimeCook { get; set; }
         public int? LevelRecipe { get; set; }
+        public int? NumberPeople { get; set; }
+        public IEnumerable<MaterialViewPage> Materials { get; set; }
+        public IEnumerable<StepViewPage> Steps { get; set; }
 
     }
     public partial class RecipeUpdateViewPage

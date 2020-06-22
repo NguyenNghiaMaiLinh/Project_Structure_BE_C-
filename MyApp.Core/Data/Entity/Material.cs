@@ -4,7 +4,6 @@ namespace MyApp.Core.Data.Entity
 {
     public partial class Material : BaseEntity
     {
-    
         public string Name { get; set; }
         public double? Quantity { get; set; }
         public string Unit { get; set; }

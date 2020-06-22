@@ -41,6 +41,8 @@ namespace MyApp_API.Extentions
             services.AddTransient<IRegisterService, RegisterService>();
             services.AddTransient<IRecipeService, RecipeService>();
             services.AddTransient<IFollowerService, FollowerService>();
+            services.AddTransient<IMaterialService, MaterialService>();
+            services.AddTransient<IStepService, StepService>();
         }
 
         public static void AddRepoistoryDI(IServiceCollection services)
@@ -49,6 +51,7 @@ namespace MyApp_API.Extentions
             services.AddTransient<IRegisterRepository, RegisterRepository>();
             services.AddTransient<IRecipeRepository, RecipeRepository>();
             services.AddTransient<IFollowerRepository, FollowerRepository>();
+            services.AddTransient<IStepRepository, StepRepository>();
         }
 
     }

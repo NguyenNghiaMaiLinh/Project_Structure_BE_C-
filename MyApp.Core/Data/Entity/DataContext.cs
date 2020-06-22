@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyApp.Core.Data.DTO;
 
 namespace MyApp.Core.Data.Entity
 {
@@ -18,7 +17,6 @@ namespace MyApp.Core.Data.Entity
             SaveChanges();
         }
         #region Dto
-        public virtual DbSet<CommentDto> CommentDto { get; set; }
 
         #endregion
         public virtual DbSet<Active> Active { get; set; }

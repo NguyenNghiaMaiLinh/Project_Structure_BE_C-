@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyApp.Core.Data.Entity;
+﻿using MyApp.Core.Data.Entity;
 using MyApp.Core.Data.Infrastructure;
 using MyApp.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace MyApp.Repository.Repository

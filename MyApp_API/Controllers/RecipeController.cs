@@ -37,9 +37,7 @@ namespace MyApp_API.Controllers
 
             var result = _recipeService.getAllRecipeByAuthor();
 
-            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
-
-            return result;
+            return Ok(result);
         }
 
         #endregion
@@ -57,7 +55,7 @@ namespace MyApp_API.Controllers
 
             var result = _recipeService.getRecipeById(id);
 
-            return result;
+            return Ok(result);
         }
 
         #endregion
@@ -74,8 +72,7 @@ namespace MyApp_API.Controllers
         {
 
             var result = _recipeService.create(request);
-            this.HttpContext.Response.StatusCode = (int)result.StatusCode;
-            return result;
+            return Ok(result);
         }
 
         #endregion
@@ -93,7 +90,7 @@ namespace MyApp_API.Controllers
 
             var result = _recipeService.update(request);
 
-            return result;
+            return Ok(result);
         }
 
         #endregion
@@ -111,7 +108,7 @@ namespace MyApp_API.Controllers
 
             var result = _recipeService.delete(id);
 
-            return result;
+            return Ok(result);
         }
 
         #endregion

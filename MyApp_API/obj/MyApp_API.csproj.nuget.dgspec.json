@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp_API\\MyApp_API.csproj": {}
+    "F:\\PRC391\\API\\MyApp_API\\MyApp_API.csproj": {}
   },
   "projects": {
-    "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+    "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj",
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj",
         "projectName": "MyApp.Core",
-        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+        "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+    "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
         "projectName": "MyApp.Repository",
-        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
               }
             }
           }
@@ -35,20 +35,20 @@
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
+    "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
         "projectName": "MyApp.Service",
-        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
               },
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
+              "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
               }
             }
           }
@@ -58,14 +58,14 @@
         "net472": {}
       }
     },
-    "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp_API\\MyApp_API.csproj": {
+    "F:\\PRC391\\API\\MyApp_API\\MyApp_API.csproj": {
       "version": "1.0.2",
       "restore": {
-        "projectUniqueName": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp_API\\MyApp_API.csproj",
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp_API\\MyApp_API.csproj",
         "projectName": "MyApp_API",
-        "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp_API\\MyApp_API.csproj",
+        "projectPath": "F:\\PRC391\\API\\MyApp_API\\MyApp_API.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp_API\\obj\\",
+        "outputPath": "F:\\PRC391\\API\\MyApp_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\ProgramData\\Xamarin\\NuGet\\",
@@ -86,14 +86,14 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
               },
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
+              "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
               },
-              "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
-                "projectPath": "G:\\Chuyen_Nganh_9\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj"
+              "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj"
               }
             }
           }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MyApp.Core.Data.DTO;
 using MyApp.Core.Data.Entity;
 using MyApp.Core.ViewModel.ViewPage;
 using System;
@@ -17,14 +16,14 @@ namespace MyApp.Core.AutoMapper
             CreateMap<RegisterViewPage, Register>().ReverseMap();
             CreateMap<Register, RegisterViewPage>().ReverseMap();
 
-            CreateMap<CommentViewPage, Comment>().ReverseMap();
-            CreateMap<Comment, CommentViewPage>().ReverseMap();
-
-            CreateMap<CommentViewPage, CommentDto>().ReverseMap();
-            CreateMap<CommentDto, CommentViewPage>().ReverseMap();
+            CreateMap<MaterialViewPage, Material>().ReverseMap();
+            CreateMap<Material, MaterialViewPage>().ReverseMap();
 
             CreateMap<RecipeCreateViewPage, Recipe>().ReverseMap();
             CreateMap<Recipe, RecipeCreateViewPage>().ReverseMap();
+
+            CreateMap<StepViewPage, Step>().ReverseMap();
+            CreateMap<Step, StepViewPage>().ReverseMap();
 
             CreateMap<RecipeViewPage, Recipe>().ReverseMap();
             CreateMap<Recipe, RecipeViewPage>().ReverseMap();

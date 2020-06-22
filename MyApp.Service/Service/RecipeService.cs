@@ -15,13 +15,16 @@ namespace MyApp.Service.Service
     public class RecipeService : IRecipeService
     {
         private readonly IRecipeRepository _repository;
+        private readonly IMaterialRepository _materialRepository;
+        private readonly IStepRepository _stepRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository recipeRepository)
+        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository recipeRepository,IMaterialRepository materialRepository,IStepRepository stepRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = recipeRepository;
-
+            _materialRepository = materialRepository;
+            _stepRepository = stepRepository;
             _mapper = mapper;
         }
         public BaseViewModel<RecipeViewPage> create(RecipeCreateViewPage request)
@@ -29,6 +32,20 @@ namespace MyApp.Service.Service
             var entity = _mapper.Map<Recipe>(request);
             entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
             _repository.Update(entity);
+            foreach (var item in request.Materials)
+            {
+                var material = _mapper.Map<Material>(item);
+                material.RecipeId = entity.Id;
+                entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
+                _materialRepository.Update(material);
+            }
+            foreach (var item in request.Steps)
+            {
+                var step = _mapper.Map<Step>(item);
+                step.RecipeId = entity.Id;
+                entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
+                _stepRepository.Update(step);
+            }
             Save();
 
             return new BaseViewModel<RecipeViewPage>
@@ -86,8 +103,8 @@ namespace MyApp.Service.Service
             else
             {
 
-                var entity = new List<RecipeViewPage>();
-                entity = _mapper.Map<List<RecipeViewPage>>(data);
+               
+               var entity = _mapper.Map<IEnumerable<RecipeViewPage>>(data);
 
                 result.Data = new PagingResult<RecipeViewPage>
                 {
@@ -104,21 +121,22 @@ namespace MyApp.Service.Service
         public BaseViewModel<RecipeViewPage> getRecipeById(string id)
         {
             var entity = _repository.GetById(id);
-            if (entity == null)
+            var result = new BaseViewModel<RecipeViewPage>
             {
-                return new BaseViewModel<RecipeViewPage>
-                {
-                    Code = MessageConstants.NOTFOUND,
-                    Description = ErrMessageConstants.NOTFOUND,
-                    Data = null,
-                    StatusCode = HttpStatusCode.BadRequest
-                };
-            }
-            return new BaseViewModel<RecipeViewPage>
-            {
-                StatusCode = HttpStatusCode.OK,
-                Data = _mapper.Map<RecipeViewPage>(entity)
+                Code = MessageConstants.NOTFOUND,
+                Description = ErrMessageConstants.NOTFOUND,
+                Data = null,
+                StatusCode = HttpStatusCode.BadRequest
             };
+            if (entity != null)
+            {
+                result.Data = _mapper.Map<RecipeViewPage>(entity);
+                result.Data.Materials = _mapper.Map<IEnumerable<MaterialViewPage>>(_materialRepository.getALlMaterialByRecipeId(entity.Id).ToList());
+                result.Data.Steps = _mapper.Map<IEnumerable<StepViewPage>>(_stepRepository.getALlStepByRecipeId(entity.Id).ToList());
+                result.StatusCode = HttpStatusCode.OK;
+            }
+           
+           return result;
         }
 
         public BaseViewModel<RecipeViewPage> update(RecipeUpdateViewPage request)
