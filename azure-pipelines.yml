@@ -13,7 +13,7 @@ variables:
 
 steps:
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Publish Artifact: drops'
   inputs:
     PathtoPublish: Test
 
