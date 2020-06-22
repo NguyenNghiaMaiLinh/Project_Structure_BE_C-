@@ -13,9 +13,9 @@ variables:
 
 steps:
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'myWebsiteName'
+    PathtoPublish: Test
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
