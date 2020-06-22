@@ -12,10 +12,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drops'
-  inputs:
-    PathtoPublish: Test
 
 - task: NuGetCommand@2
   inputs:
@@ -33,3 +29,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: Test
