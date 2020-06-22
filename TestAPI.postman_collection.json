@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "f6148dbb-dc9e-4a2d-9757-f86f52592b69",
+		"name": "Test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://myappapi20200527091033.azurewebsites.net/api/Auth/Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a266a722-12c1-453f-8f00-3cf22b0bf699",
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://myappapi20200527091033.azurewebsites.net/api/Auth/Login",
+					"protocol": "https",
+					"host": [
+						"myappapi20200527091033",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Auth",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
