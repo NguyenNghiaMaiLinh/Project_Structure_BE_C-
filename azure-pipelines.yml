@@ -31,7 +31,6 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-- task: PublishBuildArtifacts@1
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -40,3 +39,5 @@ steps:
     appType: 'webApp'
     WebAppName: 'MyAppAPI20200527091033'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    
+- task: PublishBuildArtifacts@1
