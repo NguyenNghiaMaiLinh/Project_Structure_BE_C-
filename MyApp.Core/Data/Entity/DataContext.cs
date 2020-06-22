@@ -16,9 +16,7 @@ namespace MyApp.Core.Data.Entity
         {
             SaveChanges();
         }
-        #region Dto
 
-        #endregion
         public virtual DbSet<Active> Active { get; set; }
         public virtual DbSet<Follower> Follower { get; set; }
         public virtual DbSet<Material> Material { get; set; }
