@@ -1,0 +1,14 @@
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\MyApp.IntegrationTest.deps.json
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\MyApp.IntegrationTest.runtimeconfig.json
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\MyApp.IntegrationTest.runtimeconfig.dev.json
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\MyApp.IntegrationTest.dll
+F:\PRC391\API\MyApp.IntegrationTest\bin\Release\netcoreapp2.2\MyApp.IntegrationTest.pdb
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.csprojAssemblyReference.cache
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.csproj.CoreCompileInputs.cache
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.AssemblyInfoInputs.cache
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.AssemblyInfo.cs
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.dll
+F:\PRC391\API\MyApp.IntegrationTest\obj\Release\netcoreapp2.2\MyApp.IntegrationTest.pdb

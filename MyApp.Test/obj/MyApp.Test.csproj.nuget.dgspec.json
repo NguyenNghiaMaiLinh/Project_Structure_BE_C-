@@ -1,0 +1,126 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\PRC391\\API\\MyApp.Test\\MyApp.Test.csproj": {}
+  },
+  "projects": {
+    "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj",
+        "projectName": "MyApp.Core",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "projectName": "MyApp.Repository",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
+        "projectName": "MyApp.Service",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              },
+              "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "F:\\PRC391\\API\\MyApp.Test\\MyApp.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRC391\\API\\MyApp.Test\\MyApp.Test.csproj",
+        "projectName": "MyApp.Test",
+        "projectPath": "F:\\PRC391\\API\\MyApp.Test\\MyApp.Test.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "F:\\PRC391\\API\\MyApp.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Core\\MyApp.Core.csproj"
+              },
+              "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Repository\\MyApp.Repository.csproj"
+              },
+              "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj": {
+                "projectPath": "F:\\PRC391\\API\\MyApp.Service\\MyApp.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyApp.Core\MyApp.Core.csproj" />
+    <ProjectReference Include="..\MyApp.Repository\MyApp.Repository.csproj" />
+    <ProjectReference Include="..\MyApp.Service\MyApp.Service.csproj" />
+  </ItemGroup>
+
+</Project>

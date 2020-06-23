@@ -435,10 +435,6 @@ G:\Chuyen_Nganh_9\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.cspro
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csproj.CopyComplete
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.dll
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.pdb
-F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csprojAssemblyReference.cache
-F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csproj.CoreCompileInputs.cache
-F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.dll
-F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.pdb
 F:\PRC391\API\MyApp.Repository\bin\Release\MyApp.Repository.dll.config
 F:\PRC391\API\MyApp.Repository\bin\Release\MyApp.Repository.dll
 F:\PRC391\API\MyApp.Repository\bin\Release\MyApp.Repository.pdb
@@ -584,4 +580,8 @@ F:\PRC391\API\MyApp.Repository\bin\Release\nl\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Repository\bin\Release\pt-BR\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Repository\bin\Release\zh\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Repository\bin\Release\zh-TW\Hangfire.Core.resources.dll
+F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csprojAssemblyReference.cache
+F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csproj.CoreCompileInputs.cache
 F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.csproj.CopyComplete
+F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.dll
+F:\PRC391\API\MyApp.Repository\obj\Release\MyApp.Repository.pdb

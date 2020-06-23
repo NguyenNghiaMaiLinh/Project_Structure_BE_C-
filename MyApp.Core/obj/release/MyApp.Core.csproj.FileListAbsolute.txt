@@ -430,10 +430,6 @@ G:\Chuyen_Nganh_9\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CoreCompil
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CopyComplete
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.dll
 G:\Chuyen_Nganh_9\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.pdb
-F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csprojAssemblyReference.cache
-F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CoreCompileInputs.cache
-F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.dll
-F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.pdb
 F:\PRC391\API\MyApp.Core\bin\Release\MyApp.Core.dll.config
 F:\PRC391\API\MyApp.Core\bin\Release\MyApp.Core.dll
 F:\PRC391\API\MyApp.Core\bin\Release\MyApp.Core.pdb
@@ -578,4 +574,8 @@ F:\PRC391\API\MyApp.Core\bin\Release\nl\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Core\bin\Release\pt-BR\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Core\bin\Release\zh\Hangfire.Core.resources.dll
 F:\PRC391\API\MyApp.Core\bin\Release\zh-TW\Hangfire.Core.resources.dll
+F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csprojAssemblyReference.cache
+F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CoreCompileInputs.cache
 F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.csproj.CopyComplete
+F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.dll
+F:\PRC391\API\MyApp.Core\obj\Release\MyApp.Core.pdb

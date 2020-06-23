@@ -24,15 +24,87 @@ namespace MyApp_API.Controllers
 
         }
 
-        #region Get All Recipe
+        #region Get All Recipe By Author
         /// <summary>
         /// 
         /// </summary>
         /// <param name="request"></param>
         /// <returns>PagingResult<RecipeViewPage>></returns>
         /// <author>Linhnnm</author>
-        [HttpGet]
+        [HttpGet("getAllRecipebByAuthor")]
         public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipebByAuthor()
+        {
+
+            var result = _recipeService.getAllRecipeByAuthor();
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Get All Recipe Saved
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<RecipeViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("getAllRecipebSaved")]
+        public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipebSaved()
+        {
+
+            var result = _recipeService.getAllRecipeByAuthor();
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Get All Recipe Suggestion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<RecipeViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("getAllRecipeSuggestion")]
+        public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipeSuggestion()
+        {
+
+            var result = _recipeService.getAllRecipeByAuthor();
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Get All Recipe History
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<RecipeViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("getAllRecipeHistory")]
+        public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipeHistory()
+        {
+
+            var result = _recipeService.getAllRecipeByAuthor();
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Get All Recipe Top
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>PagingResult<RecipeViewPage>></returns>
+        /// <author>Linhnnm</author>
+        [HttpGet("getAllRecipeTop")]
+        public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipeTop()
         {
 
             var result = _recipeService.getAllRecipeByAuthor();
