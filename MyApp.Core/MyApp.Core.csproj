@@ -296,8 +296,11 @@
     <Compile Include="Data\Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Helpers\SaltHashPassword.cs" />
+    <Compile Include="Helpers\WriterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IFollowerRepository.cs" />
+    <Compile Include="Repository\IImageWriter.cs" />
     <Compile Include="Repository\IMaterialRepository.cs" />
     <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\IRegisterRepository.cs" />

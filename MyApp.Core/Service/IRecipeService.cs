@@ -6,6 +6,7 @@ namespace MyApp.Core.Service
     public interface IRecipeService
     {
         BaseViewModel<PagingResult<RecipeViewPage>> getAllRecipeByAuthor();
+        BaseViewModel<PagingResult<RecipeViewPage>> getAllRecipeSuggestion();
         BaseViewModel<RecipeViewPage> getRecipeById(string id);
         BaseViewModel<RecipeViewPage> create(RecipeCreateViewPage request);
         BaseViewModel<RecipeViewPage> update(RecipeUpdateViewPage request);

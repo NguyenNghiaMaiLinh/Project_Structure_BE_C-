@@ -19,7 +19,7 @@ namespace MyApp.Service.Service
         private readonly IStepRepository _stepRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository recipeRepository,IMaterialRepository materialRepository,IStepRepository stepRepository)
+        public RecipeService(IUnitOfWork unitOfWork, IMapper mapper, IRecipeRepository recipeRepository, IMaterialRepository materialRepository, IStepRepository stepRepository)
         {
             _unitOfWork = unitOfWork;
             _repository = recipeRepository;
@@ -31,20 +31,25 @@ namespace MyApp.Service.Service
         {
             var entity = _mapper.Map<Recipe>(request);
             entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
-            _repository.Update(entity);
+            entity.IsDelete = false;
+            _repository.Add(entity);
             foreach (var item in request.Materials)
             {
                 var material = _mapper.Map<Material>(item);
                 material.RecipeId = entity.Id;
-                entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
-                _materialRepository.Update(material);
+                material.SetDefaultInsertValue(_repository.GetCurrentUserId());
+                material.IsDelete = false;
+                _materialRepository.Add(material);
+
             }
             foreach (var item in request.Steps)
             {
                 var step = _mapper.Map<Step>(item);
                 step.RecipeId = entity.Id;
-                entity.SetDefaultInsertValue(_repository.GetCurrentUserId());
-                _stepRepository.Update(step);
+                step.SetDefaultInsertValue(_repository.GetCurrentUserId());
+                step.IsDelete = false;
+                _stepRepository.Add(step);
+
             }
             Save();
 
@@ -103,8 +108,8 @@ namespace MyApp.Service.Service
             else
             {
 
-               
-               var entity = _mapper.Map<IEnumerable<RecipeViewPage>>(data);
+
+                var entity = _mapper.Map<IEnumerable<RecipeViewPage>>(data);
 
                 result.Data = new PagingResult<RecipeViewPage>
                 {
@@ -117,6 +122,34 @@ namespace MyApp.Service.Service
 
             return result;
         }
+        public BaseViewModel<PagingResult<RecipeViewPage>> getAllRecipeSuggestion()
+        {
+
+            var result = new BaseViewModel<PagingResult<RecipeViewPage>>();
+
+            var data = _repository.getAllRecipeSuggestion().ToList();
+            if (data == null || data.Count == 0)
+            {
+                result.Description = MessageConstants.NO_RECORD;
+                result.Code = MessageConstants.NO_RECORD;
+            }
+            else
+            {
+
+                var entity = _mapper.Map<IEnumerable<RecipeViewPage>>(data);
+
+                result.Data = new PagingResult<RecipeViewPage>
+                {
+                    Results = _mapper.Map<IEnumerable<RecipeViewPage>>(entity),
+                    PageIndex = 0,
+                    PageSize = 0,
+                    TotalRecords = data.Count()
+                };
+            }
+
+            return result;
+        }
+
 
         public BaseViewModel<RecipeViewPage> getRecipeById(string id)
         {
@@ -135,8 +168,8 @@ namespace MyApp.Service.Service
                 result.Data.Steps = _mapper.Map<IEnumerable<StepViewPage>>(_stepRepository.getALlStepByRecipeId(entity.Id).ToList());
                 result.StatusCode = HttpStatusCode.OK;
             }
-           
-           return result;
+
+            return result;
         }
 
         public BaseViewModel<RecipeViewPage> update(RecipeUpdateViewPage request)

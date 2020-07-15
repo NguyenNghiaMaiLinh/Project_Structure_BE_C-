@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyApp.Service.HelperService
+namespace MyApp.Core.Helpers
 {
-    public class SaltHashPassword
+   public class SaltHashPassword
     {
         public string Hash { get; private set; }
         public string Salt { get; private set; }

@@ -289,7 +289,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelperService\SaltHashPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\FollowerService.cs" />
     <Compile Include="Service\MaterialService.cs" />

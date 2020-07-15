@@ -71,7 +71,7 @@ namespace MyApp_API.Controllers
         public ActionResult<BaseViewModel<PagingResult<RecipeViewPage>>> getAllRecipeSuggestion()
         {
 
-            var result = _recipeService.getAllRecipeByAuthor();
+            var result = _recipeService.getAllRecipeSuggestion();
 
             return Ok(result);
         }

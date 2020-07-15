@@ -7,6 +7,7 @@ using MyApp.Core.Repository;
 using MyApp.Core.Service;
 using MyApp.Repository.Repository;
 using MyApp.Service.Service;
+using MyApp_API.Handler;
 
 namespace MyApp_API.Extentions
 {
@@ -51,7 +52,10 @@ namespace MyApp_API.Extentions
             services.AddTransient<IRegisterRepository, RegisterRepository>();
             services.AddTransient<IRecipeRepository, RecipeRepository>();
             services.AddTransient<IFollowerRepository, FollowerRepository>();
+            services.AddTransient<IMaterialRepository, MaterialRepository>();
             services.AddTransient<IStepRepository, StepRepository>();
+            services.AddTransient<IImageWriter, ImageWriter>();
+            services.AddTransient<IImageHandler, ImageHandler>();
         }
 
     }

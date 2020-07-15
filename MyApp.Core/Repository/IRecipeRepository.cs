@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace MyApp.Core.Repository
 {
-    public interface IRecipeRepository :IRepository<Recipe>
+    public interface IRecipeRepository : IRepository<Recipe>
     {
 
         IEnumerable<Recipe> getAllRecipeByAuthor(string author);
+        IEnumerable<Recipe> getAllRecipeSuggestion();
     }
 }

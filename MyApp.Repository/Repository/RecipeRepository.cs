@@ -43,5 +43,23 @@ namespace MyApp.Repository.Repository
             var result = _dataContext.Recipe.Where(c => c.CreateBy == author && c.IsDelete == false);
             return result;
         }
+
+        public IEnumerable<Recipe> getAllRecipeSuggestion()
+        {
+            //if (search == null)
+            //{
+            //    search = "";
+            //}
+            //var par1 = new SqlParameter("@PageIndex", pageIndex);
+            //var par2 = new SqlParameter("@PageSize", pageSize);
+            //var par3 = new SqlParameter("@Search", search);
+            //var par4 = new SqlParameter("@Author", author);
+
+            //var result = _dataContext.Recipe.FromSql("getAllRecipe @PageIndex, @PageSize, @Search, @Author", par1, par2, par3, par4).ToList();
+
+            var result = _dataContext.Recipe.Where(c => c.IsDelete == false);
+            return result;
+        }
+
     }
 }

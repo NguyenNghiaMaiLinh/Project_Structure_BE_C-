@@ -141,7 +141,14 @@ namespace MyApp_API
             }
 
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //Use this to set path of files outside the wwwroot folder
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
+            //    RequestPath = "/StaticFiles"
+            //});
+            app.UseStaticFiles();//letting the application know that we need access to wwwroot folder.
 
             app.UseHttpsRedirection();
 
