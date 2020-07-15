@@ -11,5 +11,9 @@ namespace MyApp_API.Controllers
     [ApiController]
     public class VersionController : ControllerBase
     {
+        public ActionResult<String> get()
+        {
+            return "1.0.0.0";
+        }
     }
 }

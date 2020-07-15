@@ -280,7 +280,6 @@
     <Compile Include="Configs\CorsSettings.cs" />
     <Compile Include="Constaint\Constants.cs" />
     <Compile Include="Constaint\MyEnum.cs" />
-    <Compile Include="Data\Entity\Active.cs" />
     <Compile Include="Data\Entity\BaseEntity.cs" />
     <Compile Include="Data\Entity\DataContext.cs" />
     <Compile Include="Data\Entity\Follower.cs" />

@@ -6,7 +6,6 @@ namespace MyApp.Core.Data.Entity
     {
         public Recipe()
         {
-            Active = new HashSet<Active>();
             Material = new HashSet<Material>();
             RecipeRegister = new HashSet<RecipeRegister>();
             Step = new HashSet<Step>();
@@ -22,7 +21,6 @@ namespace MyApp.Core.Data.Entity
         public int? Disliked { get; set; }
         public bool? IsDelete { get; set; }
 
-        public virtual ICollection<Active> Active { get; set; }
         public virtual ICollection<Material> Material { get; set; }
         public virtual ICollection<RecipeRegister> RecipeRegister { get; set; }
         public virtual ICollection<Step> Step { get; set; }

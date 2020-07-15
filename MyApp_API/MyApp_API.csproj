@@ -46,4 +46,8 @@
     <ProjectReference Include="..\MyApp.Service\MyApp.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

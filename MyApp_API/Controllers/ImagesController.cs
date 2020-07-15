@@ -28,7 +28,7 @@ namespace MyApp_API.Controllers
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public async Task<IActionResult> UploadImage(IFormFile file)
+        public async Task<IActionResult> UploadImage(IFormFile file)  
         {
             return await _imageHandler.UploadImage(file);
         }

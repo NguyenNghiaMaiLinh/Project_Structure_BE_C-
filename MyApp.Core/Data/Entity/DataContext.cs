@@ -17,7 +17,6 @@ namespace MyApp.Core.Data.Entity
             SaveChanges();
         }
 
-        public virtual DbSet<Active> Active { get; set; }
         public virtual DbSet<Follower> Follower { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Recipe> Recipe { get; set; }
@@ -29,7 +28,7 @@ namespace MyApp.Core.Data.Entity
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=dishyserverdb.database.windows.net;database=prc391db;user=dishy;pwd=Admin123;");
+                optionsBuilder.UseSqlServer("server=prc391dbserver.database.windows.net;database=dishydb;user=mailinh;pwd=Admin123;");
                 //optionsBuilder.UseSqlServer("server=.;database=DISHYDB;user=sa;pwd=3031998;");
             }
         }
@@ -38,129 +37,44 @@ namespace MyApp.Core.Data.Entity
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity<Active>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Account)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.RecipeId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Recipe)
-                    .WithMany(p => p.Active)
-                    .HasForeignKey(d => d.RecipeId)
-                    .HasConstraintName("FK_Active_Recipe");
-            });
-
             modelBuilder.Entity<Follower>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.AuthorId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.AuthorId).IsUnicode(false);
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CreateBy).IsUnicode(false);
 
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.FollowerId).IsUnicode(false);
 
-                entity.Property(e => e.FollowerId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UpdateBy).IsUnicode(false);
 
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.FollowerAuthor)
                     .HasForeignKey(d => d.AuthorId)
-                    .HasConstraintName("FK_Follower_Register3");
+                    .HasConstraintName("FK_Follower_Register");
 
                 entity.HasOne(d => d.FollowerNavigation)
                     .WithMany(p => p.FollowerFollowerNavigation)
                     .HasForeignKey(d => d.FollowerId)
-                    .HasConstraintName("FK_Follower_Register2");
+                    .HasConstraintName("FK_Follower_Register1");
             });
 
             modelBuilder.Entity<Material>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CreateBy).IsUnicode(false);
 
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.RecipeId).IsUnicode(false);
 
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+                entity.Property(e => e.Unit).IsUnicode(false);
 
-                entity.Property(e => e.Name).HasMaxLength(500);
-
-                entity.Property(e => e.RecipeId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Unit)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UpdateBy).IsUnicode(false);
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Material)
@@ -171,71 +85,25 @@ namespace MyApp.Core.Data.Entity
             modelBuilder.Entity<Recipe>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CreateBy).IsUnicode(false);
 
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Image).IsUnicode(false);
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
-
-                entity.Property(e => e.Image)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.Name).HasMaxLength(100);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UpdateBy).IsUnicode(false);
             });
 
             modelBuilder.Entity<RecipeRegister>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasMaxLength(10);
+                entity.Property(e => e.RecipeId).IsUnicode(false);
 
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.RecipeId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Saver)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(10);
+                entity.Property(e => e.Saver).IsUnicode(false);
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.RecipeRegister)
@@ -245,82 +113,40 @@ namespace MyApp.Core.Data.Entity
 
             modelBuilder.Entity<Register>(entity =>
             {
-                entity.HasKey(e => e.Username);
-
                 entity.Property(e => e.Username)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Avartar)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.Avartar).IsUnicode(false);
 
-                entity.Property(e => e.Cover)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.Cover).IsUnicode(false);
 
-                entity.Property(e => e.Fullname).HasMaxLength(100);
+                entity.Property(e => e.DeviceToken).IsUnicode(false);
 
-                entity.Property(e => e.HashPassword)
-                    .HasMaxLength(1000)
-                    .IsUnicode(false);
+                entity.Property(e => e.HashPassword).IsUnicode(false);
 
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
+                entity.Property(e => e.Role).IsUnicode(false);
 
-                entity.Property(e => e.Role)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SaltPassword)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.SaltPassword).IsUnicode(false);
             });
 
             modelBuilder.Entity<Step>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CreateAt)
-                    .HasColumnName("Create_At")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CreateBy).IsUnicode(false);
 
-                entity.Property(e => e.CreateBy)
-                    .HasColumnName("Create_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Image1).IsUnicode(false);
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Image2).IsUnicode(false);
 
-                entity.Property(e => e.Image1)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.RecipeId).IsUnicode(false);
 
-                entity.Property(e => e.Image2)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.UpdateBy).IsUnicode(false);
 
-                entity.Property(e => e.IsDelete).HasColumnName("Is_Delete");
-
-                entity.Property(e => e.RecipeId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdateAt)
-                    .HasColumnName("Update_At")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.UpdateBy)
-                    .HasColumnName("Update_By")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Video)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
+                entity.Property(e => e.Video).IsUnicode(false);
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.Step)
